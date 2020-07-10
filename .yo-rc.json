@@ -1,0 +1,28 @@
+{
+  "generator-ngx-rocket": {
+    "version": "8.1.0",
+    "props": {
+      "location": "path",
+      "strict": false,
+      "skipInstall": false,
+      "skipQuickstart": false,
+      "initGit": true,
+      "usePrefix": true,
+      "appName": "loud-6-castle",
+      "target": ["web"],
+      "pwa": true,
+      "ui": "bootstrap",
+      "auth": true,
+      "lazy": true,
+      "angulartics": false,
+      "languages": ["en-US"],
+      "tools": ["prettier", "jest"],
+      "utility": [],
+      "deploy": "github",
+      "projectName": "loud-6-castle",
+      "packageManager": "npm",
+      "mobile": [],
+      "desktop": []
+    }
+  }
+}
