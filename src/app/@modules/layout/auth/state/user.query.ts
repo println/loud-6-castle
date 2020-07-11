@@ -10,7 +10,7 @@ export class UserQuery extends Query<UserState> {
     super(store);
   }
 
-  isLoggedIn() {
+  public isLoggedIn(): boolean {
     return !!this.getValue().token;
   }
 }

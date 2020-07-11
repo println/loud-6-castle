@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
+import { UserQuery } from '@modules';
 
 describe('AuthenticationGuard', () => {
   let authenticationGuard: AuthenticationGuard;
@@ -8,13 +9,10 @@ describe('AuthenticationGuard', () => {
   let mockRouter: any;
   let mockSnapshot: any;
 
-  const authenticationGuardFactory = () => {
-    return new AuthenticationGuard(mockRouter, mockUserQuery);
-  };
-
   beforeEach(() => {
     mockUserQuery = {
-      isLoggedIn: jest.fn(),
+      isLogged: false,
+      isLoggedIn: () => mockUserQuery.isLogged,
     };
     mockRouter = {
       navigate: jest.fn(),
@@ -25,15 +23,21 @@ describe('AuthenticationGuard', () => {
 
     TestBed.configureTestingModule({
       providers: [
+        AuthenticationGuard,
         {
-          provide: AuthenticationGuard,
-          useFactory: authenticationGuardFactory,
+          provide: Router,
+          useValue: mockRouter,
+        },
+        {
+          provide: UserQuery,
+          useValue: mockUserQuery,
         },
       ],
     });
   });
 
   beforeEach(() => {
+    mockUserQuery = TestBed.inject(UserQuery) as any;
     authenticationGuard = TestBed.inject(AuthenticationGuard);
   });
 
@@ -42,18 +46,12 @@ describe('AuthenticationGuard', () => {
   });
 
   it('should return true if user is authenticated', () => {
-    mockUserQuery.isLoggedIn.mockReturnValueOnce(true);
+    mockUserQuery.isLogged = true;
     expect(authenticationGuard.canActivate(new ActivatedRouteSnapshot(), mockSnapshot)).toBe(true);
   });
 
   it('should return false and redirect to login if user is not authenticated', () => {
-    // Arrange
-    mockUserQuery.isLoggedIn.mockReturnValueOnce(false);
-
-    // Act
     const result = authenticationGuard.canActivate(new ActivatedRouteSnapshot(), mockSnapshot);
-
-    // Assert
     expect(mockRouter.navigate).toHaveBeenCalledWith(['/login'], {
       queryParams: { redirect: undefined },
       replaceUrl: true,
@@ -62,7 +60,6 @@ describe('AuthenticationGuard', () => {
   });
 
   it('should save url as queryParam if user is not authenticated', () => {
-    mockUserQuery.isLoggedIn.mockReturnValueOnce(false);
     mockRouter.url = '/about';
     mockSnapshot.url = '/about';
 

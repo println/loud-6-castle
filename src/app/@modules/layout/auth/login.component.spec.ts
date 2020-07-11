@@ -7,9 +7,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from '@core';
 import { I18nModule } from '@modules/layout/i18n';
 import { LoginComponent } from './login.component';
-import { UserQuery } from '@modules/layout/auth/state/user.query';
-import { AuthenticationService } from '@modules';
-import { Type } from '@angular/core';
+import { AuthenticationService, UserQuery } from '@modules';
+import { MockAuthenticationService } from '@modules/layout/auth/authentication.service.mock';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -18,18 +17,16 @@ describe('LoginComponent', () => {
 
   beforeEach(async(() => {
     mockUserQuery = {
-      isLoggedIn: jest.fn(),
+      isLoggedIn: () => true,
     };
 
     TestBed.configureTestingModule({
       imports: [NgbModule, RouterTestingModule, TranslateModule.forRoot(), I18nModule, ReactiveFormsModule, CoreModule],
-      declarations: [LoginComponent],
       providers: [
-        {
-          provide: UserQuery,
-          useValue: mockUserQuery,
-        },
+        { provide: AuthenticationService, useValue: MockAuthenticationService },
+        { provide: UserQuery, useValue: mockUserQuery },
       ],
+      declarations: [LoginComponent],
     }).compileComponents();
   }));
 

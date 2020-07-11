@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 import { Logger } from '@core';
-import { UserQuery } from '@modules/layout/auth/state/user.query';
+import { UserQuery } from './state/user.query';
 
 const log = new Logger('AuthenticationGuard');
 

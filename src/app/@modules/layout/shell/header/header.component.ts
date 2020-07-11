@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-import { AuthenticationService, CredentialsService } from '@app/@modules/layout/auth';
-import { ROUTE_PATH } from '@config/route-path.config';
-import { UserQuery } from '@app/@modules/layout/auth/state/user.query';
 import { Observable } from 'rxjs';
-import { UserState } from '@app/@modules/layout/auth/state/user.store';
+import { AuthenticationService } from '@modules/layout/auth/authentication.service';
+import { ROUTE_PATH } from '@config/route-path.config';
+import { UserQuery } from '@modules/layout/auth/state/user.query';
+import { UserState } from '@modules/layout/auth/state/user.store';
 
 @Component({
   selector: 'app-header',

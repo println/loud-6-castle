@@ -6,7 +6,7 @@ import { finalize } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, untilDestroyed } from '@core';
 import { AuthenticationService } from './authentication.service';
-import { UserQuery } from '@modules/layout/auth/state/user.query';
+import { UserQuery } from './state/user.query';
 
 const log = new Logger('Login');
 
