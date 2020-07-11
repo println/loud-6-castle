@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { Shell } from '@modules/layout/shell/shell.service';
-import { ROUTE_ID } from '@config/route-id.config';
+import { ROUTE } from '@config/route.config';
 
 const routes: Routes = [
   Shell.childRoutes([
     {
-      path: ROUTE_ID.about,
+      path: ROUTE.about.id,
       loadChildren: () => import('./@modules/layout/about/about.module').then((m) => m.AboutModule),
     },
   ]),
