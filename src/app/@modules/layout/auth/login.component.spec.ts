@@ -7,8 +7,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CoreModule } from '@core';
 import { I18nModule } from '@modules/layout/i18n';
 import { LoginComponent } from './login.component';
-import { AuthenticationService, UserQuery } from '@modules';
+import { AuthenticationService } from '@modules';
 import { MockAuthenticationService } from '@modules/layout/auth/authentication.service.mock';
+import { UserQuery } from '@shared/states/auth/user.query';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;

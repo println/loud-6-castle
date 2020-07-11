@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
 
 import { Logger } from '@core';
-import { UserQuery } from './state/user.query';
+import { UserQuery } from '@shared/states/auth/user.query';
+import { ROUTE_PATH } from '@config';
 
 const log = new Logger('AuthenticationGuard');
 
@@ -18,7 +19,7 @@ export class AuthenticationGuard implements CanActivate {
     }
 
     log.debug('Not authenticated, redirecting and adding redirect url...');
-    this.router.navigate(['/login'], { queryParams: { redirect: state.url }, replaceUrl: true });
+    this.router.navigate([ROUTE_PATH.login], { queryParams: { redirect: state.url }, replaceUrl: true });
     return false;
   }
 }

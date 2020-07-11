@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { ActivatedRouteSnapshot, Router } from '@angular/router';
 import { AuthenticationGuard } from './authentication.guard';
-import { UserQuery } from '@modules';
+import { UserQuery } from '@shared/states/auth';
 
 describe('AuthenticationGuard', () => {
   let authenticationGuard: AuthenticationGuard;

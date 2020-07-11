@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '@modules/layout/auth/authentication.service';
 import { ROUTE_PATH } from '@config/route-path.config';
-import { UserQuery } from '@modules/layout/auth/state/user.query';
-import { UserState } from '@modules/layout/auth/state/user.store';
+import { UserQuery } from '@shared/states/auth/user.query';
+import { UserState } from '@shared/states/auth/user.store';
 
 @Component({
   selector: 'app-header',

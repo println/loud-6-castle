@@ -6,7 +6,8 @@ import { finalize } from 'rxjs/operators';
 import { environment } from '@env/environment';
 import { Logger, untilDestroyed } from '@core';
 import { AuthenticationService } from './authentication.service';
-import { UserQuery } from './state/user.query';
+import { UserQuery } from '@shared/states/auth/user.query';
+import { ROUTE_PATH } from '@config';
 
 const log = new Logger('Login');
 
@@ -33,7 +34,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.userQuery.isLoggedIn()) {
-      const redirect = this.route.snapshot.queryParams.redirect || '/home';
+      const redirect = this.route.snapshot.queryParams.redirect || ROUTE_PATH.home;
       log.debug('Already authenticated, redirecting to:', redirect);
       this.router.navigate([redirect], { replaceUrl: true });
     }

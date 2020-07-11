@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserStore } from '@modules/layout/auth/state/user.store';
+import { UserStore } from '@shared/states/auth/user.store';
 
 export interface Credentials {
   // Customize received credentials here
