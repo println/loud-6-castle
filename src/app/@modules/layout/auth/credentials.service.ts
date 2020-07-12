@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { UserStore } from '@shared/states/auth/user.store';
 
 export interface Credentials {
@@ -19,13 +19,7 @@ const credentialsKey = 'credentials';
 export class CredentialsService {
   private _credentials: Credentials | null = null;
 
-  constructor(private userStore: UserStore) {
-    const savedCredentials = sessionStorage.getItem(credentialsKey) || localStorage.getItem(credentialsKey);
-    if (savedCredentials) {
-      this._credentials = JSON.parse(savedCredentials);
-      this.userStore.update({ token: this._credentials.token, name: this._credentials.username });
-    }
-  }
+  constructor(private userStore: UserStore) {}
 
   /**
    * Checks is the user is authenticated.
@@ -54,12 +48,8 @@ export class CredentialsService {
     this._credentials = credentials || null;
 
     if (credentials) {
-      const storage = remember ? localStorage : sessionStorage;
-      storage.setItem(credentialsKey, JSON.stringify(credentials));
       this.userStore.update({ token: credentials.token, name: credentials.username });
     } else {
-      sessionStorage.removeItem(credentialsKey);
-      localStorage.removeItem(credentialsKey);
       this.userStore.reset();
     }
   }

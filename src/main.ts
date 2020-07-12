@@ -10,6 +10,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from '@app/app.module';
 import { environment } from '@env/environment';
 import { hmrBootstrap } from './hmr';
+import { persistState } from '@datorama/akita';
 
 if (environment.production) {
   enableProdMode();
@@ -22,3 +23,8 @@ if (environment.hmr) {
 } else {
   bootstrap().catch((err) => console.error(err));
 }
+
+persistState({
+  include: ['auth'],
+  key: 'Stores',
+});
