@@ -1,22 +1,30 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
-import { CredentialsService, Credentials } from './credentials.service';
-import { MockCredentialsService } from './credentials.service.mock';
+import { UserStore } from '@shared';
 
 describe('AuthenticationService', () => {
   let authenticationService: AuthenticationService;
-  let credentialsService: MockCredentialsService;
+  let userStore: UserStore;
+  let mockUserStore: any;
 
   beforeEach(() => {
+    mockUserStore = {
+      credentials: {},
+      storageUpdate: (state: any, remember?: boolean) => {
+        mockUserStore.credentials = state;
+      },
+      reset: () => {},
+    };
+
     TestBed.configureTestingModule({
-      providers: [{ provide: CredentialsService, useClass: MockCredentialsService }, AuthenticationService],
+      providers: [{ provide: UserStore, useValue: mockUserStore }, AuthenticationService],
     });
 
     authenticationService = TestBed.inject(AuthenticationService);
-    credentialsService = TestBed.inject(CredentialsService);
-    credentialsService.credentials = null;
-    spyOn(credentialsService, 'setCredentials').and.callThrough();
+    userStore = TestBed.inject(UserStore);
+    spyOn(userStore, 'storageUpdate').and.callThrough();
+    spyOn(userStore, 'reset').and.callThrough();
   });
 
   describe('login', () => {
@@ -36,8 +44,6 @@ describe('AuthenticationService', () => {
     }));
 
     it('should authenticate user', fakeAsync(() => {
-      expect(credentialsService.isAuthenticated()).toBe(false);
-
       // Act
       const request = authenticationService.login({
         username: 'toto',
@@ -47,25 +53,7 @@ describe('AuthenticationService', () => {
 
       // Assert
       request.subscribe(() => {
-        expect(credentialsService.isAuthenticated()).toBe(true);
-        expect(credentialsService.credentials).not.toBeNull();
-        expect((credentialsService.credentials as Credentials).token).toBeDefined();
-        expect((credentialsService.credentials as Credentials).token).not.toBeNull();
-      });
-    }));
-
-    it('should persist credentials for the session', fakeAsync(() => {
-      // Act
-      const request = authenticationService.login({
-        username: 'toto',
-        password: '123',
-      });
-      tick();
-
-      // Assert
-      request.subscribe(() => {
-        expect(credentialsService.setCredentials).toHaveBeenCalled();
-        expect((credentialsService.setCredentials as jasmine.Spy).calls.mostRecent().args[1]).toBe(undefined);
+        expect(userStore.storageUpdate).toHaveBeenCalledTimes(1);
       });
     }));
 
@@ -80,8 +68,7 @@ describe('AuthenticationService', () => {
 
       // Assert
       request.subscribe(() => {
-        expect(credentialsService.setCredentials).toHaveBeenCalled();
-        expect((credentialsService.setCredentials as jasmine.Spy).calls.mostRecent().args[1]).toBe(true);
+        expect(userStore.storageUpdate).toHaveBeenCalledTimes(1);
       });
     }));
   });
@@ -97,14 +84,13 @@ describe('AuthenticationService', () => {
 
       // Assert
       loginRequest.subscribe(() => {
-        expect(credentialsService.isAuthenticated()).toBe(true);
+        expect(userStore.storageUpdate).toHaveBeenCalledTimes(1);
 
         const request = authenticationService.logout();
         tick();
 
         request.subscribe(() => {
-          expect(credentialsService.isAuthenticated()).toBe(false);
-          expect(credentialsService.credentials).toBeNull();
+          expect(userStore.reset).toHaveBeenCalledTimes(1);
         });
       });
     }));
