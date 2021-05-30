@@ -49,4 +49,4 @@ jobs:
         with:
           GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
           BRANCH: gh-pages
-          FOLDER: build
+          FOLDER: deploy_dist/dist
