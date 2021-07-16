@@ -3,7 +3,7 @@ import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
 import { Logger } from '@core/services/logger.service';
-import enUS from 'src/translations/en-US.json';
+import languageMap from 'src/translations';
 
 const log = new Logger('I18nService');
 const languageKey = 'language';
@@ -28,8 +28,7 @@ export class I18nService {
   private langChangeSubscription!: Subscription;
 
   constructor(private translateService: TranslateService) {
-    // Embed languages to avoid extra HTTP requests
-    translateService.setTranslation('en-US', enUS);
+    languageMap.forEach((lang) => translateService.setTranslation(lang.id, lang.file));
   }
 
   /**

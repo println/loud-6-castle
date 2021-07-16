@@ -1,0 +1,16 @@
+{
+  "APP_NAME": "loud-6-castle",
+  "About": "Sobre",
+  "Hello world !": "Olá Mundo!",
+  "Home": "Início",
+  "Logged in as": "Conectado como",
+  "Login": "Entrar",
+  "Logout": "Sair",
+  "Password": "Senha",
+  "Password is required": "Senha é obrigatória",
+  "Username": "Usuário",
+  "Username is required": "Usuário é obrigatório",
+  "Username or password incorrect.": "Usuário ou senha incorreto.",
+  "Remember me": "Permanecer conectado",
+  "Version": "Versão"
+}
