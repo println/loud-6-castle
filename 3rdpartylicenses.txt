@@ -25,6 +25,9 @@ MIT
 @datorama/akita
 Apache-2.0
 
+@datorama/akita-ngdevtools
+Apache-2.0
+
 @ng-bootstrap/ng-bootstrap
 MIT
 The MIT License (MIT)
