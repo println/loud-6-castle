@@ -17,8 +17,8 @@
             <div class="alert alert-danger" [hidden]="!error || isLoading" translate>
               Username or password incorrect.
             </div>
-            <div class="form-group">
-              <label class="d-block">
+            <div class="m-3">
+              <label class="d-block my-3">
                 <input
                   type="text"
                   class="form-control"
@@ -35,7 +35,7 @@
                   Username is required
                 </small>
               </label>
-              <label class="d-block">
+              <label class="d-block mb-3">
                 <input
                   type="password"
                   class="form-control"
@@ -60,10 +60,12 @@
                 </label>
               </div>
             </div>
-            <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
-              <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
-              <span translate>Login</span>
-            </button>
+            <div class="m-3">
+              <button class="btn btn-primary w-100" type="submit" [disabled]="loginForm.invalid || isLoading">
+                <i class="fas fa-cog fa-spin" [hidden]="!isLoading"></i>
+                <span translate>Login</span>
+              </button>
+            </div>
           </form>
         </div>
       </div>

@@ -18,7 +18,7 @@ https://println.github.io/loud-6-castle
 #### Libraries
 
 - [Angular](https://angular.io)
-- [Bootstrap 4](https://getbootstrap.com)
+- [Bootstrap](https://getbootstrap.com)
 - [ng-bootsrap](https://ng-bootstrap.github.io/)
 - [Font Awesome](http://fontawesome.io)
 - [RxJS](http://reactivex.io/rxjs)

@@ -2,8 +2,9 @@
 
 ## tl;dr's
 
-ngx-rocket comes with a very helpful `env` script that will save environment-variables set at build time to constants that can be used as configuration for your code. When combined with the `dotenv-cli` package, it enables maximum configurability
-while maintaining lots of simplicity for local development and testing.
+ngx-rocket comes with a very helpful `env` script that will save environment-variables set at build time to constants
+that can be used as configuration for your code. When combined with the `dotenv-cli` package, it enables maximum
+configurability while maintaining lots of simplicity for local development and testing.
 
 ### Cookbook for maximum independence of deployment-specific configuration
 
@@ -80,7 +81,6 @@ dev-server configuration by taking advantage of them:
 {
   "scripts": {
     "start": "dotenv -e environment.development.env.sh -- npm run env && API_PROXY_HOST='http://localhost:9000' ng serve --aot",
-    "e2e": "ngtw build && npm run env && API_PROXY_HOST='http://localhost:7357' ng e2e --webdriverUpdate=false",
   }
 }
 ```

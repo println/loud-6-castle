@@ -9,7 +9,7 @@
  *
  * Example usage:
  * ```
- * import { Logger } from 'domain/core/logger.services';
+ * import { Logger } from 'app/core/logger.service';
  *
  * const log = new Logger('myFile');
  * ...

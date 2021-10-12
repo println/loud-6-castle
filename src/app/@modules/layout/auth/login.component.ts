@@ -1,22 +1,23 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { Logger, untilDestroyed } from '@core';
+import { Logger, UntilDestroy, untilDestroyed } from '@shared';
 import { AuthenticationService } from './authentication.service';
 import { UserQuery } from '@shared/states/auth/user.query';
 import { ROUTE } from '@config';
 
 const log = new Logger('Login');
 
+@UntilDestroy()
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
   version: string | null = environment.version;
   error: string | undefined;
   loginForm!: FormGroup;
@@ -39,8 +40,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.router.navigate([redirect], { replaceUrl: true });
     }
   }
-
-  ngOnDestroy() {}
 
   login() {
     this.isLoading = true;

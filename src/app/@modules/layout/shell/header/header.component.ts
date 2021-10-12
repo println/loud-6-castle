@@ -19,7 +19,9 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private authenticationService: AuthenticationService,
     private userQuery: UserQuery
-  ) {}
+  ) {
+    this.user$ = this.userQuery.select();
+  }
 
   ngOnInit() {
     this.user$ = this.userQuery.select();

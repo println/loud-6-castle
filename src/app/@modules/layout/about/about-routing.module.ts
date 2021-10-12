@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
-import { extract } from '@modules/layout/i18n';
 import { AboutComponent } from './about.component';
 
 const routes: Routes = [
-  // Module is lazy loaded, see domain-routing.module.ts
-  { path: '', component: AboutComponent, data: { title: extract('About') } },
+  // Module is lazy loaded, see app-routing.module.ts
+  { path: '', component: AboutComponent, data: { title: marker('About') } },
 ];
 
 @NgModule({

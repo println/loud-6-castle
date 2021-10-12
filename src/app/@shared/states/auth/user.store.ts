@@ -10,8 +10,8 @@ export interface UserState {
 
 export function createInitialState(): UserState {
   return {
-    name: null,
-    token: null,
+    name: '',
+    token: '',
   };
 }
 

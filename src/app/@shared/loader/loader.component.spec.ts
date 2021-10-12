@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoaderComponent } from './loader.component';
 
@@ -6,11 +6,13 @@ describe('LoaderComponent', () => {
   let component: LoaderComponent;
   let fixture: ComponentFixture<LoaderComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [LoaderComponent],
-    }).compileComponents();
-  }));
+  beforeEach(
+    waitForAsync(() => {
+      TestBed.configureTestingModule({
+        declarations: [LoaderComponent],
+      }).compileComponents();
+    })
+  );
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoaderComponent);
@@ -27,7 +29,7 @@ describe('LoaderComponent', () => {
     expect(div.getAttribute('hidden')).not.toBeNull();
   });
 
-  it('should be visible when domain is loading', () => {
+  it('should be visible when app is loading', () => {
     // Arrange
     const element = fixture.nativeElement;
     const div = element.querySelectorAll('div')[0];

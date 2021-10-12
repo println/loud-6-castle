@@ -1,4 +1,4 @@
-import { fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
 import { UserStore } from '@shared';
@@ -23,8 +23,8 @@ describe('AuthenticationService', () => {
 
     authenticationService = TestBed.inject(AuthenticationService);
     userStore = TestBed.inject(UserStore);
-    spyOn(userStore, 'storageUpdate').and.callThrough();
-    spyOn(userStore, 'reset').and.callThrough();
+    jest.spyOn(userStore, 'storageUpdate').mockImplementation(() => {});
+    jest.spyOn(userStore, 'reset').mockImplementation(() => {});
   });
 
   describe('login', () => {

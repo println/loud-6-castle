@@ -20,11 +20,11 @@ The main benefits of using Sass over plain CSS are _variables_, _nesting_ and _m
 - Use this general nesting hierarchy when constructing your styles:
 
   ```scss
-  // The layout component class acts as the namespace, to avoid naming and style collisions
+  // The base component class acts as the namespace, to avoid naming and style collisions
   .my-component {
     // Put here all component elements (flat)
     .my-element {
-      // Use a third-level only for modifiers and auth variations
+      // Use a third-level only for modifiers and state variations
       &.active { ... }
     }
   }

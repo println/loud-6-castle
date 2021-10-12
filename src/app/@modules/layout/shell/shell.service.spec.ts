@@ -1,7 +1,7 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AuthenticationGuard, AuthenticationService } from '@app/@modules/layout/auth';
-import { MockAuthenticationService } from '@app/@modules/layout/auth/authentication.service.mock';
+import { AuthenticationGuard, AuthenticationService } from '@modules/layout/auth';
+import { MockAuthenticationService } from '@modules/layout/auth/authentication.service.mock';
 import { ShellComponent } from './shell.component';
 import { Shell } from './shell.service';
 

@@ -35,7 +35,7 @@ describe('Logger', () => {
 
   it('should add a new LogOutput and receives log entries', () => {
     // Arrange
-    const outputSpy = jasmine.createSpy('outputSpy');
+    const outputSpy = jest.fn();
     const log = new Logger('test');
 
     // Act
@@ -48,7 +48,7 @@ describe('Logger', () => {
 
     // Assert
     expect(outputSpy).toHaveBeenCalled();
-    expect(outputSpy.calls.count()).toBe(4);
+    expect(outputSpy.mock.calls.length).toBe(4);
     expect(outputSpy).toHaveBeenCalledWith('test', LogLevel.Debug, 'd');
     expect(outputSpy).toHaveBeenCalledWith('test', LogLevel.Info, 'i');
     expect(outputSpy).toHaveBeenCalledWith('test', LogLevel.Warning, 'w');
@@ -57,7 +57,7 @@ describe('Logger', () => {
 
   it('should add a new LogOutput and receives only production log entries', () => {
     // Arrange
-    const outputSpy = jasmine.createSpy('outputSpy');
+    const outputSpy = jest.fn();
     const log = new Logger('test');
 
     // Act
@@ -71,7 +71,7 @@ describe('Logger', () => {
 
     // Assert
     expect(outputSpy).toHaveBeenCalled();
-    expect(outputSpy.calls.count()).toBe(2);
+    expect(outputSpy.mock.calls.length).toBe(2);
     expect(outputSpy).toHaveBeenCalledWith('test', LogLevel.Warning, 'w');
     expect(outputSpy).toHaveBeenCalledWith('test', LogLevel.Error, 'e', { error: true });
   });

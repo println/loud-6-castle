@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from '@angular/router';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
-import { Logger } from '@core';
+import { Logger } from '@shared';
 import { UserQuery } from '@shared/states/auth/user.query';
 import { ROUTE } from '@config';
 

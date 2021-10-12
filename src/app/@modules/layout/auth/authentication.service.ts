@@ -10,7 +10,7 @@ export interface LoginContext {
 }
 
 /**
- * Provides a layout for authentication workflow.
+ * Provides a base for authentication workflow.
  * The login/logout methods should be replaced with proper implementation.
  */
 @Injectable({

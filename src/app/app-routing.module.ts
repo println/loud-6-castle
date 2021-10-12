@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { Shell } from '@modules/layout/shell/shell.service';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+import { Shell } from '@app/@modules/layout/shell/shell.service';
 import { ROUTE } from '@config/route.config';
 
 const routes: Routes = [
