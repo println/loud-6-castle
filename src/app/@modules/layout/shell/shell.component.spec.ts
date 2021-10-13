@@ -3,7 +3,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { MockAuthenticationService } from '@modules/layout/auth/authentication.service.mock';
 import { AuthenticationService } from '@modules/layout/auth';
 
 import { I18nModule } from '@modules/layout/i18n';
@@ -26,10 +25,7 @@ describe('ShellComponent', () => {
 
       TestBed.configureTestingModule({
         imports: [TranslateModule.forRoot(), I18nModule, NgbModule, RouterTestingModule],
-        providers: [
-          { provide: AuthenticationService, useValue: MockAuthenticationService },
-          { provide: UserQuery, useValue: mockUserQuery },
-        ],
+        providers: [{ provide: UserQuery, useValue: mockUserQuery }],
         declarations: [HeaderComponent, ShellComponent],
       }).compileComponents();
     })

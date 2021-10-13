@@ -1,0 +1,63 @@
+<div *ngIf="(data$ | async)?.person as person" class="container">
+  <header class="d-flex justify-content-between">
+    <h2>Person</h2>
+    <div class="stn-action-bar">
+      <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="['edit']">
+        <i class="fas fa-pencil-alt fa-fw"></i>
+        Edit
+      </a>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(person)">
+        <i class="far fa-trash-alt fa-fw"></i>
+        Delete
+      </button>
+    </div>
+  </header>
+
+  <figure class="card d-flex flex-row">
+    <div class="row g-0">
+      <img src="assets/images/default-profile.png" class="img-fluid rounded-start" />
+    </div>
+    <figcaption class="col-md-8">
+      <div class="card-body">
+        <h3 class="card-title">{{ person.name }}</h3>
+        <ul class="list-unstyled">
+          <li class="card-text"><strong>#ID:</strong> {{ person.id }}</li>
+          <li class="card-text"><strong>Birth Year:</strong> {{ person.birth_year }}</li>
+          <li class="card-text"><strong>Eye Color:</strong> {{ person.eye_color }}</li>
+          <li class="card-text"><strong>Gender:</strong> {{ person.gender }}</li>
+          <li class="card-text"><strong>Hair Color:</strong> {{ person.hair_color }}</li>
+          <li class="card-text"><strong>Height:</strong> {{ person.height }}</li>
+          <li class="card-text"><strong>Mass:</strong> {{ person.mass }}</li>
+          <li class="card-text"><strong>Skin Color:</strong> {{ person.skin_color }}</li>
+          <li class="card-text"><strong>Homeworld:</strong> {{ person.homeworld }}</li>
+          <li class="card-text">
+            <strong>Films:</strong> {{ person.films.length }}
+            <ul>
+              <li class="card-text" *ngFor="let film of person.films">{{ film }}</li>
+            </ul>
+          </li>
+          <li class="card-text">
+            <strong>Species:</strong> {{ person.species.length }}
+            <ul>
+              <li class="card-text" *ngFor="let s of person.species">{{ s }}</li>
+            </ul>
+          </li>
+          <li class="card-text">
+            <strong>Starships:</strong> {{ person.starships.length }}
+            <ul>
+              <li class="card-text" *ngFor="let s of person.starships">{{ s }}</li>
+            </ul>
+          </li>
+          <li class="card-text">
+            <strong>Vehicles:</strong> {{ person.vehicles.length }}
+            <ul>
+              <li class="card-text" *ngFor="let v of person.vehicles">{{ v }}</li>
+            </ul>
+          </li>
+          <li class="card-text"><strong>Created at:</strong> {{ person.created }}</li>
+          <li class="card-text"><strong>Updated at:</strong> {{ person.edited | date: 'medium' }}</li>
+        </ul>
+      </div>
+    </figcaption>
+  </figure>
+</div>
