@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: RootComponent, data: { title: marker('Root') } },
   {
     path: 'people',
-    loadChildren: () => import('./submodules/people/people.module').then((m) => m.PeopleModule),
+    loadChildren: () => import('./submodules/person/person.module').then((m) => m.PersonModule),
   },
 ];
 

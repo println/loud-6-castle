@@ -1,7 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-
-import { SharedModule } from '@shared';
+import { SharedModule } from '@app/@shared/shared.module';
 import { HomeComponent } from './home.component';
 import { QuoteService } from './quote.service';
 

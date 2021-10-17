@@ -5,13 +5,14 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person.model';
 import { PeopleService } from '@modules/domain/star-wars/submodules/swapi/services/people.service';
 import { Page } from '@modules/domain/star-wars/submodules/swapi/page.model';
+import { GridData } from '@shared/components/grid/grid-data.model';
 
 @Component({
   selector: 'app-employee-list',
-  templateUrl: './people-list.component.html',
+  templateUrl: './person-list.component.html',
 })
-export class PeopleListComponent implements OnInit {
-  data$: Observable<{ [name: string]: Page<Person> }> = of();
+export class PersonListComponent implements OnInit {
+  data$: Observable<{ [name: string]: GridData<Person> }> = of();
 
   constructor(
     private route: ActivatedRoute,

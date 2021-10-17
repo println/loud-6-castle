@@ -8,9 +8,9 @@ import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-people-form',
-  templateUrl: './people-form.component.html',
+  templateUrl: './person-form.component.html',
 })
-export class PeopleFormComponent implements OnInit {
+export class PersonFormComponent implements OnInit {
   data$: Observable<{ [name: string]: Person }> = of({});
 
   formData = {

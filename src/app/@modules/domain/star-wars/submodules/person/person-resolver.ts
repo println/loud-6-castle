@@ -8,7 +8,7 @@ import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person
 @Injectable({
   providedIn: 'root',
 })
-export class PeopleResolver implements Resolve<Person> {
+export class PersonResolver implements Resolve<Person> {
   constructor(private service: PeopleService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<Person> {

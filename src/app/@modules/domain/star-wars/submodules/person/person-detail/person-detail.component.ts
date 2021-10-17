@@ -8,9 +8,9 @@ import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person
 
 @Component({
   selector: 'app-employee-detail',
-  templateUrl: './people-detail.component.html',
+  templateUrl: './person-detail.component.html',
 })
-export class PeopleDetailComponent implements OnInit {
+export class PersonDetailComponent implements OnInit {
   data$: Observable<{ [name: string]: Person }> = of({});
 
   constructor(private route: ActivatedRoute, private router: Router, private peopleService: PeopleService) {}

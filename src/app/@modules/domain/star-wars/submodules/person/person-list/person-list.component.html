@@ -7,7 +7,7 @@
     >
   </header>
 
-  <div *ngIf="(data$ | async)?.page as page" class="container">
+  <div *ngIf="(data$ | async)?.page as gridData" class="container">
     <!--  <form class="stn-tool-bar" (submit)="applyFilter(page.params, filterName.value, filterAge.value, filterRole.value)">-->
     <!--    <h4>Filter</h4>-->
     <!--    <div class="form-row">-->
@@ -49,52 +49,42 @@
     <!--      </button>-->
     <!--    </div>-->
     <!--  </form>-->
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Name</th>
-          <th scope="col">Birth Year</th>
-          <th scope="col">Gender</th>
-          <th scope="col">Films</th>
-          <th scope="col">Updated at</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let person of page.results">
-          <th scope="row">{{ person.id }}</th>
-          <td>{{ person.name }}</td>
-          <td>{{ person.birth_year }}</td>
-          <td>{{ person.gender }}</td>
-          <td>{{ person.films.length }}</td>
-          <td>{{ person.edited }}</td>
-          <td>
-            <a role="button" class="btn btn-outline-primary btn-sm" [routerLink]="person.id">
-              <i class="far fa-eye fa-tw"></i>
-              View
-            </a>
-            <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="[person.id, 'edit']">
-              <i class="fas fa-pencil-alt fa-fw"></i>
-            </a>
-            <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(person, $event)">
-              <i class="far fa-trash-alt fa-fw"></i>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <ngb-pagination
-      class="d-flex justify-content-center"
-      size="lg"
-      [collectionSize]="page.count"
-      [page]="page.getCurrent()"
-      [pageSize]="page.getPageSize()"
-      [maxSize]="3"
-      [rotate]="true"
-      [boundaryLinks]="true"
-      (pageChange)="changePage(page, $event)"
-    ></ngb-pagination>
+    <app-grid [data]="gridData">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birth Year</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Films</th>
+            <th scope="col">Updated at</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of gridData.items">
+            <td>{{ person.id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.birth_year }}</td>
+            <td>{{ person.gender }}</td>
+            <td>{{ person.films.length }}</td>
+            <td>{{ person.edited }}</td>
+            <td>
+              <a role="button" class="btn btn-outline-primary btn-sm" [routerLink]="person.id">
+                <i class="far fa-eye fa-tw"></i>
+                View
+              </a>
+              <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="[person.id, 'edit']">
+                <i class="fas fa-pencil-alt fa-fw"></i>
+              </a>
+              <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(person, $event)">
+                <i class="far fa-trash-alt fa-fw"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </app-grid>
   </div>
 </div>

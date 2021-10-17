@@ -1,0 +1,7 @@
+<ng-container>
+  <div class="position-relative">
+    <app-loader [isLoading]="isLoading" [isExpandable]="true"></app-loader>
+    <ng-content></ng-content>
+  </div>
+  <app-paging (changePage)="onChangePage($event)" [data]="data?.paging" [isLoading]="isLoading"></app-paging>
+</ng-container>

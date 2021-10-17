@@ -1,0 +1,12 @@
+<ngb-pagination
+  class="d-flex justify-content-center"
+  size="lg"
+  [collectionSize]="data?.totalItems"
+  [page]="data?.currentPageIndex"
+  [pageSize]="data?.itemsByPage"
+  [maxSize]="3"
+  [rotate]="true"
+  [boundaryLinks]="true"
+  (pageChange)="onChangePage($event)"
+  [disabled]="isLoading"
+></ngb-pagination>

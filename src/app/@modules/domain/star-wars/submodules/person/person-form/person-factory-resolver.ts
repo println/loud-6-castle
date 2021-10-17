@@ -8,7 +8,7 @@ import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person
 @Injectable({
   providedIn: 'root',
 })
-export class PeopleFactoryResolver implements Resolve<Person> {
+export class PersonFactoryResolver implements Resolve<Person> {
   resolve(): Observable<Person> {
     return of({} as Person);
   }
