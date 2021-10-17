@@ -1,7 +1,10 @@
 <ng-container>
+  <app-search-bar (search)="onFilter($event)" *ngIf="searchBar">
+    <ng-content select="[search-fields]"></ng-content>
+  </app-search-bar>
   <div class="position-relative">
-    <app-loader [isLoading]="isLoading" [isExpandable]="true"></app-loader>
-    <ng-content></ng-content>
+    <app-loader [isExpandable]="true" [isLoading]="isLoading"></app-loader>
+    <ng-content select="[grid-view]"></ng-content>
   </div>
   <app-paging (changePage)="onChangePage($event)" [data]="data?.paging" [isLoading]="isLoading"></app-paging>
 </ng-container>

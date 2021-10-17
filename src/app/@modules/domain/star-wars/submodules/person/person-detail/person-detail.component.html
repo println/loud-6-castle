@@ -1,17 +1,15 @@
-<div *ngIf="(data$ | async)?.person as person" class="container">
-  <header class="d-flex justify-content-between">
-    <h2>Person</h2>
-    <div class="stn-action-bar">
-      <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="['edit']">
-        <i class="fas fa-pencil-alt fa-fw"></i>
-        Edit
-      </a>
-      <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(person)">
-        <i class="far fa-trash-alt fa-fw"></i>
-        Delete
-      </button>
-    </div>
-  </header>
+<app-page *ngIf="(data$ | async)?.person as person">
+  <span page-title>Person</span>
+  <div page-action-bar class="stn-action-bar">
+    <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="['edit']">
+      <i class="fas fa-pencil-alt fa-fw"></i>
+      Edit
+    </a>
+    <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(person)">
+      <i class="far fa-trash-alt fa-fw"></i>
+      Delete
+    </button>
+  </div>
 
   <figure class="card d-flex flex-row">
     <div class="row g-0">
@@ -60,4 +58,4 @@
       </div>
     </figcaption>
   </figure>
-</div>
+</app-page>

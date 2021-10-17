@@ -9,7 +9,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class GridComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
+  @Input() searchBar = false;
+
+  constructor(private route: ActivatedRoute, private router: Router) {}
+
   private _data: GridData<any> | undefined;
+
+  get data(): GridData<any> | undefined {
+    return this._data;
+  }
 
   @Input() set data(data: GridData<any> | undefined) {
     if (data) {
@@ -18,27 +26,37 @@ export class GridComponent implements OnInit, OnDestroy {
     this._data = data;
   }
 
-  get data(): GridData<any> | undefined {
-    return this._data;
-  }
-
-  constructor(private route: ActivatedRoute, private router: Router) {}
-
   ngOnInit() {}
 
   ngOnDestroy() {}
 
-  onChangePage(event: number) {
-    if (event > 0) {
-      this.navigate({ page: event });
+  onFilter(query: any) {
+    if (query) {
       this.isLoading = true;
+      this.navigate(query);
     }
   }
 
-  private navigate(queryParams: {}) {
+  onChangePage(event: number) {
+    if (event > 0) {
+      this.isLoading = true;
+      this.navigate({ page: event });
+    }
+  }
+
+  private navigate(query: {}) {
+    const queryParams = this.makeQueryParams(query);
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams,
     });
+  }
+
+  private makeQueryParams(query: {}) {
+    const currentQueryParams = this.route.snapshot.queryParams;
+    const newQueryParams = Object.assign({}, currentQueryParams, query);
+    const emptyKeys = Object.keys(query).filter((k) => query[k] == null);
+    emptyKeys.forEach((k) => delete newQueryParams[k]);
+    return newQueryParams;
   }
 }
