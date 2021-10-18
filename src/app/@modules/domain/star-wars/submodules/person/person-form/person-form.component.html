@@ -4,142 +4,126 @@
     <h4>Add new person</h4>
   </ng-template>
 
-  <form #personForm="ngForm" (ngSubmit)="submit(personForm)" class="row g-3 needs-validation">
-    <div class="col-md-4">
+  <app-form class="row g-3 needs-validation" (formSubmit)="submit($event)">
+    <div app-form-field-feedback [model]="firstName" class="col-md-4">
       <label class="form-label" for="firstName">First name</label>
       <input
         #firstName="ngModel"
-        [class.is-invalid]="isInvalid(firstName)"
-        [class.is-valid]="isValid(firstName)"
-        [ngModel]="formData.firstName"
+        [ngClass]="{
+          'is-valid': firstName.touched && firstName.valid,
+          'is-invalid': firstName.touched && firstName.invalid
+        }"
         class="form-control"
         id="firstName"
         minlength="5"
         name="firstName"
+        ngModel
         required
         type="text"
       />
-      <div *ngIf="isInvalid(firstName)" class="invalid-feedback">Please provide a valid name.</div>
-      <div *ngIf="isValid(firstName)" class="valid-feedback">Looks good!</div>
+      <span invalid>Pay attention here!</span>
+      <span valid>Nice!</span>
     </div>
-    <div class="col-md-4">
+    <div app-form-field-feedback [model]="lastName" class="col-md-4">
       <label class="form-label" for="lastName">Last name</label>
       <input
         #lastName="ngModel"
-        [class.is-invalid]="isInvalid(lastName)"
-        [class.is-valid]="isValid(lastName)"
-        [ngModel]="formData.lastName"
+        [ngClass]="{
+          'is-valid': lastName.touched && lastName.valid,
+          'is-invalid': lastName.touched && lastName.invalid
+        }"
         class="form-control"
         id="lastName"
         minlength="5"
         name="lastName"
-        required
+        ngModel
         required
         type="text"
       />
-      <div *ngIf="isInvalid(lastName)" class="invalid-feedback">Please provide a valid name.</div>
-      <div *ngIf="isValid(lastName)" class="valid-feedback">Looks good!</div>
     </div>
     <div class="col-md-4">
       <label class="form-label" for="username">Username</label>
-      <div class="input-group has-validation">
+      <div app-form-field-feedback [model]="username" class="input-group has-validation">
         <span class="input-group-text" id="inputGroupPrepend">@</span>
         <input
           #username="ngModel"
-          [class.is-invalid]="isInvalid(username)"
-          [class.is-valid]="isValid(username)"
-          [ngModel]="formData.username"
+          [ngClass]="{
+            'is-valid': username.touched && username.valid,
+            'is-invalid': username.touched && username.invalid
+          }"
           aria-describedby="inputGroupPrepend"
           class="form-control"
           id="username"
           minlength="6"
           name="username"
-          required
+          ngModel
           required
           type="text"
         />
-        <div *ngIf="isInvalid(username)" class="invalid-feedback">Please choose a username.</div>
-        <div *ngIf="isValid(username)" class="valid-feedback">Looks good!</div>
       </div>
     </div>
-    <div class="col-md-6">
+    <div app-form-field-feedback [model]="city" class="col-md-6">
       <label class="form-label" for="city">City</label>
       <input
         #city="ngModel"
-        [class.is-invalid]="isInvalid(city)"
-        [class.is-valid]="isValid(city)"
-        [ngModel]="formData.city"
+        [ngClass]="{ 'is-valid': city.touched && city.valid, 'is-invalid': city.touched && city.invalid }"
         class="form-control"
-        equired
         id="city"
         minlength="6"
         name="city"
+        ngModel
         required
         type="text"
       />
-      <div *ngIf="isInvalid(city)" class="invalid-feedback">Please provide a valid city.</div>
-      <div *ngIf="isValid(city)" class="valid-feedback">Looks good!</div>
     </div>
-    <div class="col-md-3">
+    <div app-form-field-feedback [model]="state" class="col-md-3">
       <label class="form-label" for="state">State</label>
       <select
         #state="ngModel"
-        [class.is-invalid]="isInvalid(state)"
-        [class.is-valid]="isValid(state)"
-        [ngModel]="formData.state"
+        [ngClass]="{ 'is-valid': state.touched && state.valid, 'is-invalid': state.touched && state.invalid }"
         class="form-select"
         id="state"
         name="state"
-        required
+        ngModel
         required
       >
         <option selected value="">Choose...</option>
         <option>State 01</option>
       </select>
-      <div *ngIf="isInvalid(state)" class="invalid-feedback">Please select a valid state.</div>
-      <div *ngIf="isValid(state)" class="valid-feedback">Looks good!</div>
     </div>
-    <div class="col-md-3">
+    <div app-form-field-feedback [model]="zip" class="col-md-3">
       <label class="form-label" for="zipcode">Zip</label>
       <input
         #zip="ngModel"
-        [class.is-invalid]="isInvalid(zip)"
-        [class.is-valid]="isValid(zip)"
-        [ngModel]="formData.zipcode"
+        [ngClass]="{ 'is-valid': zip.touched && zip.valid, 'is-invalid': zip.touched && zip.invalid }"
         class="form-control"
         id="zipcode"
         name="zipcode"
+        ngModel
         pattern="^\d{5}(?:\d{3})?$"
         required
         type="text"
       />
-      <div *ngIf="isInvalid(zip)" class="invalid-feedback">Please provide a valid zip.</div>
-      <div *ngIf="isValid(zip)" class="valid-feedback">Looks good!</div>
     </div>
     <div class="col-12">
-      <div class="form-check">
+      <div app-form-field-feedback [model]="agreement" class="form-check" [validFeedbackMessage]="false">
         <input
           #agreement="ngModel"
-          [class.is-invalid]="isInvalid(agreement)"
-          [class.is-valid]="isValid(agreement)"
-          [ngModel]="formData.agreement"
+          [ngClass]="{
+            'is-valid': agreement.touched && agreement.valid,
+            'is-invalid': agreement.touched && agreement.invalid
+          }"
           class="form-check-input"
           id="agreement"
           name="agreement"
+          ngModel
           required
           type="checkbox"
           value=""
         />
-        <label *ngIf="isValid(agreement)" class="form-check-label" for="agreement">
-          Agree to terms and conditions
-        </label>
-        <div *ngIf="isInvalid(agreement)" class="invalid-feedback">You must agree before submitting.</div>
+        <label class="form-check-label" for="agreement"> Agree to terms and conditions </label>
+        <span invalid>You must agree before submitting.</span>
       </div>
     </div>
-    <div class="col-12">
-      <button [disabled]="!personForm.form.valid" class="btn btn-primary" type="submit">Submit form</button>
-    </div>
-  </form>
-
-  <app-form-debug [form]="personForm"></app-form-debug>
+  </app-form>
 </app-page>

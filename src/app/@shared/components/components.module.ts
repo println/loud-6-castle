@@ -8,6 +8,8 @@ import { FormDebugComponent } from '@shared/components/form-debug/form-debug.com
 import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { SearchBarComponent } from '@shared/components/search-bar/search-bar.component';
 import { PageComponent } from '@shared/components/page/page.component';
+import { FormComponent } from '@shared/components/form/form.component';
+import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedback/form-field-feedback.component';
 
 @NgModule({
   declarations: [
@@ -17,8 +19,17 @@ import { PageComponent } from '@shared/components/page/page.component';
     FormDebugComponent,
     SearchBarComponent,
     PageComponent,
+    FormComponent,
+    FormFieldFeedbackComponent,
   ],
   imports: [CommonModule, NgbPaginationModule, FormsModule],
-  exports: [GridComponent, LoaderComponent, FormDebugComponent, PageComponent],
+  exports: [
+    GridComponent,
+    LoaderComponent,
+    FormDebugComponent,
+    PageComponent,
+    FormComponent,
+    FormFieldFeedbackComponent,
+  ],
 })
 export class ComponentsModule {}

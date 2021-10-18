@@ -1,0 +1,8 @@
+<form #customForm="ngForm" (ngSubmit)="onSubmit(customForm)" class="row g-3 needs-validation">
+  <ng-content></ng-content>
+  <div class="col-12">
+    <button [disabled]="!customForm.form.valid" class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
+
+<app-form-debug [form]="customForm"></app-form-debug>

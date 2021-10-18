@@ -29,14 +29,6 @@ export class PersonFormComponent implements OnInit {
     this.data$ = this.route.data;
   }
 
-  isInvalid(model: NgModel) {
-    return !model.valid && model.touched;
-  }
-
-  isValid(model: NgModel) {
-    return model.valid && model.touched;
-  }
-
   save(person: Person) {
     // this.peopleService.create(person).subscribe(
     //   (val) => {
@@ -63,8 +55,8 @@ export class PersonFormComponent implements OnInit {
     // );
   }
 
-  submit(personForm: NgForm) {
-    console.log(personForm);
+  submit(data: {}) {
+    console.log(data);
     return false;
   }
 }
