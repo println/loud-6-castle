@@ -1,5 +1,6 @@
 import {
   AfterContentInit,
+  AfterViewChecked,
   Component,
   ContentChildren,
   EventEmitter,
@@ -29,10 +30,7 @@ export class FormComponent implements OnInit, AfterContentInit {
   ngOnInit(): void {}
 
   public ngAfterContentInit(): void {
-    let ngContentModels = this.models.toArray();
-    ngContentModels.forEach((model) => {
-      this.form.addControl(model);
-    });
+    this.addModelsToForm();
   }
 
   onSubmit(form: NgForm) {
@@ -41,5 +39,25 @@ export class FormComponent implements OnInit, AfterContentInit {
     } else {
       console.log('Form is invalid!');
     }
+  }
+
+  resetControls() {
+    console.log('reset');
+    this.removeAllModelsInForm();
+    this.addModelsToForm();
+  }
+
+  private addModelsToForm() {
+    let ngContentModels = this.models.toArray();
+    ngContentModels.forEach((model) => {
+      this.form.addControl(model);
+    });
+  }
+
+  private removeAllModelsInForm() {
+    let ngContentModels = this.models.toArray();
+    ngContentModels.forEach((model) => {
+      this.form.removeControl(model);
+    });
   }
 }

@@ -4,7 +4,7 @@
     <h4>Add new person</h4>
   </ng-template>
 
-  <app-form class="row g-3 needs-validation" (formSubmit)="submit($event)">
+  <app-form #form class="row g-3 needs-validation" (formSubmit)="submit($event)">
     <div app-form-field-feedback [model]="firstName" class="col-md-4">
       <label class="form-label" for="firstName">First name</label>
       <input
@@ -125,5 +125,59 @@
         <span invalid>You must agree before submitting.</span>
       </div>
     </div>
+    <div class="col-12">
+      <div app-form-field-feedback class="form-check" [validFeedbackMessage]="false">
+        <input
+          #flexRadioDefault1="ngModel"
+          class="form-check-input"
+          id="flexRadioDefault1"
+          name="flexRadioDefault"
+          ngModel
+          type="radio"
+          value="A"
+          required
+        />
+        <label class="form-check-label" for="flexRadioDefault1"> No car </label>
+        <span invalid>You must agree before submitting.</span>
+      </div>
+      <div app-form-field-feedback class="form-check" [validFeedbackMessage]="false">
+        <input
+          #flexRadioDefault2
+          class="form-check-input"
+          id="flexRadioDefault2"
+          name="flexRadioDefault"
+          type="radio"
+          ngModel
+          value="B"
+          required
+        />
+        <label class="form-check-label" for="flexRadioDefault2"> Show Car form </label>
+        <span invalid>You must agree before submitting.</span>
+      </div>
+    </div>
+    <ng-container *ngIf="flexRadioDefault2.checked; then carTemplate"> </ng-container>
   </app-form>
 </app-page>
+
+<ng-template #carTemplate>
+  <div class="col-12">
+    <div app-form-field-feedback [model]="car" class="form-check" [validFeedbackMessage]="false">
+      <input
+        #car="ngModel"
+        [ngClass]="{
+          'is-valid': car.touched && car.valid,
+          'is-invalid': car.touched && car.invalid
+        }"
+        class="form-check-input"
+        id="car"
+        name="car"
+        ngModel
+        required
+        type="checkbox"
+        value=""
+      />
+      <label class="form-check-label" for="car"> Agree to terms and conditions </label>
+      <span invalid>You must agree before submitting.</span>
+    </div>
+  </div>
+</ng-template>
