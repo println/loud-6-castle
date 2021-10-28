@@ -5,52 +5,21 @@
   </ng-template>
 
   <app-form #form class="row g-3 needs-validation" (formSubmit)="submit($event)">
-    <div app-form-field-feedback [model]="firstName" class="col-md-4">
+    <div app-form-field-feedback class="col-md-4">
       <label class="form-label" for="firstName">First name</label>
-      <input
-        #firstName="ngModel"
-        [ngClass]="{
-          'is-valid': firstName.touched && firstName.valid,
-          'is-invalid': firstName.touched && firstName.invalid
-        }"
-        class="form-control"
-        id="firstName"
-        minlength="5"
-        name="firstName"
-        ngModel
-        required
-        type="text"
-      />
+      <input class="form-control" id="firstName" minlength="5" name="firstName" ngModel required type="text" />
       <span invalid>Pay attention here!</span>
       <span valid>Nice!</span>
     </div>
-    <div app-form-field-feedback [model]="lastName" class="col-md-4">
+    <div app-form-field-feedback class="col-md-4">
       <label class="form-label" for="lastName">Last name</label>
-      <input
-        #lastName="ngModel"
-        [ngClass]="{
-          'is-valid': lastName.touched && lastName.valid,
-          'is-invalid': lastName.touched && lastName.invalid
-        }"
-        class="form-control"
-        id="lastName"
-        minlength="5"
-        name="lastName"
-        ngModel
-        required
-        type="text"
-      />
+      <input class="form-control" id="lastName" minlength="5" name="lastName" ngModel required type="text" />
     </div>
     <div class="col-md-4">
       <label class="form-label" for="username">Username</label>
-      <div app-form-field-feedback [model]="username" class="input-group has-validation">
+      <div app-form-field-feedback class="input-group has-validation">
         <span class="input-group-text" id="inputGroupPrepend">@</span>
         <input
-          #username="ngModel"
-          [ngClass]="{
-            'is-valid': username.touched && username.valid,
-            'is-invalid': username.touched && username.invalid
-          }"
           aria-describedby="inputGroupPrepend"
           class="form-control"
           id="username"
@@ -62,40 +31,20 @@
         />
       </div>
     </div>
-    <div app-form-field-feedback [model]="city" class="col-md-6">
+    <div app-form-field-feedback class="col-md-6">
       <label class="form-label" for="city">City</label>
-      <input
-        #city="ngModel"
-        [ngClass]="{ 'is-valid': city.touched && city.valid, 'is-invalid': city.touched && city.invalid }"
-        class="form-control"
-        id="city"
-        minlength="6"
-        name="city"
-        ngModel
-        required
-        type="text"
-      />
+      <input class="form-control" id="city" minlength="6" name="city" ngModel required type="text" />
     </div>
-    <div app-form-field-feedback [model]="state" class="col-md-3">
+    <div app-form-field-feedback class="col-md-3">
       <label class="form-label" for="state">State</label>
-      <select
-        #state="ngModel"
-        [ngClass]="{ 'is-valid': state.touched && state.valid, 'is-invalid': state.touched && state.invalid }"
-        class="form-select"
-        id="state"
-        name="state"
-        ngModel
-        required
-      >
+      <select class="form-select" id="state" name="state" ngModel required>
         <option selected value="">Choose...</option>
         <option>State 01</option>
       </select>
     </div>
-    <div app-form-field-feedback [model]="zip" class="col-md-3">
+    <div app-form-field-feedback class="col-md-3">
       <label class="form-label" for="zipcode">Zip</label>
       <input
-        #zip="ngModel"
-        [ngClass]="{ 'is-valid': zip.touched && zip.valid, 'is-invalid': zip.touched && zip.invalid }"
         class="form-control"
         id="zipcode"
         name="zipcode"
@@ -106,21 +55,8 @@
       />
     </div>
     <div class="col-12">
-      <div app-form-field-feedback [model]="agreement" class="form-check" [validFeedbackMessage]="false">
-        <input
-          #agreement="ngModel"
-          [ngClass]="{
-            'is-valid': agreement.touched && agreement.valid,
-            'is-invalid': agreement.touched && agreement.invalid
-          }"
-          class="form-check-input"
-          id="agreement"
-          name="agreement"
-          ngModel
-          required
-          type="checkbox"
-          value=""
-        />
+      <div app-form-field-feedback class="form-check" [validFeedbackMessage]="false">
+        <input class="form-check-input" id="agreement" name="agreement" ngModel required type="checkbox" value="" />
         <label class="form-check-label" for="agreement"> Agree to terms and conditions </label>
         <span invalid>You must agree before submitting.</span>
       </div>
@@ -155,29 +91,22 @@
         <span invalid>You must agree before submitting.</span>
       </div>
     </div>
-    <ng-container *ngIf="flexRadioDefault2.checked; then carTemplate"> </ng-container>
+    <div *ngIf="flexRadioDefault2.checked">
+      <div *ngFor="let car of cars; index as i">
+        <div app-form-field-feedback class="col-md-4">
+          <label class="form-label" [for]="'car_' + car">Car {{ i + 1 }}:</label>
+          <input
+            [appAsyncModel]="form"
+            class="form-control"
+            id="car_{{ car }}"
+            minlength="10"
+            name="car_{{ car }}"
+            ngModel
+            required
+            type="text"
+          />
+        </div>
+      </div>
+    </div>
   </app-form>
 </app-page>
-
-<ng-template #carTemplate>
-  <div class="col-12">
-    <div app-form-field-feedback [model]="car" class="form-check" [validFeedbackMessage]="false">
-      <input
-        #car="ngModel"
-        [ngClass]="{
-          'is-valid': car.touched && car.valid,
-          'is-invalid': car.touched && car.invalid
-        }"
-        class="form-check-input"
-        id="car"
-        name="car"
-        ngModel
-        required
-        type="checkbox"
-        value=""
-      />
-      <label class="form-check-label" for="car"> Agree to terms and conditions </label>
-      <span invalid>You must agree before submitting.</span>
-    </div>
-  </div>
-</ng-template>

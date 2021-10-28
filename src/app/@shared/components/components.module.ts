@@ -9,6 +9,7 @@ import { LoaderComponent } from '@shared/components/loader/loader.component';
 import { SearchBarComponent } from '@shared/components/search-bar/search-bar.component';
 import { PageComponent } from '@shared/components/page/page.component';
 import { FormComponent } from '@shared/components/form/form.component';
+import { FormAsyncModelDirective } from '@shared/components/form/form-async-model.directive';
 import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedback/form-field-feedback.component';
 
 @NgModule({
@@ -21,6 +22,7 @@ import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedba
     PageComponent,
     FormComponent,
     FormFieldFeedbackComponent,
+    FormAsyncModelDirective,
   ],
   imports: [CommonModule, NgbPaginationModule, FormsModule],
   exports: [
@@ -30,6 +32,7 @@ import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedba
     PageComponent,
     FormComponent,
     FormFieldFeedbackComponent,
+    FormAsyncModelDirective,
   ],
 })
 export class ComponentsModule {}

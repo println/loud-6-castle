@@ -1,4 +1,5 @@
 export * from './form/form.component';
+export * from './form/form-async-model.directive';
 export * from './form-debug/form-debug.component';
 export * from './form-field-feedback/form-field-feedback.component';
 export * from './grid/grid.component';

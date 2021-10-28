@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
-import { PeopleService } from '@modules/domain/star-wars/submodules/swapi/services/people.service';
 import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person.model';
-import { NgForm, NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-people-form',
@@ -13,46 +11,12 @@ import { NgForm, NgModel } from '@angular/forms';
 export class PersonFormComponent implements OnInit {
   data$: Observable<{ [name: string]: Person }> = of({});
 
-  formData = {
-    zipcode: null,
-    firstName: null,
-    lastName: null,
-    username: null,
-    city: null,
-    state: null,
-    agreement: false,
-  };
+  cars = ['car1', 'car2', 'car3', 'car4'];
 
-  constructor(private route: ActivatedRoute, private router: Router, private peopleService: PeopleService) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.data$ = this.route.data;
-  }
-
-  save(person: Person) {
-    // this.peopleService.create(person).subscribe(
-    //   (val) => {
-    //     console.log('CREATE call successful value returned in body', val);
-    //     this.router.navigate([ROUTE.employee.id, val.id]);
-    //   },
-    //   (response) => {
-    //     window.alert('CREATE call in error');
-    //     console.log('CREATE call in error', response);
-    //   }
-    // );
-  }
-
-  update(person: Person) {
-    // this.peopleService.update(person.id, person).subscribe(
-    //   (val) => {
-    //     console.log('UPDATE call successful value returned in body', val);
-    //     this.router.navigate([ROUTE.employee.id, val.id]);
-    //   },
-    //   (response) => {
-    //     window.alert('UPDATE call in error');
-    //     console.log('UPDATE call in error', response);
-    //   }
-    // );
   }
 
   submit(data: {}) {
