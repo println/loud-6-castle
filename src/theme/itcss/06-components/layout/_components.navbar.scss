@@ -3,6 +3,8 @@
    ========================================================================== */
 
 .c-navbar {
+  $navbar: &;
+
   --bs-bg-opacity: 1;
 
   display: flex;
@@ -23,11 +25,15 @@
     flex-direction: column;
     flex: 1;
     overflow-y: hidden;
-    scrollbar-gutter: stable;
     @extend .o-scrollbar--thin;
 
     &:hover {
       overflow-y: auto;
+      /* stylelint-disable */
+      @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        overflow-y: overlay;
+      }
+      /* stylelint-enable */
     }
   }
 
@@ -46,25 +52,45 @@
   &__nav {
     @extend .o-vertical-list;
 
-    //&__item {
-    //}
+    & & {
+      display: none;
 
-    &__link {
-      display: flex;
-      flex-direction: row;
-      align-content: center;
-      align-items: center;
-      flex: 1;
-      padding: 1em;
-      text-decoration: none;
-
-      &:hover {
-        background-color: #7f7f7f;
+      #{$navbar}__link {
+        padding-left: 2em;
       }
+    }
+  }
 
-      &--hidden {
-        display: none;
-      }
+  &__item {
+    &--dropping > #{$navbar}__link {
+      @extend .o-dropdown-toggle;
+    }
+
+    &--active #{$navbar}__nav {
+      display: block;
+    }
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    flex: 1;
+    padding: 1em;
+    text-decoration: none;
+
+    &:hover {
+      background-color: #7f7f7f;
+    }
+
+    &--active {
+      background-color: var(--bs-secondary);
+    }
+
+    #{$navbar}__item--dropping > &--active {
+      background-color: rgba(gray, 0.4);
+      color: white;
     }
   }
 }

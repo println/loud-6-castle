@@ -1,85 +1,79 @@
 <header class="c-navbar__header"></header>
 <nav class="c-navbar__body">
   <ul class="c-navbar__nav">
-    <li class="c-navbar__nav__item">
-      <a routerLink="/home" routerLinkActive="active" class="c-navbar__nav__link">
+    <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
+      <a routerLink="/home" routerLinkActive="c-navbar__link--active" class="c-navbar__link">
         <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline" translate>Home</span>
       </a>
     </li>
-    <li class="c-navbar__nav__item">
-      <a routerLink="/about" routerLinkActive="active" data-bs-toggle="collapse" class="c-navbar__nav__link">
+    <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
+      <a routerLink="/about" routerLinkActive="c-navbar__link--active" data-bs-toggle="collapse" class="c-navbar__link">
         <i class="fas fa-question-circle"></i> <span class="ms-1 d-none d-sm-inline" translate>Dashboard</span>
       </a>
     </li>
-    <li class="c-navbar__nav__item">
+    <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
       <a
-        routerLink="/starwars"
-        routerLinkActive="active"
+        routerLink="/starwars/people"
+        routerLinkActive="c-navbar__link--active"
         data-bs-toggle="collapse"
-        class="c-navbar__nav__link"
-        #expanded
+        class="c-navbar__link"
       >
         <i class="fas fa-question-circle"></i> <span class="ms-1 d-none d-sm-inline" translate>Starwars API</span>
       </a>
       <ul class="c-navbar__nav" id="submenu1" data-bs-parent="#menu">
-        <li class="c-navbar__nav__item">
-          <a class="c-navbar__nav__link" routerLink="/starwars/people" routerLinkActive="active">
+        <li class="c-navbar__item">
+          <a class="c-navbar__link" routerLink="/starwars/people" routerLinkActive="c-navbar__link--active">
             <i class="far fa-address-book"></i> <span class="ms-1 d-none d-sm-inline" translate>People</span>
           </a>
         </li>
-        <li class="c-navbar__nav__item">
-          <a class="c-navbar__nav__link" routerLink="/starwars/xxx" routerLinkActive="active">
+        <li class="c-navbar__item">
+          <a class="c-navbar__link" routerLink="/starwars/xxx" routerLinkActive="c-navbar__link--active">
             <i class="far fa-bookmark"></i> <span class="ms-1 d-none d-sm-inline" translate>Starwars API</span>
           </a>
         </li>
       </ul>
     </li>
-    <li class="c-navbar__nav__item">
-      <a href="#" class="c-navbar__nav__link">
+    <li class="c-navbar__item">
+      <a href="#" class="c-navbar__link">
         <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Orders</span></a
       >
     </li>
-    <li class="c-navbar__nav__item">
-      <a href="#submenu2" data-bs-toggle="collapse" class="c-navbar__nav__link">
+    <li class="c-navbar__item">
+      <a href="#submenu2" data-bs-toggle="collapse" class="c-navbar__link">
         <i class="fs-4 bi-bootstrap"></i> <span class="ms-1 d-none d-sm-inline">Bootstrap</span></a
       >
       <ul class="c-navbar__nav" id="submenu2" data-bs-parent="#menu">
-        <li class="c-navbar__nav__item">
-          <a href="#" class="c-navbar__nav__link"> <span class="d-none d-sm-inline">Item</span> 1</a>
+        <li class="c-navbar__item">
+          <a href="#" class="c-navbar__link"> <span class="d-none d-sm-inline">Item</span> 1</a>
         </li>
-        <li class="c-navbar__nav__item">
-          <a href="#" class="c-navbar__nav__link"> <span class="d-none d-sm-inline">Item</span> 2</a>
+        <li class="c-navbar__item">
+          <a href="#" class="c-navbar__link"> <span class="d-none d-sm-inline">Item</span> 2</a>
         </li>
       </ul>
     </li>
-    <li class="c-navbar__nav__item">
-      <a href="#submenu3" data-bs-toggle="collapse" class="c-navbar__nav__link">
+    <li class="c-navbar__item">
+      <a href="#submenu3" data-bs-toggle="collapse" class="c-navbar__link">
         <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Products</span>
       </a>
       <ul class="c-navbar__nav" id="submenu3" data-bs-parent="#menu">
         <li class="w-100">
-          <a href="#" class="c-navbar__nav__link"> <span class="d-none d-sm-inline">Product</span> 1</a>
+          <a href="#" class="c-navbar__link"> <span class="d-none d-sm-inline">Product</span> 1</a>
         </li>
         <li>
-          <a href="#" class="c-navbar__nav__link"> <span class="d-none d-sm-inline">Product</span> 2</a>
+          <a href="#" class="c-navbar__link"> <span class="d-none d-sm-inline">Product</span> 2</a>
         </li>
         <li>
-          <a href="#" class="c-navbar__nav__link"> <span class="d-none d-sm-inline">Product</span> 3</a>
+          <a href="#" class="c-navbar__link"> <span class="d-none d-sm-inline">Product</span> 3</a>
         </li>
         <li>
-          <a href="#" class="c-navbar__nav__link"> <span class="d-none d-sm-inline">Product</span> 4</a>
+          <a href="#" class="c-navbar__link"> <span class="d-none d-sm-inline">Product</span> 4</a>
         </li>
       </ul>
     </li>
-    <li class="c-navbar__nav__item">
-      <a href="#" class="nc-navbar__nav__link">
-        <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Customers</span>
-      </a>
-    </li>
   </ul>
 </nav>
+<hr />
 <footer class="c-navbar__footer">
-  <hr />
   <div class="dropdown pb-4">
     <a
       href="#"
