@@ -77,6 +77,8 @@
 @import "~bootstrap/scss/root";
 @import "~bootstrap/scss/reboot";
 
+@import "03-generic/generic.reset";
+
 /* #ELEMENTS
    ========================================================================== */
 @import "~bootstrap/scss/type";
@@ -87,6 +89,8 @@
 @import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/nav";
+
+@import "04-elements/elements.layout.positions";
 
 /* #OBJECTS
    ========================================================================== */
@@ -112,8 +116,15 @@
 @import "~bootstrap/scss/offcanvas";
 @import "~bootstrap/scss/placeholders";
 
+@import "05-objects/objects.vertical-list";
+@import "05-objects/objects.scrollbar";
+
 /* #COMPONENTS
    ========================================================================== */
+@import "06-components/layout/components.root";
+@import "06-components/layout/components.shell";
+@import "06-components/layout/components.header";
+@import "06-components/layout/components.navbar";
 
 /* #EXTERNALS
    ========================================================================== */

@@ -1,5 +1,14 @@
-/* stylelint-disable selector-list-comma-newline-after */
-
 /* ==========================================================================
-   #RESET
+   #Vertical list
    ========================================================================== */
+
+.o-vertical-list {
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+
+  li {
+    display: block;
+  }
+}

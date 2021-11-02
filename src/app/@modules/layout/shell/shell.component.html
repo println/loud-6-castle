@@ -1,10 +1,7 @@
-<app-header></app-header>
-
-<div class="container-fluid">
-  <div class="row flex-nowrap">
-    <div app-menu class="col-auto col-md-3 col-xl-2 bg-dark p-0"></div>
-    <div class="col py-3">
-      <router-outlet></router-outlet>
-    </div>
-  </div>
+<header app-header class="c-shell__header"></header>
+<div class="c-shell__body">
+  <aside app-navbar class="c-shell__body__left-area"></aside>
+  <main class="c-shell__body__content">
+    <router-outlet></router-outlet>
+  </main>
 </div>

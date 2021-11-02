@@ -1,0 +1,29 @@
+/* ==========================================================================
+   #APP shell area
+   ========================================================================== */
+
+.c-shell {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+
+  //&__header {
+  //}
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-wrap: nowrap;
+    height: 0%;
+
+    &__left-area {
+      width: fit-content;
+    }
+
+    &__content {
+      flex: 1 0 0%;
+      padding: 1rem;
+      overflow-y: auto;
+    }
+  }
+}

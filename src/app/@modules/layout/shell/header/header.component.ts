@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '@modules/layout/auth/authentication.service';
@@ -7,11 +7,12 @@ import { UserState } from '@shared/states/auth/user.store';
 import { ROUTE } from '@config';
 
 @Component({
-  selector: 'app-header',
+  selector: 'app-header, [app-header]',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  @HostBinding('class') class = 'c-header';
+
   menuHidden = true;
   user$: Observable<UserState>;
 

@@ -57,3 +57,10 @@
   list-style: none;
   margin: 0;
 }
+
+/**
+ * Extends class
+ */
+@mixin customExtend($class) {
+  @extend .#{$class};
+}

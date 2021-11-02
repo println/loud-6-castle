@@ -1,0 +1,16 @@
+/* ==========================================================================
+   #Scrollbar
+   ========================================================================== */
+
+.o-scrollbar--thin {
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(128, 128, 128, 0.7);
+    border-radius: 20px;
+  }
+}
