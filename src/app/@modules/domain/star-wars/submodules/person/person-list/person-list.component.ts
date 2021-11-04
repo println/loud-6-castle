@@ -2,9 +2,8 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person.model';
-import { PeopleService } from '@modules/domain/star-wars/submodules/swapi/services/people.service';
-import { Page } from '@modules/domain/star-wars/submodules/swapi/page.model';
+import { Person } from '@shared/api/swapi/models/person.model';
+import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
 import { GridData } from '@shared/components/grid/grid-data.model';
 
 @Component({
@@ -25,7 +24,7 @@ export class PersonListComponent implements OnInit {
     this.data$ = this.route.data;
   }
 
-  changePage(page: Page<Person>, nextPage: number) {
+  changePage(page: any, nextPage: number) {
     this.navigate({ page: nextPage });
   }
 

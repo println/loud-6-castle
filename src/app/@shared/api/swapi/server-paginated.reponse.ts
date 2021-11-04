@@ -1,4 +1,4 @@
-export interface PaginatedResponse<T> {
+export interface ServerPaginatedResponse<T> {
   count: number;
   next: null | string;
   previous: null | string;

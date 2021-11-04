@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { PeopleService } from '@modules/domain/star-wars/submodules/swapi/services/people.service';
-import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person.model';
+import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
+import { Person } from '@shared/api/swapi/models/person.model';
 
 @Injectable({
   providedIn: 'root',

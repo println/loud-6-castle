@@ -1,4 +1,4 @@
-import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person.model';
+import { Person } from '@shared/api/swapi/models/person.model';
 
 export class PersonFormData implements Person {
   birth_year!: string;

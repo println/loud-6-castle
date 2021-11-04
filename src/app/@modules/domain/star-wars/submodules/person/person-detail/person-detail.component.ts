@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE } from '@config';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { PeopleService } from '@modules/domain/star-wars/submodules/swapi/services/people.service';
-import { Person } from '@modules/domain/star-wars/submodules/swapi/models/person.model';
+import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
+import { Person } from '@shared/api/swapi/models/person.model';
 
 @Component({
   selector: 'app-employee-detail',
