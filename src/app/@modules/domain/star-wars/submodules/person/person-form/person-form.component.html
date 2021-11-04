@@ -1,13 +1,21 @@
-<app-page *ngIf="(data$ | async)?.person as person">
-  <span *ngIf="person.id; else creationTitle" page-title>Edit person</span>
+<app-page *ngIf="formData">
+  <span *ngIf="pristineData?.id; else creationTitle" page-title>Editing {{ pristineData.name }}</span>
   <ng-template #creationTitle>
     <h4>Add new person</h4>
   </ng-template>
 
   <app-form #form class="row g-3 needs-validation" (formSubmit)="submit($event)">
     <div app-form-field-feedback class="col-md-4">
-      <label class="form-label" for="firstName">First name</label>
-      <input class="form-control" id="firstName" minlength="5" name="firstName" ngModel required type="text" />
+      <label class="form-label" for="name">First name</label>
+      <input
+        class="form-control"
+        id="name"
+        minlength="5"
+        name="name"
+        [(ngModel)]="formData.name"
+        required
+        type="text"
+      />
       <span invalid>Pay attention here!</span>
       <span valid>Nice!</span>
     </div>

@@ -3,9 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
 import { PersonFormComponent } from './person-form/person-form.component';
 import { PersonListComponent } from './person-list/person-list.component';
-import { PersonListResolver } from '@modules/domain/star-wars/submodules/person/person-list/person-list-resolver';
-import { PersonResolver } from '@modules/domain/star-wars/submodules/person/person-resolver';
-import { PersonFactoryResolver } from '@modules/domain/star-wars/submodules/person/person-form/person-factory-resolver';
+import { PersonListResolver } from './person-list/person-list-resolver';
+import { PersonResolver } from './person-resolver';
 
 const routes: Routes = [
   {
@@ -24,16 +23,13 @@ const routes: Routes = [
         path: 'new',
         pathMatch: 'full',
         component: PersonFormComponent,
-        resolve: {
-          person: PersonFactoryResolver,
-        },
       },
       {
         path: ':personId/edit',
         pathMatch: 'full',
         component: PersonFormComponent,
         resolve: {
-          person: PersonResolver,
+          data: PersonResolver,
         },
       },
       {
@@ -41,7 +37,7 @@ const routes: Routes = [
         pathMatch: 'full',
         component: PersonDetailComponent,
         resolve: {
-          person: PersonResolver,
+          data: PersonResolver,
         },
       },
     ],
