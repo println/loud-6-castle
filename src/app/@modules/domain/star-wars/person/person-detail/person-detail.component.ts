@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTE } from '@config';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
-import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
+import { PeopleService } from '@modules/domain/star-wars/person/people.service';
 import { Person } from '@shared/api/swapi/models/person.model';
 
 @Component({

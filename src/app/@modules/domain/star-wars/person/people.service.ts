@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Person, PersonSearch } from '@shared/api/swapi/models/person.model';
+import { Person } from '@shared/api/swapi/models/person.model';
 import { map, take } from 'rxjs/operators';
-import { API, ENDPOINTS } from '@shared/api/swapi/endpoints.config';
+import { ENDPOINTS } from '@shared/api/swapi/endpoints.map';
 import { Params } from '@angular/router';
 import { PagingConverterService } from '@shared/api/swapi/paging-converter.service';
 import { GridData } from '@shared/components/grid/grid-data.model';
@@ -13,7 +13,7 @@ import { ServerPaginatedResponse } from '@shared/api/swapi/server-paginated.repo
   providedIn: 'root',
 })
 export class PeopleService {
-  protected readonly resource = `${API}${ENDPOINTS.PEOPLE}`;
+  protected readonly resource = `/${ENDPOINTS.PEOPLE}`;
 
   constructor(protected http: HttpClient, private converter: PagingConverterService) {}
 

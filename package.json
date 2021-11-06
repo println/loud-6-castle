@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "build": "npm run write:env -s && ng build",
-    "build:ci": "npm run write:env -s && ng build --configuration production --sourceMap=false --base-href /loud-6-castle/",
+    "build:ci": "npm run write:env -s && ng build --configuration production --output-hashing=all --sourceMap=false --base-href /loud-6-castle/",
     "start": "npm run write:env -s && ng serve --proxy-config proxy.conf.js",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss",
@@ -66,6 +66,7 @@
     "https-proxy-agent": "^5.0.0",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
+    "miragejs": "^0.1.42",
     "prettier": "^2.2.1",
     "pretty-quick": "^3.1.0",
     "stylelint": "~13.13.1",

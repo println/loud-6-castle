@@ -3,7 +3,7 @@ import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Observable } from 'rxjs';
 import { Person } from '@shared/api/swapi/models/person.model';
-import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
+import { PeopleService } from '@modules/domain/star-wars/person/people.service';
 import { ServerParamsFilter } from '@shared/api/swapi/server-params.filter';
 import { GridData } from '@shared/components/grid/grid-data.model';
 

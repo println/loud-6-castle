@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
+import { PeopleService } from '@modules/domain/star-wars/person/people.service';
 import { Person } from '@shared/api/swapi/models/person.model';
 
 @Injectable({

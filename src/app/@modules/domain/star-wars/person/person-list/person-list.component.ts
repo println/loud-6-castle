@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Person } from '@shared/api/swapi/models/person.model';
-import { PeopleService } from '@modules/domain/star-wars/submodules/person/people.service';
+import { PeopleService } from '@modules/domain/star-wars/person/people.service';
 import { GridData } from '@shared/components/grid/grid-data.model';
 
 @Component({
