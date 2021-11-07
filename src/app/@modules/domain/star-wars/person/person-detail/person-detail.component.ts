@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ROUTE } from '@config';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { PeopleService } from '@modules/domain/star-wars/person/people.service';

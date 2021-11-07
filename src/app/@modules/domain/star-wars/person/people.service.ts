@@ -33,9 +33,4 @@ export class PeopleService {
       })
     );
   }
-
-  private extractId(url: string) {
-    let data: any = url.match(/(\d+)/g) || [];
-    return parseInt(data);
-  }
 }

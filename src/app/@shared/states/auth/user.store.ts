@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Store, StoreConfig, UpdateStateCallback } from '@datorama/akita';
+import { Store, StoreConfig } from '@datorama/akita';
 
 const SESSION_KEY = 'Session';
 

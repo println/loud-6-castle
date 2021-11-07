@@ -4,7 +4,7 @@
     <h4>Add new person</h4>
   </ng-template>
 
-  <app-form #form class="row g-3 needs-validation" (formSubmit)="submit($event)">
+  <app-form #form class="row g-3 needs-validation" (formSubmit)="submit($event)" [edit]="pristineData?.id">
     <div app-form-field-feedback class="col-md-4">
       <label class="form-label" for="name">First name</label>
       <input

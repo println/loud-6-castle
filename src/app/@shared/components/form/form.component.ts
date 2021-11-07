@@ -4,6 +4,7 @@ import {
   Component,
   ContentChildren,
   EventEmitter,
+  Input,
   OnInit,
   Output,
   QueryList,
@@ -16,7 +17,8 @@ import { NgForm, NgModel } from '@angular/forms';
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.scss'],
 })
-export class FormComponent implements OnInit, AfterContentInit {
+export class FormComponent implements OnInit, AfterContentInit, AfterViewChecked {
+  @Input() edit = false;
   @Output() formSubmit: EventEmitter<{}> = new EventEmitter();
 
   @ContentChildren(NgModel, { descendants: true })
@@ -31,6 +33,12 @@ export class FormComponent implements OnInit, AfterContentInit {
 
   public ngAfterContentInit(): void {
     this.addModelsToForm();
+  }
+
+  public ngAfterViewChecked() {
+    if (this.edit) {
+      this.form.form.markAllAsTouched();
+    }
   }
 
   onSubmit(form: NgForm) {

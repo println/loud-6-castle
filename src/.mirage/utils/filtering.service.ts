@@ -14,10 +14,6 @@ export class FilteringService {
     let result = [...this.data];
     Object.keys(params).forEach((key) => {
       result = result.filter((item) => {
-        if (!params[key]) {
-          return false;
-        }
-
         const query = params[key].trim().toLowerCase();
         const text = new String(item[key]).toString().trim().toLowerCase();
         return text.includes(query);

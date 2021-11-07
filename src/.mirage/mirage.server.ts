@@ -1,5 +1,7 @@
 import { Server } from 'miragejs';
-import peopleHandler from './handlers/people-handler';
+import handler from './handlers/handler';
+import * as peopleJson from './data/people.json';
+import * as filmJson from './data/films.json';
 
 class MirageServer {
   public server?: Server;
@@ -24,7 +26,11 @@ class MirageServer {
   }
 
   private setHandlers(server: Server) {
-    peopleHandler(server);
+    server.get('https://api.chucknorris.io/jokes/random', () => {
+      return { value: 'chuck norris api mocked' };
+    });
+    handler(server, Array.from(peopleJson), '/people');
+    handler(server, Array.from(filmJson), '/films');
   }
 }
 

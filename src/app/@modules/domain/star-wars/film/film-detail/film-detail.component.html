@@ -1,0 +1,22 @@
+<app-page *ngIf="(data$ | async)?.data as film">
+  <span page-title>Film: {{ film.title }}</span>
+  <div page-action-bar class="stn-action-bar">
+    <a role="button" class="btn btn-outline-info btn-sm" [routerLink]="['edit']">
+      <i class="fas fa-pencil-alt fa-fw"></i>
+      Edit
+    </a>
+    <button type="button" class="btn btn-outline-danger btn-sm" (click)="delete(film)">
+      <i class="far fa-trash-alt fa-fw"></i>
+      Delete
+    </button>
+  </div>
+
+  <ul class="o-vertical-list">
+    <li *ngFor="let item of film | keyvalue">
+      <b>{{ item.key }}:</b> <span *ngIf="!isArray(item.value)">{{ item.value }}</span>
+      <ul *ngIf="isArray(item.value)">
+        <li *ngFor="let label of item.value">{{ label }}</li>
+      </ul>
+    </li>
+  </ul>
+</app-page>

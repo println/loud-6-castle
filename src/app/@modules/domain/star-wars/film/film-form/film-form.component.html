@@ -1,0 +1,22 @@
+<app-page *ngIf="formData">
+  <span *ngIf="pristineData?.id; else creationTitle" page-title>Editing: {{ pristineData.title }}</span>
+  <ng-template #creationTitle>
+    <h4>Add new person</h4>
+  </ng-template>
+
+  <app-form #form [edit]="true">
+    <div class="form-group" app-form-field-feedback>
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        placeholder="Enter title"
+        minlength="11"
+        required
+        [(ngModel)]="formData.title"
+      />
+    </div>
+  </app-form>
+</app-page>

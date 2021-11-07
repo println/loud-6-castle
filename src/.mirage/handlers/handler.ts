@@ -1,10 +1,9 @@
 import { Request, Server } from 'miragejs';
-import * as json from '../data/people.json';
 import { PagingService } from '../utils/paging.service';
 import { FilteringService } from '../utils/filtering.service';
 
-export default function peopleHandler(server: Server) {
-  const resource = '/people';
+export default function handler(server: Server, json: any[], resourcePath: string) {
+  const resource = resourcePath;
   const data: any[] = Array.from(json);
   const paging = new PagingService(server.namespace, resource);
   const filtering = new FilteringService(data);
