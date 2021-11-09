@@ -13,6 +13,10 @@ export class PersonFormComponent implements OnInit {
   pristineData!: Person;
   formData: PersonFormData = new PersonFormData({} as Person);
 
+  get isEditing() {
+    return this.pristineData?.id;
+  }
+
   cars = ['car1', 'car2', 'car3', 'car4'];
 
   constructor(private route: ActivatedRoute) {}

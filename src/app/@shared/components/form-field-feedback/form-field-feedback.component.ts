@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, ContentChild, ElementRef, Input, OnInit } from '@angular/core';
-import { NgModel } from '@angular/forms';
+import { FormControl, NgModel } from '@angular/forms';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-form-field-feedback, [app-form-field-feedback]',
   templateUrl: './form-field-feedback.component.html',
@@ -35,7 +37,15 @@ export class FormFieldFeedbackComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     const attrName = this.model.name;
     const query = `#${attrName}`;
+    const formControl = this.model.control;
     this.htmlElement = this.elementRef.nativeElement.querySelector(query);
+    this.listenFormStatusChanges(formControl);
+  }
+
+  private listenFormStatusChanges(formControl: FormControl) {
+    if (formControl) {
+      formControl.statusChanges.pipe(untilDestroyed(this)).subscribe((result) => this.setModelValidationClass());
+    }
   }
 
   private setModelValidationClass(): void {
