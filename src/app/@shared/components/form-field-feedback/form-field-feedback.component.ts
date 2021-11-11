@@ -6,7 +6,6 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 @Component({
   selector: 'app-form-field-feedback, [app-form-field-feedback]',
   templateUrl: './form-field-feedback.component.html',
-  styleUrls: ['./form-field-feedback.component.scss'],
 })
 export class FormFieldFeedbackComponent implements OnInit, AfterViewInit {
   @Input() feedbackMessage = true;
@@ -67,13 +66,13 @@ export class FormFieldFeedbackComponent implements OnInit, AfterViewInit {
     if (!this.model) {
       return false;
     }
-    return <boolean>(this.model.valid && this.model.touched);
+    return <boolean>(this.model.valid && (!this.model.pristine || this.model.touched));
   }
 
   private checkIsInvalid(): boolean {
     if (!this.model) {
       return false;
     }
-    return <boolean>(!this.model.valid && this.model.touched);
+    return <boolean>(!this.model.valid && (!this.model.pristine || this.model.touched));
   }
 }
