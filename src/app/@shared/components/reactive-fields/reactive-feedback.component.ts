@@ -1,21 +1,31 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, Input, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
 import { FormControlName, NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-form-field-feedback, [app-form-field-feedback]',
-  templateUrl: './form-field-feedback.component.html',
+  selector: 'app-reactive-feedback, [app-reactive-feedback]',
+  template: `
+    <ng-content></ng-content>
+    <div *ngIf="feedbackMessage && invalidFeedbackMessage && isInvalid" class="invalid-feedback">
+      <span #invalidText><ng-content select="[invalid]"></ng-content></span>
+      <span *ngIf="!invalidText.children.length">Please provide a valid value</span>
+    </div>
+
+    <div *ngIf="feedbackMessage && validFeedbackMessage && isValid" class="valid-feedback">
+      <span #validText><ng-content select="[valid]"></ng-content></span>
+      <span *ngIf="!validText.children.length">Valid!</span>
+    </div>
+  `,
 })
-export class FormFieldFeedbackComponent implements OnInit, AfterViewInit {
+export class ReactiveFeedbackComponent implements OnInit, AfterViewInit {
   @Input() feedbackMessage = true;
   @Input() validFeedbackMessage = true;
   @Input() invalidFeedbackMessage = true;
   @Input() validClass = 'is-valid';
   @Input() invalidClass = 'is-invalid';
-
-  @ContentChild(FormControlName)
-  private formControl!: FormControlName;
+  @Input() control!: FormControlName;
+  @Input() name!: string;
 
   private htmlElement: any;
 
@@ -34,11 +44,9 @@ export class FormFieldFeedbackComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    const attrName = this.formControl.name;
-    const query = `[name="${attrName}"]`;
-    const formControl = this.formControl;
+    const query = `[name="${this.name}"]`;
     this.htmlElement = this.elementRef.nativeElement.querySelector(query);
-    this.listenFormStatusChanges(formControl);
+    this.listenFormStatusChanges(this.control);
   }
 
   private listenFormStatusChanges(formControl: NgControl) {
@@ -63,16 +71,22 @@ export class FormFieldFeedbackComponent implements OnInit, AfterViewInit {
   }
 
   private checkIsValid(): boolean {
-    if (!this.formControl) {
+    if (!this.control) {
       return false;
     }
-    return <boolean>(this.formControl.valid && (!this.formControl.pristine || this.formControl.touched));
+    if (this.control.disabled) {
+      return false;
+    }
+    return <boolean>(this.control.valid && (!this.control.pristine || this.control.touched));
   }
 
   private checkIsInvalid(): boolean {
-    if (!this.formControl) {
+    if (!this.control) {
       return false;
     }
-    return <boolean>(!this.formControl.valid && (!this.formControl.pristine || this.formControl.touched));
+    if (this.control.disabled) {
+      return false;
+    }
+    return <boolean>(!this.control.valid && (!this.control.pristine || this.control.touched));
   }
 }

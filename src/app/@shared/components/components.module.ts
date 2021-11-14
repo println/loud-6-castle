@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { GridComponent } from '@shared/components/grid/grid.component';
 import { PagingComponent } from '@shared/components/paging/paging.component';
@@ -11,6 +11,11 @@ import { PageComponent } from '@shared/components/page/page.component';
 import { FormComponent } from '@shared/components/form/form.component';
 import { FormAsyncModelDirective } from '@shared/components/form/form-async-model.directive';
 import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedback/form-field-feedback.component';
+import { ReactiveTextComponent } from '@shared/components/reactive-fields/reactive-text.component';
+import { ReactiveFeedbackComponent } from '@shared/components/reactive-fields/reactive-feedback.component';
+import { ReactiveComboComponent } from '@shared/components/reactive-fields/reactive-combo.component';
+import { ReactiveUsernameComponent } from '@shared/components/reactive-fields/reactive-username.component';
+import { ReactiveComboMultiComponent } from '@shared/components/reactive-fields/reactive-combo-multi.component';
 
 @NgModule({
   declarations: [
@@ -22,9 +27,14 @@ import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedba
     PageComponent,
     FormComponent,
     FormFieldFeedbackComponent,
+    ReactiveFeedbackComponent,
     FormAsyncModelDirective,
+    ReactiveTextComponent,
+    ReactiveComboComponent,
+    ReactiveComboMultiComponent,
+    ReactiveUsernameComponent,
   ],
-  imports: [CommonModule, NgbPaginationModule, FormsModule],
+  imports: [CommonModule, NgbPaginationModule, FormsModule, ReactiveFormsModule],
   exports: [
     GridComponent,
     LoaderComponent,
@@ -33,6 +43,10 @@ import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedba
     FormComponent,
     FormFieldFeedbackComponent,
     FormAsyncModelDirective,
+    ReactiveTextComponent,
+    ReactiveComboComponent,
+    ReactiveComboMultiComponent,
+    ReactiveUsernameComponent,
   ],
 })
 export class ComponentsModule {}

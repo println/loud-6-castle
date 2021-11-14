@@ -4,10 +4,11 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { finalize } from 'rxjs/operators';
 
 import { environment } from '@env/environment';
-import { Logger, UntilDestroy, untilDestroyed } from '@shared';
+import { Logger } from '@shared';
 import { AuthenticationService } from './authentication.service';
 import { UserQuery } from '@shared/states/auth/user.query';
 import { ROUTE } from '@config';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 const log = new Logger('Login');
 

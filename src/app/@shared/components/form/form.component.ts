@@ -1,74 +1,42 @@
-import {
-  AfterContentInit,
-  AfterViewChecked,
-  Component,
-  ContentChildren,
-  EventEmitter,
-  Input,
-  OnInit,
-  Output,
-  QueryList,
-  ViewChild,
-} from '@angular/core';
-import { NgForm, NgModel, NgModelGroup } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
 })
-export class FormComponent implements OnInit, AfterContentInit {
+export class FormComponent implements OnInit {
+  @Input() formGroup!: FormGroup;
   @Input() edit = false;
-  @Output() ngSubmit: EventEmitter<{}> = new EventEmitter();
-
-  @ContentChildren(NgModel, { descendants: true })
-  models: QueryList<NgModel> = {} as QueryList<NgModel>;
-
-  @ViewChild('customForm', { static: true })
-  form: NgForm = {} as NgForm;
+  @Output() formSubmit: EventEmitter<{}> = new EventEmitter();
 
   constructor() {}
 
-  ngOnInit(): void {}
-
-  public ngAfterContentInit(): void {
-    this.addModelsToForm();
-  }
-
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.ngSubmit.emit(form.value);
-    } else {
-      console.log('Form is invalid!');
-    }
-  }
-
-  addControl(model: NgModel) {
-    this.form.addControl(model);
+  ngOnInit(): void {
+    Object.getPrototypeOf(this.formGroup).submitted = false;
     if (this.edit) {
-      model.control.markAsTouched();
+      this.validateAllFormFields(this.formGroup);
     }
   }
 
-  removeControl(model: NgModel) {
-    this.form.removeControl(model);
+  onSubmit(e: Event) {
+    if (this.formGroup.valid) {
+      this.formGroup['submitted'] = true;
+      this.formSubmit.emit(this.formGroup.value);
+    } else {
+      this.validateAllFormFields(this.formGroup);
+    }
   }
 
-  resetControls() {
-    this.removeAllModelsInForm();
-    this.addModelsToForm();
-  }
-
-  private addModelsToForm() {
-    let ngContentModels = this.models.toArray();
-    ngContentModels.forEach((model) => {
-      this.addControl(model);
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach((field) => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
     });
-  }
-
-  private removeAllModelsInForm() {
-    let ngContentModels = this.models.toArray();
-    ngContentModels.forEach((model) => {
-      this.removeControl(model);
-    });
+    formGroup.markAllAsTouched();
   }
 }

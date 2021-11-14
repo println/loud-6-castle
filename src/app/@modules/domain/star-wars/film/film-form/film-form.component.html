@@ -4,7 +4,7 @@
     <h4>Add new person</h4>
   </ng-template>
 
-  <app-form #form [edit]="true">
+  <app-form [formGroup]="formR" [edit]="!!pristineData?.id">
     <div class="form-group" app-form-field-feedback>
       <label for="title">Title</label>
       <input
@@ -13,9 +13,7 @@
         id="title"
         name="title"
         placeholder="Enter title"
-        minlength="11"
-        required
-        [(ngModel)]="formData.title"
+        formControlName="title"
       />
     </div>
   </app-form>
