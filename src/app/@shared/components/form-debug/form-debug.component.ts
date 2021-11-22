@@ -6,7 +6,7 @@ import { FormGroup, NgForm } from '@angular/forms';
   templateUrl: './form-debug.component.html',
 })
 export class FormDebugComponent implements OnInit {
-  @Input() form: NgForm | FormGroup | undefined;
+  @Input() form: NgForm | FormGroup | any | undefined;
 
   isDev = isDevMode();
 

@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PersonDetailComponent } from './person-detail/person-detail.component';
-import { PersonFormComponent } from './person-form/person-form.component';
-import { PersonListComponent } from './person-list/person-list.component';
-import { PersonListResolver } from './person-list/person-list-resolver';
-import { PersonResolver } from './person-resolver';
-import { FilmResolver } from '@modules/domain/star-wars/film/film.resolver';
 import { FilmListResolver } from '@modules/domain/star-wars/film/film-list/film-list-resolver';
+import { PersonDetailComponent } from './person-detail/person-detail.component';
+import { PersonBasicFormComponent } from './person-form/person-basic-form/person-basic-form.component';
+import { PersonExtraInfoFormComponent } from './person-form/person-extra-info-form/person-extra-info-form.component';
+import { PersonFormHandlerComponent } from './person-form/person-form-handler/person-form-handler.component';
+import { PersonVisualFormComponent } from './person-form/person-visual-form/person-visual-form.component';
+import { PersonListResolver } from './person-list/person-list-resolver';
+import { PersonListComponent } from './person-list/person-list.component';
+import { PersonResolver } from './person-resolver';
 
 const routes: Routes = [
   {
@@ -23,20 +25,54 @@ const routes: Routes = [
       },
       {
         path: 'new',
-        pathMatch: 'full',
-        component: PersonFormComponent,
+        component: PersonFormHandlerComponent,
         resolve: {
           films: FilmListResolver,
         },
+        children: [
+          { path: '', redirectTo: 'basic' },
+          {
+            path: 'basic',
+            pathMatch: 'full',
+            component: PersonBasicFormComponent,
+          },
+          {
+            path: 'visual',
+            pathMatch: 'full',
+            component: PersonVisualFormComponent,
+          },
+          {
+            path: 'extra-info',
+            pathMatch: 'full',
+            component: PersonExtraInfoFormComponent,
+          },
+        ],
       },
       {
         path: ':personId/edit',
-        pathMatch: 'full',
-        component: PersonFormComponent,
+        component: PersonFormHandlerComponent,
         resolve: {
           data: PersonResolver,
           films: FilmListResolver,
         },
+        children: [
+          { path: '', redirectTo: 'basic' },
+          {
+            path: 'basic',
+            pathMatch: 'full',
+            component: PersonBasicFormComponent,
+          },
+          {
+            path: 'visual',
+            pathMatch: 'full',
+            component: PersonVisualFormComponent,
+          },
+          {
+            path: 'extra-info',
+            pathMatch: 'full',
+            component: PersonExtraInfoFormComponent,
+          },
+        ],
       },
       {
         path: ':personId',

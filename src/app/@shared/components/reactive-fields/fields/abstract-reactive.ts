@@ -9,6 +9,8 @@ import {
 
 @Directive()
 export abstract class AbstractReactive implements OnInit, AfterViewInit, ControlValueAccessor {
+  isStarted = false;
+
   @ViewChild(FormControlDirective, { static: true })
   formControlDirective: FormControlDirective | undefined;
 
@@ -48,9 +50,8 @@ export abstract class AbstractReactive implements OnInit, AfterViewInit, Control
   }
 
   setDisabledState(isDisabled: boolean): void {
-    if (this.formControlDirective?.valueAccessor?.setDisabledState) {
-      this.formControlDirective?.valueAccessor?.setDisabledState(isDisabled);
-    }
+    // @ts-ignore
+    this.formControlDirective?.valueAccessor?.setDisabledState(isDisabled);
   }
 
   ngOnInit(): void {
@@ -59,4 +60,8 @@ export abstract class AbstractReactive implements OnInit, AfterViewInit, Control
   }
 
   ngAfterViewInit(): void {}
+
+  ngAfterContentChecked() {
+    //this.isStarted = true;
+  }
 }

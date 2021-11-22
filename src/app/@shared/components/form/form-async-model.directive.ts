@@ -17,7 +17,7 @@ export class FormAsyncModelDirective implements OnInit, OnDestroy {
   // private form: FormComponent | NgForm;
 
   // constructor(
-  //   private model: NgModel,
+  //   private models: NgModel,
   //   @Optional() @Host() private formComponent: FormComponent,
   //   @Optional() @Host() private ngForm: NgForm
   // ) {
@@ -28,22 +28,22 @@ export class FormAsyncModelDirective implements OnInit, OnDestroy {
   //   if (!this.form) {
   //     return;
   //   }
-  //   if (!this.model) {
+  //   if (!this.models) {
   //     return;
   //   }
   //   if (this.edit) {
-  //     this.model.control.markAsTouched();
+  //     this.models.control.markAsTouched();
   //   }
-  //   this.form.addControl(this.model);
+  //   this.form.addControl(this.models);
   // }
   //
   // ngOnDestroy(): void {
   //   if (!this.form) {
   //     return;
   //   }
-  //   if (!this.model) {
+  //   if (!this.models) {
   //     return;
   //   }
-  //   this.form.removeControl(this.model);
+  //   this.form.removeControl(this.models);
   // }
 }

@@ -6,3 +6,4 @@ export * from './route-reusable-strategy';
 export * from './logger.service';
 export * from './states';
 export * from './mixins';
+export * from './abstracts';

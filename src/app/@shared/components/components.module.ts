@@ -1,21 +1,25 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { GridComponent } from '@shared/components/grid/grid.component';
-import { PagingComponent } from '@shared/components/paging/paging.component';
-import { FormDebugComponent } from '@shared/components/form-debug/form-debug.component';
-import { LoaderComponent } from '@shared/components/loader/loader.component';
-import { SearchBarComponent } from '@shared/components/search-bar/search-bar.component';
-import { PageComponent } from '@shared/components/page/page.component';
-import { FormComponent } from '@shared/components/form/form.component';
-import { FormAsyncModelDirective } from '@shared/components/form/form-async-model.directive';
-import { FormFieldFeedbackComponent } from '@shared/components/form-field-feedback/form-field-feedback.component';
-import { ReactiveTextComponent } from '@shared/components/reactive-fields/reactive-text.component';
-import { ReactiveFeedbackComponent } from '@shared/components/reactive-fields/reactive-feedback.component';
-import { ReactiveComboComponent } from '@shared/components/reactive-fields/reactive-combo.component';
-import { ReactiveUsernameComponent } from '@shared/components/reactive-fields/reactive-username.component';
-import { ReactiveComboMultiComponent } from '@shared/components/reactive-fields/reactive-combo-multi.component';
+import { FormDebugComponent } from './form-debug/form-debug.component';
+import { FormFieldFeedbackComponent } from './form-field-feedback/form-field-feedback.component';
+import { FormAsyncModelDirective } from './form/form-async-model.directive';
+import { FormComponent } from './form/form.component';
+import { GridComponent } from './grid/grid.component';
+import { LoaderComponent } from './loader/loader.component';
+import { PageComponent } from './page/page.component';
+import { PagingComponent } from './paging/paging.component';
+import {
+  ReactivePartialFormComponent,
+  ReactiveComboComponent,
+  ReactiveComboMultiComponent,
+  ReactiveFeedbackComponent,
+  ReactiveRadioComponent,
+  ReactiveTextComponent,
+  ReactiveUsernameComponent,
+} from './reactive-fields';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +30,7 @@ import { ReactiveComboMultiComponent } from '@shared/components/reactive-fields/
     SearchBarComponent,
     PageComponent,
     FormComponent,
+    ReactivePartialFormComponent,
     FormFieldFeedbackComponent,
     ReactiveFeedbackComponent,
     FormAsyncModelDirective,
@@ -33,6 +38,7 @@ import { ReactiveComboMultiComponent } from '@shared/components/reactive-fields/
     ReactiveComboComponent,
     ReactiveComboMultiComponent,
     ReactiveUsernameComponent,
+    ReactiveRadioComponent,
   ],
   imports: [CommonModule, NgbPaginationModule, FormsModule, ReactiveFormsModule],
   exports: [
@@ -47,6 +53,8 @@ import { ReactiveComboMultiComponent } from '@shared/components/reactive-fields/
     ReactiveComboComponent,
     ReactiveComboMultiComponent,
     ReactiveUsernameComponent,
+    ReactiveRadioComponent,
+    ReactivePartialFormComponent,
   ],
 })
 export class ComponentsModule {}

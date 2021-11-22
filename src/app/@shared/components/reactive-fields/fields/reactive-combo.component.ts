@@ -1,6 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { ControlContainer, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { AbstractReactive } from './abstract-reactive';
+import { AbstractSelectableReactive } from './abstract-selectable-reactive';
 
 @Component({
   selector: 'app-reactive-combo[formControlName]',
@@ -16,7 +16,13 @@ import { AbstractReactive } from './abstract-reactive';
       <ng-content></ng-content>
     </label>
     <select class="form-select" [id]="id" [name]="name" [formControl]="control">
-      <ng-content select="[options]"></ng-content>
+      <option
+        *ngFor="let item of data"
+        [value]="item.value"
+        [innerHTML]="item.label"
+        [attr.selected]="item.selected"
+        [attr.disabled]="item.disabled"
+      ></option>
     </select>
     <ng-container valid>
       <ng-content select="[valid]"></ng-content>
@@ -33,7 +39,7 @@ import { AbstractReactive } from './abstract-reactive';
     },
   ],
 })
-export class ReactiveComboComponent extends AbstractReactive {
+export class ReactiveComboComponent extends AbstractSelectableReactive {
   constructor(controlContainer: ControlContainer) {
     super(controlContainer);
   }
