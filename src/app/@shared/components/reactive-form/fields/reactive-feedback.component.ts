@@ -1,4 +1,12 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { FormControlName, NgControl } from '@angular/forms';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
@@ -29,7 +37,7 @@ export class ReactiveFeedbackComponent implements OnInit, AfterViewInit {
 
   private htmlElement: any;
 
-  constructor(private elementRef: ElementRef) {}
+  constructor(private elementRef: ElementRef, private ref: ChangeDetectorRef) {}
 
   get isValid(): boolean {
     this.setModelValidationClass();
@@ -41,12 +49,14 @@ export class ReactiveFeedbackComponent implements OnInit, AfterViewInit {
     return this.checkIsInvalid();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listenFormStatusChanges(this.control);
+  }
 
   ngAfterViewInit() {
     const query = `[name="${this.name}"]`;
     this.htmlElement = this.elementRef.nativeElement.querySelector(query);
-    this.listenFormStatusChanges(this.control);
+    this.ref.detectChanges();
   }
 
   private listenFormStatusChanges(formControl: NgControl) {

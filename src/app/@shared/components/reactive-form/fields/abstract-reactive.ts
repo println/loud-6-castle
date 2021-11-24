@@ -50,8 +50,7 @@ export abstract class AbstractReactive implements OnInit, AfterViewInit, Control
   }
 
   setDisabledState(isDisabled: boolean): void {
-    // @ts-ignore
-    this.formControlDirective?.valueAccessor?.setDisabledState(isDisabled);
+    (this.formControlDirective?.valueAccessor as any).setDisabledState(isDisabled);
   }
 
   ngOnInit(): void {

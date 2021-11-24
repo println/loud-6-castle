@@ -40,7 +40,6 @@ export class PersonExtraInfoFormComponent extends AbstractPartialReactiveStatefu
   }
 
   addControl(control: string) {
-    console.log(this.isEditing);
     const formArray = this.formGroup.get(control) as FormArray;
     formArray.push(this.createControl(''));
   }

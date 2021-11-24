@@ -12,7 +12,6 @@ export class ReactivePartialFormComponent<T = any> implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.edit);
     if (this.edit) {
       this.validateAllFormFields(this.formGroup);
     }

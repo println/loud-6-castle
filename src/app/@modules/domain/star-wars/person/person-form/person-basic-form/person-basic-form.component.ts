@@ -6,7 +6,7 @@ import { AbstractForm } from '@shared/abstracts/abstract-form';
 import { AbstractCompositeReactiveStatefulForm } from '@shared/abstracts/abstract-composite-reactive-stateful-form.directive';
 import { AbstractPartialReactiveStatefulForm } from '@shared/abstracts/abstract-partial-reactive-stateful-form';
 import { Person } from '@shared/api/swapi/models/person.model';
-import SelectedItem from '@shared/components/reactive-fields/models/selected-item.model';
+import SelectedItem from '@shared/components/reactive-form/models/selected-item.model';
 import { PartialFormQuery } from '@shared/states/form/partial-form.state';
 import { ExtraData } from '../extra-data';
 

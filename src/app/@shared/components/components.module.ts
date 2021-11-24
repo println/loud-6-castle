@@ -18,7 +18,7 @@ import {
   ReactiveRadioComponent,
   ReactiveTextComponent,
   ReactiveUsernameComponent,
-} from './reactive-fields';
+} from './reactive-form';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({

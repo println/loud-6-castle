@@ -1,9 +1,8 @@
 import { Directive, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 import { NgFormsManager } from '@ngneat/forms-manager';
 import { ControlFactory, HashMap } from '@ngneat/forms-manager/lib/types';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import clone from '@shared/mixins/clone';
 import { PartialFormQuery } from '../states/form/partial-form.state';
 import { BasicForm } from './basic-form';
 
@@ -34,22 +33,68 @@ export abstract class AbstractPartialReactiveStatefulForm<M, P, E> extends Basic
         this.extraData = state.extraData;
         this.createFormGroup();
         this.bindToFormManager();
+        this.formGroup.updateValueAndValidity();
       });
   }
 
   ngOnDestroy() {
     this.formsManager.unsubscribe(this.formName);
+    const stateControl = this.formsManager.getControl(this.formName) as any;
+    this.updateStateFromForm(this.formGroup, stateControl);
   }
 
   protected abstract createFormGroup(): void;
 
-  protected clone<F>(data: F): F {
-    return clone(data);
-  }
-
   private bindToFormManager() {
+    const latestStateControl = this.formsManager.getControl(this.formName) as any;
+
     this.formsManager.upsert(this.formName, this.formGroup, {
       arrControlFactory: this.arrControlFactory,
+    });
+
+    this.updateFormFromState(latestStateControl, this.formGroup);
+  }
+
+  private updateFormFromState(stateControls: any, formControls: FormGroup | FormArray) {
+    if (!stateControls) return;
+
+    Object.keys(stateControls.controls).forEach((k) => {
+      const stateControl = stateControls.controls[k];
+      const formControl = formControls.controls[k];
+
+      if (stateControl.dirty) {
+        formControl.markAsDirty();
+      }
+
+      if (stateControl.touched) {
+        formControl.markAsTouched();
+      }
+
+      if (formControl instanceof FormGroup || formControl instanceof FormArray) {
+        this.updateFormFromState(stateControl, formControl);
+      }
+    });
+  }
+
+  private updateStateFromForm(formControls: FormGroup | FormArray, stateControls: any) {
+    if (!stateControls) return;
+    if (!formControls) return;
+
+    Object.keys(formControls.controls).forEach((k) => {
+      const stateControl = stateControls.controls[k];
+      const formControl = formControls.controls[k];
+
+      if (formControl.dirty) {
+        stateControl.dirty = true;
+      }
+
+      if (formControl.touched) {
+        stateControl.touched = true;
+      }
+
+      if (formControl instanceof FormGroup || formControl instanceof FormArray) {
+        this.updateStateFromForm(formControl, stateControl);
+      }
     });
   }
 }
