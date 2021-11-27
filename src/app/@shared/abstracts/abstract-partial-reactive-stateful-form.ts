@@ -39,11 +39,15 @@ export abstract class AbstractPartialReactiveStatefulForm<M, P, E> extends Basic
 
   ngOnDestroy() {
     this.formsManager.unsubscribe(this.formName);
-    const stateControl = this.formsManager.getControl(this.formName) as any;
-    this.updateStateFromForm(this.formGroup, stateControl);
+    this.updateFormsManagerState();
   }
 
   protected abstract createFormGroup(): void;
+
+  private updateFormsManagerState() {
+    const stateControl = this.formsManager.getControl(this.formName) as any;
+    this.updateStateFromForm(this.formGroup, stateControl);
+  }
 
   private bindToFormManager() {
     const latestStateControl = this.formsManager.getControl(this.formName) as any;

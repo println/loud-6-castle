@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgFormsManager } from '@ngneat/forms-manager';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
@@ -11,21 +11,22 @@ import { ExtraData } from '../extra-data';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-person-form-handler',
-  templateUrl: './person-form-handler.component.html',
+  selector: 'app-person-form-root',
+  templateUrl: './person-form-root.component.html',
   styles: [],
   providers: [PartialFormStore],
 })
-export class PersonFormHandlerComponent
+export class PersonFormRootComponent
   extends AbstractCompositeReactiveStatefulForm<PersonForms, Person, ExtraData>
   implements OnInit
 {
   constructor(
     protected formsManager: NgFormsManager<PersonForms>,
     protected store: PartialFormStore<Person, ExtraData>,
+    protected ref: ChangeDetectorRef,
     private route: ActivatedRoute
   ) {
-    super(formsManager, store, ['basic', 'visual', 'extraInfo']);
+    super(formsManager, store, ['basic', 'visual', 'extraInfo'], ref);
   }
 
   ngOnInit(): void {

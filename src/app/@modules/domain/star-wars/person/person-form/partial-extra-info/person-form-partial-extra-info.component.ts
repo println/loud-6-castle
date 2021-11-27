@@ -10,12 +10,16 @@ import { ExtraData } from '../extra-data';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-person-extra-info-form',
-  templateUrl: './person-extra-info-form.component.html',
+  selector: 'app-person-form-partial-extra-info',
+  templateUrl: './person-form-partial-extra-info.component.html',
   styles: [],
   providers: [PartialFormQuery],
 })
-export class PersonExtraInfoFormComponent extends AbstractPartialReactiveStatefulForm<PersonForms, Person, ExtraData> {
+export class PersonFormPartialExtraInfoComponent extends AbstractPartialReactiveStatefulForm<
+  PersonForms,
+  Person,
+  ExtraData
+> {
   get vehicles() {
     return this.formGroup.controls.vehicles as FormArray;
   }
@@ -52,7 +56,7 @@ export class PersonExtraInfoFormComponent extends AbstractPartialReactiveStatefu
   protected createFormGroup(): void {
     this.formGroup = this.builder.group({
       species: [this.pristineData?.species, [Validators.required]],
-      films: [this.pristineData?.films, [Validators.required]],
+      films: [{ value: this.pristineData?.films, disabled: true }, [Validators.required]],
       starships: this.buildStarships(),
       vehicles: this.buildVehicles(),
     });

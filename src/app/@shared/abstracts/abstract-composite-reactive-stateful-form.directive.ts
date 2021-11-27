@@ -1,4 +1,4 @@
-import { Directive, OnDestroy, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Directive, OnDestroy, OnInit } from '@angular/core';
 import { NgFormsManager } from '@ngneat/forms-manager';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { PartialFormStore } from '../states/form/partial-form.state';
@@ -10,17 +10,15 @@ export abstract class AbstractCompositeReactiveStatefulForm<M, P, E> extends Bas
   protected constructor(
     protected formsManager: NgFormsManager<M>,
     protected store: PartialFormStore<P, E>,
-    protected formNames: string[]
+    protected formNames: string[],
+    protected changeDetector: ChangeDetectorRef
   ) {
     super();
-    this.listenValid();
+    this.listenChanges();
   }
 
-  private _isValid = {};
-
   get isValid(): boolean {
-    const values = Object.values(this._isValid);
-    return values.length == this.formNames.length && values.every((v) => v);
+    return this.formNames.every((n: any) => this.formsManager.getControl(n)?.valid);
   }
 
   ngOnInit(): void {}
@@ -29,15 +27,17 @@ export abstract class AbstractCompositeReactiveStatefulForm<M, P, E> extends Bas
     this.formsManager.destroy();
   }
 
-  checkValid(formName: string): boolean {
-    return !!this._isValid[formName];
+  checkValid(formName: any): boolean {
+    if (!this.formsManager.hasControl(formName) && this.isEditing) return true;
+    if (!this.formsManager.hasControl(formName)) return false;
+    return !!this.formsManager.getControl(formName)?.valid;
   }
 
   getValues() {
     return {
       valid: this.isValid,
       submitted: false,
-      value: Object.assign({}, ...this.formNames.map((n: any) => this.formsManager.getControl(n)?.value)),
+      value: Object.assign({}, ...this.formNames.map((n: any) => this.formsManager.getControl(n)?.rawValue)),
     };
   }
 
@@ -52,13 +52,13 @@ export abstract class AbstractCompositeReactiveStatefulForm<M, P, E> extends Bas
     }));
   }
 
-  private listenValid(): void {
+  private listenChanges(): void {
     this.formNames.forEach((name: any) => {
       this.formsManager
         .controlChanges(name)
         .pipe(untilDestroyed(this))
         .subscribe((control) => {
-          this._isValid[name] = control.valid;
+          this.changeDetector.detectChanges();
         });
     });
   }

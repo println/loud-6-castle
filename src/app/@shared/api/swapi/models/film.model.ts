@@ -6,11 +6,11 @@ export interface Film {
   director: string;
   producer: string;
   release_date: Date;
-  species: [];
-  starships: [];
-  vehicles: [];
-  characters: [];
-  planets: [];
+  species: string[];
+  starships: string[];
+  vehicles: string[];
+  characters: string[];
+  planets: string[];
   url: string;
   created: string;
   edited: string;

@@ -27,29 +27,28 @@ export class FilmListComponent implements OnInit {
     this.navigate({ page: nextPage });
   }
 
-  delete(employee: Film, event: UIEvent) {
-    if (!confirm(`Are you sure to delete ${employee.title}?`)) {
+  delete(entity: Film, event: UIEvent) {
+    if (!confirm(`Are you sure to delete ${entity.title}?`)) {
       return;
     }
 
     const el = event.currentTarget as HTMLElement;
     let parent = el.parentElement as HTMLElement;
 
-    while (!parent.classList.contains('stn-item')) {
+    while (!(parent instanceof HTMLTableRowElement)) {
       parent = parent.parentElement as HTMLElement;
     }
 
-    // this.service.deleteById(employee).subscribe(
-    //   (val) => {
-    //     console.log('DELETE call successful value returned in body', val);
-    //     this.renderer.setStyle(parent, 'display', 'none');
-    //     this.load();
-    //   },
-    //   (response) => {
-    //     window.alert('DELETE call in error');
-    //     console.log('DELETE call in error', response);
-    //   }
-    // );
+    this.service.deleteById(entity).subscribe(
+      (val) => {
+        console.log('DELETE call successful value returned in body', val);
+        this.renderer.setStyle(parent, 'display', 'none');
+      },
+      (response) => {
+        window.alert('DELETE call in error');
+        console.log('DELETE call in error', response);
+      }
+    );
   }
 
   private navigate(queryParams: {}) {

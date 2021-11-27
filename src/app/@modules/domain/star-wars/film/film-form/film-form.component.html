@@ -4,7 +4,7 @@
     <h4>Add new person</h4>
   </ng-template>
 
-  <app-form [formGroup]="formR" [edit]="!!pristineData?.id">
+  <app-form [formGroup]="formR" [edit]="!!pristineData?.id" (formSubmit)="submit()">
     <div class="form-group" app-form-field-feedback>
       <label for="title">Title</label>
       <input

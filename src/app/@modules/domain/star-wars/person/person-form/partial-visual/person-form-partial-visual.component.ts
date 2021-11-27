@@ -9,12 +9,16 @@ import { ExtraData } from '../extra-data';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-person-visual-form',
-  templateUrl: './person-visual-form.component.html',
+  selector: 'app-person-form-partial-visual',
+  templateUrl: './person-form-partial-visual.component.html',
   styles: [],
   providers: [PartialFormQuery],
 })
-export class PersonVisualFormComponent extends AbstractPartialReactiveStatefulForm<PersonForms, Person, ExtraData> {
+export class PersonFormPartialVisualComponent extends AbstractPartialReactiveStatefulForm<
+  PersonForms,
+  Person,
+  ExtraData
+> {
   constructor(
     protected formsManager: NgFormsManager<PersonForms>,
     protected query: PartialFormQuery<Person, ExtraData>,

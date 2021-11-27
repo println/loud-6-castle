@@ -6,10 +6,10 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from '@shared';
 import { ComponentsModule } from '@shared/components/components.module';
 import { PersonDetailComponent } from './person-detail/person-detail.component';
-import { PersonBasicFormComponent } from './person-form/person-basic-form/person-basic-form.component';
-import { PersonExtraInfoFormComponent } from './person-form/person-extra-info-form/person-extra-info-form.component';
-import { PersonFormHandlerComponent } from './person-form/person-form-handler/person-form-handler.component';
-import { PersonVisualFormComponent } from './person-form/person-visual-form/person-visual-form.component';
+import { PersonFormPartialBasicComponent } from './person-form/partial-basic/person-form-partial-basic.component';
+import { PersonFormPartialExtraInfoComponent } from './person-form/partial-extra-info/person-form-partial-extra-info.component';
+import { PersonFormRootComponent } from './person-form/root/person-form-root.component';
+import { PersonFormPartialVisualComponent } from './person-form/partial-visual/person-form-partial-visual.component';
 import { PersonListComponent } from './person-list/person-list.component';
 import { PersonRoutingModule } from './person-routing.module';
 
@@ -17,10 +17,10 @@ import { PersonRoutingModule } from './person-routing.module';
   declarations: [
     PersonListComponent,
     PersonDetailComponent,
-    PersonBasicFormComponent,
-    PersonVisualFormComponent,
-    PersonExtraInfoFormComponent,
-    PersonFormHandlerComponent,
+    PersonFormPartialBasicComponent,
+    PersonFormPartialVisualComponent,
+    PersonFormPartialExtraInfoComponent,
+    PersonFormRootComponent,
   ],
   imports: [
     CommonModule,

@@ -12,11 +12,15 @@ import { ExtraData } from '../extra-data';
 
 @UntilDestroy()
 @Component({
-  selector: 'app-person-basic-form',
-  templateUrl: './person-basic-form.component.html',
+  selector: 'app-person-form-partial-basic',
+  templateUrl: './person-form-partial-basic.component.html',
   providers: [PartialFormQuery],
 })
-export class PersonBasicFormComponent extends AbstractPartialReactiveStatefulForm<PersonForms, Person, ExtraData> {
+export class PersonFormPartialBasicComponent extends AbstractPartialReactiveStatefulForm<
+  PersonForms,
+  Person,
+  ExtraData
+> {
   get selectedGenders(): SelectedItem[] {
     return [
       { value: 'male', label: 'male' } as SelectedItem,

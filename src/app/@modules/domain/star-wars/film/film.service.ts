@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { GridData } from '@shared/components/grid/grid-data.model';
 import { Film } from '@shared/api/swapi/models/film.model';
 import { ServerPaginatedResponse } from '@shared/api/swapi/server-paginated.reponse';
-import { map, take } from 'rxjs/operators';
+import { map, take, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { PagingConverterService } from '@shared/api/swapi/paging-converter.service';
 
@@ -31,5 +31,20 @@ export class FilmService {
         return film;
       })
     );
+  }
+
+  deleteById(entity: Film): Observable<any> {
+    return this.http.delete<any>(`${this.resource}/${entity.id}`).pipe(take(1));
+  }
+
+  create(entity: Film): Observable<any> {
+    return this.http.post<any>(this.resource, entity, { observe: 'response' }).pipe(
+      take(1),
+      map((res) => res.headers.get('created'))
+    );
+  }
+
+  update(id: any, entity: Film): Observable<Film> {
+    return this.http.put<Film>(`${this.resource}/${id}`, entity).pipe(take(1));
   }
 }
