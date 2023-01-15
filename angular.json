@@ -79,9 +79,7 @@
             "development": {
               "browserTarget": "loud-6-castle:build:development"
             },
-            "ci": {
-              "progress": false
-            }
+            "ci": {}
           },
           "defaultConfiguration": "development"
         },
