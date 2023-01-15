@@ -63,7 +63,7 @@
     "eslint-plugin-import": "2.25.2",
     "eslint-plugin-jsdoc": "latest",
     "eslint-plugin-prefer-arrow": "latest",
-    "htmlhint": "^0.15.1",
+    "htmlhint": "^1.1.4",
     "https-proxy-agent": "^5.0.0",
     "husky": "^7.0.1",
     "jest": "^27.0.6",
