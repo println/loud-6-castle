@@ -1,8 +1,18 @@
-<form [formGroup]="formGroup" (ngSubmit)="onSubmit($event)" class="row g-3 needs-validation">
+<form (ngSubmit)="onSubmit($event)" [formGroup]="formGroup" class="row g-3 needs-validation">
   <ng-content></ng-content>
-  <div class="col-12">
-    <button class="btn btn-primary" type="submit">Submit form</button>
-  </div>
+
+  <ng-container *ngIf="!buttonTemplateRef">
+    <div class="col-12">
+      <button class="btn btn-primary" type="submit">Submit form</button>
+    </div>
+  </ng-container>
+
+  <ng-container
+    *ngIf="buttonTemplateRef"
+    [ngTemplateOutlet]="buttonTemplateRef"
+    [ngTemplateOutletContext]="{ $implicit: formGroup, index: i }"
+  >
+  </ng-container>
 </form>
 
 <app-form-debug [form]="formGroup"></app-form-debug>

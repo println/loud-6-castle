@@ -67,7 +67,7 @@ export class PersonFormPartialExtraInfoComponent extends AbstractPartialReactive
     if (this.isEditing) {
       arr = this.pristineData?.starships.map((v) => this.createControl(v));
     }
-    return this.builder.array(arr);
+    return this.builder.array(arr, [Validators.required, Validators.minLength(2)]);
   }
 
   private buildVehicles() {

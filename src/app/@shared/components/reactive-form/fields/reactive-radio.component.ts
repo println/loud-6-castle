@@ -6,17 +6,17 @@ import SelectedItem from '../models/selected-item.model';
 @Component({
   selector: 'app-reactive-radio[formControlName][data]',
   template: `
-    <ng-container *ngIf="isStarted">
-      <div class="form-check">
-        <input class="form-check-input" name="t" type="radio" [formControl]="control" value="male" />
-        <label class="form-check-label"> male </label>
-      </div>
-
-      <div class="form-check">
-        <input class="form-check-input" name="t" type="radio" [formControl]="control" value="female" />
-        <label class="form-check-label"> female </label>
-      </div>
-    </ng-container>
+    <div class="form-check" *ngFor="let item of data">
+      <input
+        class="form-check-input"
+        type="radio"
+        [name]="name"
+        id="{{ id }}_{{ item.value }}"
+        [formControl]="control"
+        [value]="item.value"
+      />
+      <label class="form-check-label" for="{{ id }}_{{ item.value }}"> {{ item.label }} </label>
+    </div>
   `,
   providers: [
     {

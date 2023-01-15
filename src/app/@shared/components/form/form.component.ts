@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -9,6 +9,7 @@ export class FormComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() edit = false;
   @Output() formSubmit: EventEmitter<{}> = new EventEmitter();
+  @ContentChild('buttonTemplate', { static: false }) buttonTemplateRef!: TemplateRef<any>;
 
   constructor() {}
 
