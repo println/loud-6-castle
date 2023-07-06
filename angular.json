@@ -35,7 +35,7 @@
             ],
             "styles": ["src/main.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["lodash"]
+            "allowedCommonJsDependencies": ["lodash", "mirage"]
           },
           "configurations": {
             "production": {
