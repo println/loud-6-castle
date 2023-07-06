@@ -14,7 +14,6 @@ import { HomeModule } from './@modules/layout/home/home.module';
 import { ShellModule } from './@modules/layout/shell/shell.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
 
 @NgModule({
   imports: [
@@ -30,7 +29,6 @@ import { AkitaNgDevtools } from '@datorama/akita-ngdevtools';
     HomeModule,
     AuthModule,
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
-    environment.production ? [] : AkitaNgDevtools.forRoot({}),
   ],
   declarations: [AppComponent],
   providers: [

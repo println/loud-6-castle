@@ -1,6 +1,6 @@
 {
   "generator-ngx-rocket": {
-    "version": "10.0.0",
+    "version": "11.0.0",
     "props": {
       "location": "path",
       "strict": true,
@@ -24,6 +24,7 @@
       "auth": true,
       "lazy": true,
       "e2e": false,
+      "cypress": false,
       "angulartics": false
     }
   }

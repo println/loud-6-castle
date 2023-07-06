@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Query } from '@datorama/akita';
-import { UserState, UserStore } from './user.store';
+import { userStore } from './user.store';
 
 @Injectable({ providedIn: 'root' })
-export class UserQuery extends Query<UserState> {
-  isLoggedIn$ = this.select((state) => !!state.token);
+export class UserQuery {
+  user$ = userStore.pipe();
 
-  constructor(protected store: UserStore) {
-    super(store);
-  }
-
-  public isLoggedIn(): boolean {
-    return !!this.getValue().token;
+  isLoggedIn() {
+    return !!userStore.getValue().name.length;
   }
 }

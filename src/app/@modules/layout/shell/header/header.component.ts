@@ -21,11 +21,11 @@ export class HeaderComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private userQuery: UserQuery
   ) {
-    this.user$ = this.userQuery.select();
+    this.user$ = this.userQuery.user$;
   }
 
   ngOnInit() {
-    this.user$ = this.userQuery.select();
+    this.user$ = this.userQuery.user$;
   }
 
   toggleMenu() {

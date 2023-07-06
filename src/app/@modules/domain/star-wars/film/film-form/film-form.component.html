@@ -1,7 +1,7 @@
 <app-page *ngIf="formData">
   <span *ngIf="pristineData?.id; else creationTitle" page-title>Editing: {{ pristineData.title }}</span>
   <ng-template #creationTitle>
-    <h4>Add new person</h4>
+    <h4>Add new film</h4>
   </ng-template>
 
   <app-form [formGroup]="formR" [edit]="!!pristineData?.id" (formSubmit)="submit()">

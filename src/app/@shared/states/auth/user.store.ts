@@ -1,47 +1,38 @@
 import { Injectable } from '@angular/core';
-import { Store, StoreConfig } from '@datorama/akita';
-
-const SESSION_KEY = 'Session';
+import { createStore, select, withProps } from '@ngneat/elf';
+import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
 
 export interface UserState {
   token: string;
   name: string;
 }
 
-export function createInitialState(): UserState {
-  return {
-    name: '',
-    token: '',
-  };
-}
+export const userStore = createStore({ name: 'auth' }, withProps<UserState>({ name: '', token: '' }));
+
+const persist = persistState(userStore, {
+  key: 'auth-data',
+  storage: localStorageStrategy,
+});
+
+const SESSION_KEY = 'Session';
+
+const user$ = userStore.pipe(select((state) => state.name));
 
 @Injectable({ providedIn: 'root' })
-@StoreConfig({ name: 'auth', resettable: true })
-export class UserStore extends Store<UserState> {
-  constructor() {
-    super(createInitialState());
-    this.loadFromStorage();
-  }
-
-  storageUpdate(state: Partial<UserState>, remember?: boolean): any {
-    let storage = sessionStorage;
-    if (remember) {
-      storage = localStorage;
-    }
-    storage.setItem(SESSION_KEY, JSON.stringify(state));
-    return super.update(state);
+export class UserStore {
+  storageUpdate(user: UserState, remember?: boolean) {
+    userStore.update((state) => ({
+      ...state,
+      name: user.name,
+      token: user.token,
+    }));
   }
 
   reset() {
-    sessionStorage.removeItem(SESSION_KEY);
-    localStorage.removeItem(SESSION_KEY);
-    super.reset();
-  }
-
-  private loadFromStorage() {
-    const data = localStorage.getItem(SESSION_KEY) || sessionStorage.getItem(SESSION_KEY);
-    if (data) {
-      this._setState((state) => JSON.parse(data));
-    }
+    userStore.update((state) => ({
+      ...state,
+      name: '',
+      token: '',
+    }));
   }
 }
