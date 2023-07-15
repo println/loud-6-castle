@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: deploy_dist
-          path: dist/loud-6-castle
+          path: dist
   #      - name: Archive code coverage result
   #        if: success()
   #        uses: actions/upload-artifact@v1
