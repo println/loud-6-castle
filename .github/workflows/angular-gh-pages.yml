@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - 'master'
-permissions:
-  contents: write
 
 jobs:
   build:
@@ -19,17 +17,17 @@ jobs:
         with:
           node-version: '18.x'
       - name: Install dependencies
-        run: npm ci --legacy-peer-deps
+        run: npm install --force
       - name: Build
         run: npm run build:ci
-#      - name: Test
-#        run: npm run test:ci
+      #      - name: Test
+      #        run: npm run test:ci
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
         with:
           name: deploy_dist
-          path: dist
+          path: dist/loud-6-castle
   #      - name: Archive code coverage result
   #        if: success()
   #        uses: actions/upload-artifact@v1
@@ -47,9 +45,8 @@ jobs:
         with:
           name: deploy_dist
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4
+        uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
-          token: ${{ secrets.CI_TOKEN }}
-          branch: gh-pages
-          folder: deploy_dist
-          clean: true
+          GITHUB_TOKEN: ${{ secrets.CI_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: deploy_dist
