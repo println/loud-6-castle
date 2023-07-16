@@ -21,7 +21,7 @@ const routes: Routes = [
         },
       },
       {
-        path: PATHS.empty,
+        path: PATHS.create,
         pathMatch: 'full',
         component: FilmFormComponent,
       },
