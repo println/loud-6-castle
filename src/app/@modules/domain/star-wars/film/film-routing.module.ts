@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { PATHS } from '@config';
 import { FilmListComponent } from './film-list/film-list.component';
 import { FilmResolver } from './film.resolver';
 import { FilmFormComponent } from './film-form/film-form.component';
@@ -8,10 +9,10 @@ import { FilmListResolver } from './film-list/film-list-resolver';
 
 const routes: Routes = [
   {
-    path: '',
+    path: PATHS.empty,
     children: [
       {
-        path: '',
+        path: PATHS.empty,
         pathMatch: 'full',
         component: FilmListComponent,
         runGuardsAndResolvers: 'paramsOrQueryParamsChange',
@@ -20,12 +21,12 @@ const routes: Routes = [
         },
       },
       {
-        path: 'new',
+        path: PATHS.empty,
         pathMatch: 'full',
         component: FilmFormComponent,
       },
       {
-        path: ':id/edit',
+        path: PATHS.pathEdit,
         pathMatch: 'full',
         component: FilmFormComponent,
         resolve: {
@@ -33,7 +34,7 @@ const routes: Routes = [
         },
       },
       {
-        path: ':id',
+        path: PATHS.pathId,
         pathMatch: 'full',
         component: FilmDetailComponent,
         resolve: {

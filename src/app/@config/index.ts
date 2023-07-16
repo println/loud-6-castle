@@ -1,2 +1,2 @@
-export * from './route.map';
-export * from './resources.map';
+export * from './routes.config';
+export * from './endpoints.config';

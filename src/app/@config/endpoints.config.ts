@@ -1,4 +1,4 @@
-export const RESOURCES = {
+export const ENDPOINTS = {
   employee: '/employees',
   role: '/roles',
 };

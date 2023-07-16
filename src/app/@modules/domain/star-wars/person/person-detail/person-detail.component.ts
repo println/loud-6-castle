@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PATHS } from '@config';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { PeopleService } from '@modules/domain/star-wars/person/people.service';
@@ -10,6 +11,8 @@ import { Person } from '@shared/api/swapi/models/person.model';
   templateUrl: './person-detail.component.html',
 })
 export class PersonDetailComponent implements OnInit {
+  paths = PATHS;
+
   data$: Observable<{ [name: string]: Person }> = of({});
 
   constructor(private route: ActivatedRoute, private router: Router, private peopleService: PeopleService) {}

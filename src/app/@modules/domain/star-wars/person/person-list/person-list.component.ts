@@ -1,5 +1,6 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PATHS, ROUTES } from '@config';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Person } from '@shared/api/swapi/models/person.model';
@@ -11,6 +12,9 @@ import { GridData } from '@shared/components/grid/grid-data.model';
   templateUrl: './person-list.component.html',
 })
 export class PersonListComponent implements OnInit {
+  routes = ROUTES;
+  paths = PATHS;
+
   data$: Observable<{ [name: string]: GridData<Person> }> = of();
 
   constructor(

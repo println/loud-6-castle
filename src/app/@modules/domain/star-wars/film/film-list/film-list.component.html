@@ -1,7 +1,7 @@
 <app-page>
-  <span page-title>Films</span>
-  <a page-action-bar class="btn btn-primary" role="button" routerLink="new">
-    <i class="fas fa-plus fa-fw"></i> New Film
+  <span page-title>{{routes.starwars.children.film.plural.title}}</span>
+  <a page-action-bar class="btn btn-primary" role="button" [routerLink]="paths.create">
+    <i class="fas fa-plus fa-fw"></i> {{paths.toTitle(paths.create)}} {{routes.starwars.children.film.title}}
   </a>
 
   <div *ngIf="(data$ | async)?.page as gridData">
@@ -35,9 +35,9 @@
             <td>
               <a [routerLink]="film.id" class="btn btn-outline-primary btn-sm" role="button">
                 <i class="far fa-eye fa-tw"></i>
-                View
+                {{paths.toTitle(paths.view)}}
               </a>
-              <a [routerLink]="[film.id, 'edit']" class="btn btn-outline-info btn-sm" role="button">
+              <a [routerLink]="[film.id, paths.edit]" class="btn btn-outline-info btn-sm" role="button">
                 <i class="fas fa-pencil-alt fa-fw"></i>
               </a>
               <button (click)="delete(film, $event)" class="btn btn-outline-danger btn-sm" type="button">

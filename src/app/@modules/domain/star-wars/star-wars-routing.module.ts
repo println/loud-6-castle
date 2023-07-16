@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ROUTES } from '@config';
 
 const routes: Routes = [
   {
-    path: 'people',
+    path: ROUTES.starwars.children.person.plural.id,
     loadChildren: () => import('./person/person.module').then((m) => m.PersonModule),
   },
   {
-    path: 'films',
+    path: ROUTES.starwars.children.film.plural.id,
     loadChildren: () => import('./film/film.module').then((m) => m.FilmModule),
   },
 ];

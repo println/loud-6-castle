@@ -3,7 +3,7 @@ import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from
 
 import { Logger } from '@shared';
 import { UserQuery } from '@shared/states/auth/user.query';
-import { ROUTE } from '@config';
+import { ROUTES } from '@config';
 
 const log = new Logger('AuthenticationGuard');
 
@@ -19,7 +19,7 @@ export class AuthenticationGuard implements CanActivate {
     }
 
     log.debug('Not authenticated, redirecting and adding redirect url...');
-    this.router.navigate([ROUTE.login.path], { queryParams: { redirect: state.url }, replaceUrl: true });
+    this.router.navigate([ROUTES.login.path], { queryParams: { redirect: state.url }, replaceUrl: true });
     return false;
   }
 }

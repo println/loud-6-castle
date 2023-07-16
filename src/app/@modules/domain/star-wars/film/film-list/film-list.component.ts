@@ -1,4 +1,5 @@
 import { Component, OnInit, Renderer2 } from '@angular/core';
+import { PATHS, ROUTES } from '@config';
 import { Observable } from 'rxjs/internal/Observable';
 import { GridData } from '@shared/components/grid/grid-data.model';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,6 +11,9 @@ import { FilmService } from '@modules/domain/star-wars/film/film.service';
   templateUrl: './film-list.component.html',
 })
 export class FilmListComponent implements OnInit {
+  routes = ROUTES;
+  paths = PATHS;
+
   data$!: Observable<{ [name: string]: GridData<Film> }>;
 
   constructor(

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PATHS } from '@config';
 import { Observable } from 'rxjs/internal/Observable';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FilmService } from '../film.service';
@@ -9,6 +10,8 @@ import { Film } from '@shared/api/swapi/models/film.model';
   templateUrl: './film-detail.component.html',
 })
 export class FilmDetailComponent implements OnInit {
+  paths = PATHS;
+
   data$!: Observable<{ [name: string]: Film }>;
 
   constructor(private route: ActivatedRoute, private router: Router, private service: FilmService) {}

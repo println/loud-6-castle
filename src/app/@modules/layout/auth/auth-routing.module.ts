@@ -3,10 +3,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { LoginComponent } from './login.component';
-import { ROUTE } from '@config';
+import { ROUTES } from '@config';
 
 const routes: Routes = [
-  { path: ROUTE.login.id, component: LoginComponent, data: { title: marker(ROUTE.login.title) } },
+  { path: ROUTES.login.id, component: LoginComponent, data: { title: marker(ROUTES.login.title) } },
 ];
 
 @NgModule({
