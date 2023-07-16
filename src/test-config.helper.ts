@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, TestBedStatic } from '@angular/core/testing';
 
 type CompilerOptions = Partial<{
   providers: any[];
@@ -13,7 +13,7 @@ export const configureTests = (configure: ConfigureFn, compilerOptions: Compiler
     ...compilerOptions,
   };
 
-  const configuredTestBed = TestBed.configureCompiler(compilerConfig);
+  const configuredTestBed = TestBed.configureCompiler(compilerConfig) as unknown as TestBedStatic;
 
   configure(configuredTestBed);
 
