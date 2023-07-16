@@ -1,19 +1,22 @@
-# loud-6-castle
+# Front-end Skeleton (codename: loud-6-castle)
 
 ## Live test
 
 https://println.github.io/loud-6-castle
 
-## Skeleton Angular PWA
+## Skeleton features:
 
-- PWA
-- Bootstrap
-- Angular
-- Sass + itcss
-- Datorama Akita state management
-- Jest(test)
-- Prettier
-- i18n
+- Progressive Web App (PWA)
+- Frontend framework: Angular
+- CSS Framework: Bootstrap
+- CSS Preprocessor: Sass/Scss
+- CSS Methodology: BEM
+- CSS Organization: ITCSS
+- AUTH Token: PWA
+- State Management: ELF
+- Test Framework: Jest
+- Code Formatter: Prettier
+- Internationalization (i18n): ngx-translate
 
 #### Libraries
 
@@ -23,7 +26,7 @@ https://println.github.io/loud-6-castle
 - [Font Awesome](http://fontawesome.io)
 - [RxJS](http://reactivex.io/rxjs)
 - [ngx-translate](https://github.com/ngx-translate/core)
-- [AKITA State Management](https://github.com/datorama/akita)
+- [Elf](https://ngneat.github.io/elf/)
 - [Jest](https://jestjs.io/)
 
 #### Coding guides
