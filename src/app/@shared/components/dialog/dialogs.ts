@@ -1,0 +1,1 @@
+['confirm', 'alert', 'prompt'];
