@@ -1,7 +1,8 @@
 <header app-header class="c-shell__header"></header>
 <div class="c-shell__body">
   <aside app-navbar class="c-shell__body__left-area"></aside>
-  <main class="c-shell__body__content">
+  <main class="c-shell__body__content" >
+    <app-loader [isExpandable]="true" [isLoading]="isLoading"></app-loader>
     <router-outlet></router-outlet>
   </main>
 </div>

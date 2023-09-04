@@ -9,9 +9,10 @@ import { AuthModule } from '@modules/layout/auth';
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoaderComponent } from '@app/@shared';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, NgbModule, AuthModule, I18nModule, RouterModule],
+  imports: [CommonModule, TranslateModule, NgbModule, AuthModule, I18nModule, RouterModule, LoaderComponent],
   declarations: [HeaderComponent, ShellComponent, NavbarComponent],
 })
 export class ShellModule {}

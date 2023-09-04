@@ -9,7 +9,7 @@ export class ServerParamsFilter {
     const keys: any[] = ['size', 'page', 'sort'].concat(customFilters);
     return Object.entries(params)
       .filter(([k, v]) => keys.includes(k))
-      .reduce((obj, arr) => {
+      .reduce((obj: any, arr) => {
         obj[arr[0]] = arr[1];
         return obj;
       }, {});

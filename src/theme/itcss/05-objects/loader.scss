@@ -1,0 +1,19 @@
+.o-loader {
+  &--fullscreen {
+    @include customExtend(bg-light);
+    @include customExtend(position-absolute);
+    @include customExtend(start-0);
+    @include customExtend(top-0);
+    @include customExtend(bottom-0);
+    @include customExtend(end-0);
+    @include customExtend(w-auto);
+    @include customExtend(h-auto);
+    @include customExtend(d-flex);
+    @include customExtend(justify-content-center);
+    @include customExtend(d-flex);
+    @include customExtend(align-items-center);
+    @include customExtend(opacity-75);
+    @include customExtend(text-center);
+    z-index: 1000;
+  }
+}

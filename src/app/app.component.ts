@@ -1,14 +1,24 @@
-import { Component, OnInit, OnDestroy, HostBinding } from '@angular/core';
-import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TranslateService } from '@ngx-translate/core';
-import { merge } from 'rxjs';
-import { filter, map, switchMap } from 'rxjs/operators';
+import {
+  ActivatedRoute,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  RouteConfigLoadEnd,
+  RouteConfigLoadStart,
+  Router,
+  RouterEvent,
+} from '@angular/router';
+import { I18nService } from '@app/@modules/layout/i18n';
 
 import { environment } from '@env/environment';
-import { Logger } from '@shared';
-import { I18nService } from '@app/@modules/layout/i18n';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
+import { Logger } from '@shared';
+import { merge } from 'rxjs';
+import { filter, map, switchMap } from 'rxjs/operators';
 
 const log = new Logger('App');
 
@@ -16,9 +26,10 @@ const log = new Logger('App');
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  host: { class: 'c-root' },
 })
 export class AppComponent implements OnInit, OnDestroy {
-  @HostBinding('class') class = 'c-root';
+  isLoading = false;
 
   constructor(
     private router: Router,

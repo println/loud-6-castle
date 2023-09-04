@@ -6,7 +6,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   templateUrl: './form.component.html',
 })
 export class FormComponent implements OnInit {
-  @Input() formGroup!: FormGroup;
+  @Input() formGroup!: FormGroup | any;
   @Input() edit = false;
   @Output() formSubmit: EventEmitter<{}> = new EventEmitter();
   @ContentChild('buttonTemplate', { static: false }) buttonTemplateRef!: TemplateRef<any>;

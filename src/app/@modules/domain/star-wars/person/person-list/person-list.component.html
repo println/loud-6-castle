@@ -1,7 +1,7 @@
 <app-page>
   <span page-title>People</span>
   <a page-action-bar class="btn btn-primary" role="button" [routerLink]="paths.create">
-    <i class="fas fa-plus fa-fw"></i> {{paths.toTitle(paths.create)}} {{routes.starwars.children.person.title}}
+    <i class="fas fa-plus fa-fw"></i> {{ paths.toTitle(paths.create) }} {{ routes.starwars.children.person.title }}
   </a>
 
   <div *ngIf="(data$ | async)?.page as gridData">
@@ -35,7 +35,7 @@
             <td>
               <a [routerLink]="person.id" class="btn btn-outline-primary btn-sm" role="button">
                 <i class="far fa-eye fa-tw"></i>
-                {{paths.toTitle(paths.view)}}
+                {{ paths.toTitle(paths.view) }}
               </a>
               <a [routerLink]="[person.id, paths.edit]" class="btn btn-outline-info btn-sm" role="button">
                 <i class="fas fa-pencil-alt fa-fw"></i>

@@ -1,1 +1,1 @@
-['safe', 'warming', 'caution'];
+['safe', 'clear', 'cancel', 'commit', 'warning', 'danger'];

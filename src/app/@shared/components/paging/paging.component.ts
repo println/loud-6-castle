@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PagingData } from '@shared/components/paging/paging-data.model';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { PagingData } from './paging-data.model';
 
 @Component({
+  standalone: true,
   selector: 'app-paging',
   templateUrl: './paging.component.html',
-  styleUrls: ['./paging.component.scss'],
+  imports: [NgbPaginationModule],
 })
 export class PagingComponent implements OnInit {
   @Input() data: PagingData | undefined;

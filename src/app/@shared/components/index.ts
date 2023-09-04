@@ -6,6 +6,5 @@ export * from './grid/grid.component';
 export * from './loader/loader.component';
 export * from './page/page.component';
 export * from './paging/paging.component';
-export * from './search-bar/search-bar.component';
 export * from './reactive-form/index';
 export * from './components.module';

@@ -34,6 +34,7 @@ import { AbstractReactive } from './abstract-reactive';
       multi: true,
     },
   ],
+  host: { class: 'c-input' },
 })
 export class ReactiveUsernameComponent extends AbstractReactive {
   constructor(controlContainer: ControlContainer) {

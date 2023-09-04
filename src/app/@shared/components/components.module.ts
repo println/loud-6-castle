@@ -23,11 +23,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
-    GridComponent,
-    PagingComponent,
-    LoaderComponent,
     FormDebugComponent,
-    SearchBarComponent,
     PageComponent,
     FormComponent,
     ReactivePartialFormComponent,
@@ -40,10 +36,18 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ReactiveUsernameComponent,
     ReactiveRadioComponent,
   ],
-  imports: [CommonModule, NgbPaginationModule, FormsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    NgbPaginationModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LoaderComponent,
+    SearchBarComponent,
+    PagingComponent,
+    GridComponent,
+  ],
   exports: [
     GridComponent,
-    LoaderComponent,
     FormDebugComponent,
     PageComponent,
     FormComponent,

@@ -1,16 +1,19 @@
 import { AfterViewInit, Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 @Component({
+  standalone: true,
   selector: 'app-search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss'],
+  imports: [RouterModule, FormsModule],
+  host: { class: 'c-grid-filter' },
 })
 export class SearchBarComponent implements OnInit, AfterViewInit {
   @Output() search: EventEmitter<{}> = new EventEmitter();
   @ViewChild('searchForm') form: ElementRef<HTMLFormElement> | undefined;
   private refreshData: {} | undefined;
-  private lastQuery = {};
+  private lastQuery: any = {};
 
   constructor(private route: ActivatedRoute) {}
 
@@ -27,8 +30,14 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  onFilter(form: any) {
-    const query = this.getFormElements(form.target).reduce((map, el) => {
+  onReset(resetEvent: any) {
+    resetEvent.preventDefault();
+    this.getFormElements(resetEvent.target).forEach((el) => (el.value = ''));
+    this.onFilter(resetEvent);
+  }
+
+  onFilter(submitEvent: any) {
+    const query = this.getFormElements(submitEvent.target).reduce((map, el) => {
       map[el.name] = el.value ? el.value : null;
       return map;
     }, {});
@@ -44,7 +53,7 @@ export class SearchBarComponent implements OnInit, AfterViewInit {
     }
   }
 
-  private refreshFormParams(params: {}) {
+  private refreshFormParams(params: any) {
     if (!this.form) {
       this.refreshData = params;
       return;

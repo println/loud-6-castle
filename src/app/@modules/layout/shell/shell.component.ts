@@ -1,13 +1,54 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, NgZone, OnInit } from '@angular/core';
+import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
+@UntilDestroy()
 @Component({
   selector: 'app-shell',
   templateUrl: './shell.component.html',
+  host: { class: 'c-shell' },
 })
 export class ShellComponent implements OnInit {
-  @HostBinding('class') class = 'c-shell';
+  isLoading: boolean = false;
 
-  constructor() {}
+  constructor(private ngZone: NgZone, private router: Router) {
+    router.events.pipe(untilDestroyed(this)).subscribe((event) => {
+      this.navigationInterceptor(event);
+    });
+  }
 
   ngOnInit() {}
+
+  private navigationInterceptor(event: any): void {
+    console.log('event', event);
+    if (event instanceof NavigationStart) {
+      this.showLoader();
+    }
+    if (event instanceof NavigationEnd) {
+      this.hideLoader();
+    }
+    if (event instanceof NavigationCancel) {
+      this.hideLoader();
+    }
+    if (event instanceof NavigationError) {
+      this.hideLoader();
+    }
+  }
+
+  private showLoader() {
+    console.log('show');
+    this.ngZone.runOutsideAngular(() => {
+      this.isLoading = true;
+    });
+  }
+
+  private hideLoader(): void {
+    console.log('hide' + '');
+    const minimumRoutingResponseDelayInMilliseconds = 100;
+    setTimeout(() => {
+      this.ngZone.runOutsideAngular(() => {
+        this.isLoading = false;
+      });
+    }, minimumRoutingResponseDelayInMilliseconds);
+  }
 }

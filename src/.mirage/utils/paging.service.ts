@@ -52,7 +52,7 @@ export class PagingService {
   }
 
   private parseQueryParams(queryParams: {}): string {
-    const params = { ...queryParams };
+    const params: any = { ...queryParams };
     delete params[this.pageQuery];
 
     return Object.keys(params)

@@ -1,11 +1,16 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { GridData } from '@shared/components/grid/grid-data.model';
+import { GridData } from './grid-data.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SearchBarComponent } from '../search-bar/search-bar.component';
+import { PagingComponent } from '../paging/paging.component';
+import { LoaderComponent } from '../loader/loader.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-grid',
   templateUrl: './grid.component.html',
-  styleUrls: ['./grid.component.scss'],
+  imports: [CommonModule, SearchBarComponent, PagingComponent, LoaderComponent],
 })
 export class GridComponent implements OnInit, OnDestroy {
   isLoading: boolean = false;
@@ -52,7 +57,7 @@ export class GridComponent implements OnInit, OnDestroy {
     });
   }
 
-  private makeQueryParams(query: {}) {
+  private makeQueryParams(query: any) {
     const currentQueryParams = this.route.snapshot.queryParams;
     const newQueryParams = Object.assign({}, currentQueryParams, query);
     const emptyKeys = Object.keys(query).filter((k) => query[k] == null);

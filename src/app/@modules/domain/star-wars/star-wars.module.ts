@@ -6,6 +6,6 @@ import { StarWarsRoutingModule } from '@modules/domain/star-wars/star-wars-routi
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, StarWarsRoutingModule, TranslateModule, SharedModule],
+  imports: [CommonModule, StarWarsRoutingModule, TranslateModule],
 })
 export class StarWarsModule {}

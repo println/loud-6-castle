@@ -33,21 +33,21 @@
  * The `$line-height` argument, if specified, should be unitless.
  */
 
-@mixin font-size($font-size, $line-height: auto, $important: false) {
-  font-size: $font-size;
-
-  @if ($important == true) {
-    $important: !important;
-  } @else {
-    $important: null;
-  }
-
-  @if ($line-height == "auto") {
-    line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size) $important;
-  } @else {
-    line-height: $line-height $important;
-  }
-}
+//@mixin font-size($font-size, $line-height: auto, $important: false) {
+//  font-size: $font-size;
+//
+//  @if ($important == true) {
+//    $important: !important;
+//  } @else {
+//    $important: null;
+//  }
+//
+//  @if ($line-height == "auto") {
+//    line-height: ceil($font-size / $base-line-height) * ($base-line-height / $font-size) $important;
+//  } @else {
+//    line-height: $line-height $important;
+//  }
+//}
 
 /**
  * Remove the default styles from lists.
@@ -62,5 +62,5 @@
  * Extends class
  */
 @mixin customExtend($class) {
-  @extend .#{$class};
+  @extend .#{$class} !optional;
 }

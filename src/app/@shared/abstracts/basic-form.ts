@@ -1,7 +1,7 @@
 import clone from '@shared/mixins/clone';
 
 export abstract class BasicForm<P> {
-  pristineData: P = {} as P;
+  pristineData: any = {} as P;
 
   get isEditing() {
     if (!this.pristineData) {

@@ -1,27 +1,9 @@
-<div [hidden]="!isLoading">
-  <div *ngIf="!isExpandable" class="text-xs-center">
-    <i class="fas fa-cog fa-spin fa-3x"></i> <span>{{ message }}</span>
+<div [hidden]='!isLoading'>
+  <div *ngIf='!isExpandable' class='text-xs-center'>
+    <i class='fas fa-cog fa-spin fa-3x'></i> <span>{{ message }}</span>
   </div>
 
-  <div
-    *ngIf="isExpandable"
-    class="
-      bg-light
-      position-absolute
-      start-0
-      top-0
-      bottom-0
-      end-0
-      w-auto
-      h-auto
-      d-flex
-      justify-content-center
-      d-flex
-      align-items-center
-      opacity-75
-      text-xs-center
-    "
-  >
-    <i class="fas fa-cog fa-spin fa-3x"></i> <span>{{ message }}</span>
+  <div *ngIf='isExpandable' class='o-loader--fullscreen'>
+    <i class='fas fa-cog fa-spin fa-3x'></i> <span>{{ message }}</span>
   </div>
 </div>

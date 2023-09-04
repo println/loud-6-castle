@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TranslateModule } from '@ngx-translate/core';
+import { NgModule } from '@angular/core';
 import { ComponentsModule } from '@app/@shared/components/components.module';
-import { LoaderComponent } from '@shared/components/loader/loader.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [TranslateModule, CommonModule, ComponentsModule],
   declarations: [],
-  exports: [LoaderComponent],
+  exports: [],
 })
 export class SharedModule {}

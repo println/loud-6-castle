@@ -71,6 +71,7 @@
 /* #TOOLS
    ========================================================================== */
 @import "bootstrap/scss/mixins";
+@import "02-tools/tools.mixins";
 
 /* #GENERIC
    ========================================================================== */
@@ -120,6 +121,7 @@
 @import "05-objects/objects.scrollbar";
 @import "05-objects/objects.dropdown-toggle";
 @import "05-objects/objects.required";
+@import "05-objects/loader";
 
 /* #COMPONENTS
    ========================================================================== */

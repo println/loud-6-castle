@@ -7,7 +7,7 @@ export class FilteringService {
 
   constructor(private readonly data: any[]) {}
 
-  filter(queryParams: {}) {
+  filter(queryParams: any) {
     const params = { ...queryParams };
     this.excludes.forEach((keyword) => delete params[keyword]);
 

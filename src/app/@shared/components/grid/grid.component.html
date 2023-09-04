@@ -3,7 +3,7 @@
     <ng-content select="[search-fields]"></ng-content>
   </app-search-bar>
   <div class="position-relative">
-    <app-loader [isExpandable]="true" [isLoading]="isLoading"></app-loader>
+<!--    <app-loader [isExpandable]="true" [isLoading]="isLoading"></app-loader>-->
     <ng-content select="[grid-view]"></ng-content>
   </div>
   <app-paging (changePage)="onChangePage($event)" [data]="data?.paging" [isLoading]="isLoading"></app-paging>
