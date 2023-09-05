@@ -51,6 +51,9 @@ MIT
 @miragejs/pretender-node-polyfill
 MIT
 
+@narik/custom-validators
+MIT
+
 @ng-bootstrap/ng-bootstrap
 MIT
 The MIT License (MIT)
