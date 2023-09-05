@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { finalize } from 'rxjs/operators';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ROUTES } from '@config';
 
 import { environment } from '@env/environment';
-import { Logger } from '@shared';
-import { AuthenticationService } from './authentication.service';
-import { UserQuery } from '@shared/states/auth/user.query';
-import { ROUTES } from '@config';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Logger } from '@shared';
+import { finalize } from 'rxjs/operators';
+import { AuthenticationService } from '../authentication.service';
 
 const log = new Logger('Login');
 
@@ -19,36 +18,32 @@ const log = new Logger('Login');
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
+  routes = ROUTES;
+
   version: string | null = environment.version;
   error: string | undefined;
-  loginForm!: FormGroup;
+  form!: FormGroup;
   isLoading = false;
+  showPassword = false;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
-    private userQuery: UserQuery
+    private authenticationService: AuthenticationService
   ) {
     this.createForm();
   }
 
-  ngOnInit() {
-    if (this.userQuery.isLoggedIn()) {
-      const redirect = this.route.snapshot.queryParams.redirect || ROUTES.home.path;
-      log.debug('Already authenticated, redirecting to:', redirect);
-      this.router.navigate([redirect], { replaceUrl: true });
-    }
-  }
+  ngOnInit() {}
 
   login() {
     this.isLoading = true;
-    const login$ = this.authenticationService.login(this.loginForm.value);
+    const login$ = this.authenticationService.login(this.form.value);
     login$
       .pipe(
         finalize(() => {
-          this.loginForm.markAsPristine();
+          this.form.markAsPristine();
           this.isLoading = false;
         }),
         untilDestroyed(this)
@@ -66,10 +61,14 @@ export class LoginComponent implements OnInit {
   }
 
   private createForm() {
-    this.loginForm = this.formBuilder.group({
+    this.form = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
       remember: true,
     });
+  }
+
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 }

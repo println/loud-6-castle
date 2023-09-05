@@ -15,6 +15,7 @@ export const NAMES = {
     logout: 'logout',
     settings: 'settings',
     register: 'register',
+    forgotPassword: 'forgot-password',
     profile: 'profile',
   },
   DOMAIN_PAGES: {

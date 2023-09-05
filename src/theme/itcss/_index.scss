@@ -62,23 +62,20 @@
 /* #SETTINGS
    ========================================================================== */
 @import "bootstrap/scss/functions";
-@import "01-settings/settings.global";
-@import "01-settings/settings.colors";
-@import "01-settings/settings.fonts";
-@import "01-settings/settings.responsive";
+@import "01-settings/all";
 @import "bootstrap/scss/variables";
 
 /* #TOOLS
    ========================================================================== */
 @import "bootstrap/scss/mixins";
-@import "02-tools/tools.mixins";
+@import "02-tools/all";
 
 /* #GENERIC
    ========================================================================== */
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
 
-@import "03-generic/generic.reset";
+@import "03-generic/all";
 
 /* #ELEMENTS
    ========================================================================== */
@@ -91,7 +88,7 @@
 @import "bootstrap/scss/buttons";
 @import "bootstrap/scss/nav";
 
-@import "04-elements/elements.layout.positions";
+@import "04-elements/all";
 
 /* #OBJECTS
    ========================================================================== */
@@ -117,18 +114,11 @@
 @import "bootstrap/scss/offcanvas";
 @import "bootstrap/scss/placeholders";
 
-@import "05-objects/objects.vertical-list";
-@import "05-objects/objects.scrollbar";
-@import "05-objects/objects.dropdown-toggle";
-@import "05-objects/objects.required";
-@import "05-objects/loader";
+@import "05-objects/all";
 
 /* #COMPONENTS
    ========================================================================== */
-@import "06-components/layout/components.root";
-@import "06-components/layout/components.shell";
-@import "06-components/layout/components.header";
-@import "06-components/layout/components.navbar";
+@import "06-components/all";
 
 /* #EXTERNALS
    ========================================================================== */

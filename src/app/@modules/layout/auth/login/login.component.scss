@@ -1,5 +1,5 @@
-@import "../../../../theme/theme-variables";
-@import "../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../../../../../theme/theme-variables";
+@import "../../../../../../node_modules/bootstrap/scss/mixins/breakpoints";
 
 .login-container {
   position: absolute;
@@ -10,12 +10,7 @@
 }
 
 .login-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  min-height: 100%;
+
 }
 
 .ng-invalid.ng-touched:not(form) {

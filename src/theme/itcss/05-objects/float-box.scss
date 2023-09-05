@@ -1,0 +1,31 @@
+.o-float-box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 100%;
+
+  &__header{
+    @include customExtend(card-title);
+    @include customExtend(text-center);
+  }
+
+  &__container{
+    @include customExtend(container);
+  }
+
+  &__content{
+    @include customExtend(card);
+    @include customExtend(col-md-5);
+    @include customExtend(mt-3);
+    @include customExtend(mx-auto);
+    @include customExtend(p-3);
+  }
+}

@@ -1,0 +1,84 @@
+<div class='o-float-box'>
+  <h1 translate>APP_NAME</h1>
+  <div>
+    <h6 class='d-inline-block'>v{{ version }}</h6>
+    <div class='d-inline-block ml-3'>
+      <app-language-selector></app-language-selector>
+    </div>
+  </div>
+  <div class='o-float-box__container'>
+    <div class='o-float-box__content'>
+      <h4 class='o-float-box__header'>
+        <i class='far fa-3x fa-user-circle text-muted'></i>
+      </h4>
+      <form (ngSubmit)='login()' [formGroup]='form' novalidate>
+        <div class='m-3'>
+          <div class='alert alert-danger' [hidden]='!error || isLoading' translate>
+            Username or password incorrect.
+          </div>
+          <div class='d-flex flex-column mb-4'>
+            <div class='input-group input-group-lg'>
+             <input
+                type='text'
+                class='form-control'
+                formControlName='username'
+                autocomplete='username'
+                [placeholder]="'Username' | translate"
+              />
+            </div>
+            <span hidden translate>Username</span>
+            <small
+              [hidden]='form.controls.username.valid || form.controls.username.untouched'
+              class='text-danger'
+              translate
+            >
+              Username is required
+            </small>
+          </div>
+
+          <div class='d-flex flex-column mb-4'>
+            <div class='input-group input-group-lg'>
+              <input
+                [type]="showPassword ? 'text' : 'password'"
+                class='form-control'
+                formControlName='password'
+                autocomplete='current-password'
+                [placeholder]="'Password' | translate"
+                required
+              />
+              <span class='input-group-text' (click)='toggleShowPassword()'>
+                    <i [hidden]='showPassword' class='fas fa-eye'></i>
+                    <i [hidden]='!showPassword' class='fas fa-eye-slash'></i>
+                 </span>
+            </div>
+            <span hidden translate>Password</span>
+            <small
+              [hidden]='form.controls.password.valid || form.controls.password.untouched'
+              class='text-danger'
+              translate
+            >
+              Password is required
+            </small>
+          </div>
+
+          <div class='d-flex flex-row mb-4 justify-content-evenly'>
+            <div class='form-check form-switch'>
+              <input type='checkbox' class='form-check-input' formControlName='remember' id='remember' role='switch' />
+              <label for='remember' translate>Remember me</label>
+            </div>
+            <a [routerLink]='routes.forgotPassword.path' translate>Forgot password?</a>
+          </div>
+
+          <button class='btn btn-primary w-100 btn-lg' type='submit' [disabled]='form.invalid || isLoading'>
+            <i class='fas fa-cog fa-spin' [hidden]='!isLoading'></i>
+            <span translate>Sign in</span>
+          </button>
+
+          <div class='d-flex flex-row mt-4 justify-content-center'>
+            <p><span translate>Not a member?</span> <a [routerLink]='routes.register.path' translate>Register</a></p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

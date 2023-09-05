@@ -1,25 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { TranslateModule } from '@ngx-translate/core';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthModule } from '@app/@modules/layout/auth';
 
 import { environment } from '@env/environment';
-import {
-  RouteReusableStrategy,
-  ApiPrefixInterceptor,
-  ErrorHandlerInterceptor,
-  SharedModule,
-  LoaderComponent,
-} from '@shared';
-import { AuthModule } from '@app/@modules/layout/auth';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { ApiPrefixInterceptor, ErrorHandlerInterceptor, RouteReusableStrategy, SharedModule } from '@shared';
 import { HomeModule } from './@modules/layout/home/home.module';
 import { ShellModule } from './@modules/layout/shell/shell.module';
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 
 @NgModule({
   imports: [

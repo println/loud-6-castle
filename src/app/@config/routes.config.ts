@@ -2,7 +2,7 @@ import capitalize from '@shared/mixins/capitalize';
 import { NAMES } from './names.config';
 
 const toPath = (label: string) => `/${label}`;
-const toTitle = (label: string) => capitalize(label);
+const toTitle = (label: string) => capitalize(label.replace('-', ' '));
 const makePath = (label: string) => ({
   id: label,
   path: toPath(label),
@@ -35,6 +35,7 @@ export const ROUTES = {
   logout: makePath(NAMES.BASIC_PAGES.logout),
   settings: makePath(NAMES.BASIC_PAGES.settings),
   register: makePath(NAMES.BASIC_PAGES.register),
+  forgotPassword: makePath(NAMES.BASIC_PAGES.forgotPassword),
   profile: makePath(NAMES.BASIC_PAGES.profile),
   starwars: {
     ...makePath(NAMES.DOMAIN_PAGES.starwars),

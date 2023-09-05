@@ -1,10 +1,11 @@
 {
   "APP_NAME": "loud 6 castle",
+  "Version": "Versão",
   "About": "Sobre",
   "Hello world !": "Olá Mundo !",
   "Home": "Início",
   "Logged in as": "Conectado como",
-  "Login": "Entrar",
+  "Sign in": "Entrar",
   "Logout": "Sair",
   "Password": "Senha",
   "Password is required": "A senha é obrigatória",
@@ -12,5 +13,17 @@
   "Username is required": "Usuário é obrigatório",
   "Username or password incorrect.": "Usuário ou senha incorreto.",
   "Remember me": "Permanecer conectado",
-  "Version": "Versão"
+  "Register": "Registrar",
+  "Not a member?": "Não é cadastrado? ",
+  "Forgot password?": "Esqueceu a senha?",
+  "Forgot password": "Esqueceu a senha",
+  "First Name":  "Name",
+  "First Name is required": "Nome é obrigatório",
+  "Last Name":  "Sobrenome",
+  "Last Name is required": "Sobrenome é obrigatório",
+  "Email":  "Email",
+  "Email is required": "Email é obrigatório",
+  "Welcome to BT!":  "Bem vindo a BT!",
+  "I agree with sending the data!":  "Eu concordo com o envio dos dados!",
+  "Create account":  "Criar conta"
 }
