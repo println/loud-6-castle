@@ -2,10 +2,9 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES } from '@config';
-import { environment } from '@env/environment';
-import { AuthenticationService } from '@modules';
 import { CustomValidators } from '@narik/custom-validators';
-import { Logger, UserQuery } from '@shared';
+import { Logger } from '@shared';
+import { AuthControllerService, AuthRegisterRequest } from '@shared/openapi';
 
 const log = new Logger('Register');
 
@@ -25,8 +24,7 @@ export class RegisterComponent {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private authenticationService: AuthenticationService,
-    private userQuery: UserQuery
+    private service: AuthControllerService
   ) {
     this.createForm();
   }
@@ -35,15 +33,39 @@ export class RegisterComponent {
 
   private createForm() {
     this.form = this.formBuilder.group({
-      firstname: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
-      lastname: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      firstName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
+      lastName: ['', Validators.compose([Validators.required, Validators.minLength(2)])],
       email: ['', [Validators.required, CustomValidators.email]],
-      password: ['', Validators.compose([Validators.required, Validators.minLength(4)])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6)])],
       agree: [false, Validators.requiredTrue],
     });
   }
 
-  register() {}
+  register() {
+    const values = this.form.value;
+    const data: AuthRegisterRequest = {
+      firstName: values.firstName,
+      lastName: values.lastName,
+      email: values.email,
+      password: values.password,
+    } as AuthRegisterRequest;
+
+    this.service.register(data).subscribe({
+      next: () => {
+        this.router.navigate([ROUTES.login.path]).then(
+          (nav) => {
+            console.log(nav); // true if navigation is successful
+          },
+          (err) => {
+            console.log(err); // when there's an error
+          }
+        );
+      },
+      error: (error) => {
+        log.error(error);
+      },
+    });
+  }
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;

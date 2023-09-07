@@ -10,7 +10,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (this.userQuery.isLoggedIn()) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.userQuery.getValue().token}`,
+          Authorization: `Bearer ${this.userQuery.token()}}`,
         },
       });
     }

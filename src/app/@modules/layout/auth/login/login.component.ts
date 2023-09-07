@@ -48,16 +48,16 @@ export class LoginComponent implements OnInit {
         }),
         untilDestroyed(this)
       )
-      .subscribe(
-        (credentials) => {
+      .subscribe({
+        next: (credentials) => {
           log.debug(`${credentials.username} successfully logged in`);
           this.router.navigate([this.route.snapshot.queryParams.redirect || '/'], { replaceUrl: true });
         },
-        (error) => {
+        error: (error) => {
           log.debug(`Login error: ${error}`);
           this.error = error;
-        }
-      );
+        },
+      });
   }
 
   private createForm() {

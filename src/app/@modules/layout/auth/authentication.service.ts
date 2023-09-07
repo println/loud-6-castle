@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { untilDestroyed } from '@ngneat/until-destroy';
+import { AuthControllerService, AuthRequest } from '@shared/openapi';
+import { Observable, of, switchMap } from 'rxjs';
 
 import { UserStore } from '@shared';
+import { finalize } from 'rxjs/operators';
+import { JWTTokenService } from './jwt-token.service';
 
 export interface LoginContext {
   username: string;
@@ -17,7 +21,11 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private userStore: UserStore) {}
+  constructor(
+    private userStore: UserStore,
+    private service: AuthControllerService,
+    private jwtService: JWTTokenService
+  ) {}
 
   /**
    * Authenticates the user.
@@ -25,13 +33,25 @@ export class AuthenticationService {
    * @return The user credentials.
    */
   login(context: LoginContext): Observable<{ username: string; token: string }> {
-    // Replace by proper authentication call
-    const data = {
-      username: context.username,
-      token: '123456',
+    const data: AuthRequest = {
+      email: context.username,
+      password: context.password,
     };
-    this.userStore.storageUpdate({ token: data.token, name: data.username }, context.remember);
-    return of(data);
+    const auth$ = this.service.authenticate(data);
+    return auth$.pipe(
+      untilDestroyed(this),
+      switchMap((token) => {
+        this.jwtService.setToken(token.accessToken);
+        this.userStore.storageUpdate(
+          {
+            token: token.accessToken,
+            name: this.jwtService.getUser(),
+          },
+          context.remember
+        );
+        return of({ username: context.username, token: token.accessToken });
+      })
+    );
   }
 
   /**

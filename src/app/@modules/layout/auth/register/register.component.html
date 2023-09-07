@@ -20,14 +20,14 @@
               <input
                 type='text'
                 class='form-control'
-                formControlName='firstname'
-                autocomplete='firstname'
+                formControlName='firstName'
+                autocomplete='firstName'
                 [placeholder]="'First Name' | translate"
               />
             </div>
             <span hidden translate>Username</span>
             <small
-              [hidden]='form.controls.firstname.valid || form.controls.firstname.untouched'
+              [hidden]='form.controls.firstName.valid || form.controls.firstName.untouched'
               class='text-danger'
               translate
             >
@@ -40,14 +40,14 @@
               <input
                 type='text'
                 class='form-control'
-                formControlName='lastname'
-                autocomplete='lastname'
+                formControlName='lastName'
+                autocomplete='lastName'
                 [placeholder]="'Last Name' | translate"
               />
             </div>
             <span hidden translate>Username</span>
             <small
-              [hidden]='form.controls.lastname.valid || form.controls.lastname.untouched'
+              [hidden]='form.controls.lastName.valid || form.controls.lastName.untouched'
               class='text-danger'
               translate
             >

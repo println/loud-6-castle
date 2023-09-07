@@ -20,7 +20,6 @@ export class ShellComponent implements OnInit {
   ngOnInit() {}
 
   private navigationInterceptor(event: any): void {
-    console.log('event', event);
     if (event instanceof NavigationStart) {
       this.showLoader();
     }
@@ -36,14 +35,12 @@ export class ShellComponent implements OnInit {
   }
 
   private showLoader() {
-    console.log('show');
     this.ngZone.runOutsideAngular(() => {
       this.isLoading = true;
     });
   }
 
   private hideLoader(): void {
-    console.log('hide' + '');
     const minimumRoutingResponseDelayInMilliseconds = 100;
     setTimeout(() => {
       this.ngZone.runOutsideAngular(() => {

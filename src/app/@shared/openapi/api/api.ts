@@ -1,0 +1,17 @@
+export * from './accountActivationController.service';
+import { AccountActivationControllerService } from './accountActivationController.service';
+export * from './accountController.service';
+import { AccountControllerService } from './accountController.service';
+export * from './authController.service';
+import { AuthControllerService } from './authController.service';
+export * from './forgotPasswordController.service';
+import { ForgotPasswordControllerService } from './forgotPasswordController.service';
+export * from './issueController.service';
+import { IssueControllerService } from './issueController.service';
+export * from './resetPasswordController.service';
+import { ResetPasswordControllerService } from './resetPasswordController.service';
+export * from './sessionController.service';
+import { SessionControllerService } from './sessionController.service';
+export * from './userController.service';
+import { UserControllerService } from './userController.service';
+export const APIS = [AccountActivationControllerService, AccountControllerService, AuthControllerService, ForgotPasswordControllerService, IssueControllerService, ResetPasswordControllerService, SessionControllerService, UserControllerService];

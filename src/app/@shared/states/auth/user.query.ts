@@ -8,4 +8,8 @@ export class UserQuery {
   isLoggedIn() {
     return !!userStore.getValue().name.length;
   }
+
+  token() {
+    return userStore.getValue().token;
+  }
 }
