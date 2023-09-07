@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { untilDestroyed } from '@ngneat/until-destroy';
+
+import { UserState, UserStore } from '@shared';
 import { AuthControllerService, AuthRequest } from '@shared/openapi';
 import { Observable, of, switchMap } from 'rxjs';
-
-import { UserStore } from '@shared';
-import { finalize } from 'rxjs/operators';
 import { JWTTokenService } from './jwt-token.service';
 
 export interface LoginContext {
@@ -42,14 +41,13 @@ export class AuthenticationService {
       untilDestroyed(this),
       switchMap((token) => {
         this.jwtService.setToken(token.accessToken);
-        this.userStore.storageUpdate(
-          {
-            token: token.accessToken,
-            name: this.jwtService.getUser(),
-          },
-          context.remember
-        );
-        return of({ username: context.username, token: token.accessToken });
+        const data = {
+          token: token.accessToken,
+          name: this.jwtService.getName(),
+          role: this.jwtService.getRole(),
+        } as UserState;
+        this.userStore.storageUpdate(data, context.remember);
+        return of({ username: data.name, token: data.token });
       })
     );
   }

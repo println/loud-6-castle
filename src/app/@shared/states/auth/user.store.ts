@@ -5,9 +5,10 @@ import { localStorageStrategy, persistState } from '@ngneat/elf-persist-state';
 export interface UserState {
   token: string;
   name: string;
+  role: string;
 }
 
-export const userStore = createStore({ name: 'auth' }, withProps<UserState>({ name: '', token: '' }));
+export const userStore = createStore({ name: 'auth' }, withProps<UserState>({ name: '', token: '', role: '' }));
 
 const persist = persistState(userStore, {
   key: 'auth-data',
@@ -23,16 +24,18 @@ export class UserStore {
   storageUpdate(user: UserState, remember?: boolean) {
     userStore.update((state) => ({
       ...state,
-      name: user.name,
       token: user.token,
+      name: user.name,
+      role: user.role,
     }));
   }
 
   reset() {
     userStore.update((state) => ({
       ...state,
-      name: '',
       token: '',
+      name: '',
+      role: '',
     }));
   }
 }
