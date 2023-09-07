@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { untilDestroyed } from '@ngneat/until-destroy';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { UserState, UserStore } from '@shared';
 import { AuthControllerService, AuthRequest } from '@shared/openapi';
@@ -16,6 +16,7 @@ export interface LoginContext {
  * Provides a base for authentication workflow.
  * The login/logout methods should be replaced with proper implementation.
  */
+@UntilDestroy()
 @Injectable({
   providedIn: 'root',
 })
