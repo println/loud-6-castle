@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserState, UserStore } from '@shared';
 import { AuthControllerService, AuthRequest } from '@shared/openapi';
 import { Observable, of, switchMap } from 'rxjs';
-import { JWTTokenService } from './jwt-token.service';
+import { JwtTokenHelper } from './jwt-token.helper';
 
 export interface LoginContext {
   username: string;
@@ -21,11 +21,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(
-    private userStore: UserStore,
-    private service: AuthControllerService,
-    private jwtService: JWTTokenService
-  ) {}
+  constructor(private userStore: UserStore, private service: AuthControllerService) {}
 
   /**
    * Authenticates the user.
@@ -41,11 +37,11 @@ export class AuthenticationService {
     return auth$.pipe(
       untilDestroyed(this),
       switchMap((token) => {
-        this.jwtService.setToken(token.accessToken);
+        const tokenHelper = new JwtTokenHelper(token.accessToken);
         const data = {
           token: token.accessToken,
-          name: this.jwtService.getName(),
-          role: this.jwtService.getRole(),
+          name: tokenHelper.getName(),
+          role: tokenHelper.getRole(),
         } as UserState;
         this.userStore.storageUpdate(data, context.remember);
         return of({ username: data.name, token: data.token });

@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { UserQuery } from '@shared';
 import jwt_decode from 'jwt-decode';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class JWTTokenService {
-  jwtToken?: string;
-  decodedToken?: { [key: string]: string };
+export class JwtTokenHelper {
+  private decodedToken?: { [key: string]: string };
 
-  constructor() {}
+  constructor(private jwtToken: string) {}
 
   setToken(token: string) {
     if (token) {
@@ -33,7 +31,7 @@ export class JWTTokenService {
 
   getRole(): String {
     this.decodeToken();
-    return this.decodedToken ? this.decodedToken.name : '';
+    return this.decodedToken ? this.decodedToken.role : '';
   }
 
   getEmail() {

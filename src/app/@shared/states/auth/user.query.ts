@@ -9,7 +9,19 @@ export class UserQuery {
     return !!userStore.getValue().name.length;
   }
 
-  token() {
+  getUser() {
+    return userStore.getValue();
+  }
+
+  getUsername() {
+    return userStore.getValue().name;
+  }
+
+  getRole() {
+    return userStore.getValue().role;
+  }
+
+  getToken() {
     return userStore.getValue().token;
   }
 }

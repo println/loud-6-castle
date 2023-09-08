@@ -7,6 +7,7 @@
     "build": "npm run write:env -s && ng build",
     "build:ci": "npm run write:env -s && ng build --configuration production --output-hashing=all --source-map=false --base-href /loud-6-castle/",
     "start": "npm run write:env -s && ng serve --proxy-config proxy.conf.js",
+    "start-prod": "npm run write:env -s && ng serve --configuration production",
     "serve:sw": "npm run build -s && npx http-server ./dist -p 4200",
     "lint": "ng lint && stylelint \"src/**/*.scss\" --syntax scss",
     "test": "npm run write:env -s && jest --coverage",

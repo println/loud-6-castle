@@ -51,6 +51,11 @@
     </li>
   </ul>
 </nav>
+<ul class='text-white'>
+  <li *ifRole="'admin'">admin</li>
+  <li *ifRole="'user'">user</li>
+</ul>
+
 <hr />
 <footer class="c-navbar__footer">
   <div class="dropdown pb-4">
