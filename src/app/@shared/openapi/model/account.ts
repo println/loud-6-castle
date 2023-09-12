@@ -13,6 +13,7 @@ import { GrantedAuthority } from './grantedAuthority';
 import { Login } from './login';
 
 export interface Account { 
+    name: string;
     email: string;
     login: Login;
     role: Account.RoleEnum;
@@ -21,13 +22,13 @@ export interface Account {
     createdAt?: Date;
     lastModified?: Date;
     id?: string;
-    password: string;
     isEnabled: boolean;
-    username: string;
     authorities: Array<GrantedAuthority>;
-    isAccountNonLocked: boolean;
-    isAccountNonExpired: boolean;
+    username: string;
     isCredentialsNonExpired: boolean;
+    isAccountNonExpired: boolean;
+    isAccountNonLocked: boolean;
+    password: string;
 }
 export namespace Account {
     export type RoleEnum = 'USER' | 'ADMIN' | 'MANAGER';

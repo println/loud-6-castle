@@ -7,11 +7,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { I18nModule } from '@modules/layout/i18n';
 import { ApiModule } from '@shared/openapi';
-import { IfRoleDirective } from './role/role.directive';
+import { IfRoleDirective } from './directives/role.directive';
 import { AuthRoutingModule } from './auth-routing.module';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
+import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   imports: [

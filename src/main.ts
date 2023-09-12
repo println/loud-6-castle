@@ -18,7 +18,7 @@ if (environment.production) {
   enableElfProdMode();
 }
 
-mockService.setup(environment.production);
+//mockService.setup(environment.production);
 
 platformBrowserDynamic()
   .bootstrapModule(AppModule)

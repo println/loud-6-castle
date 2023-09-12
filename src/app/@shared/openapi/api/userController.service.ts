@@ -191,24 +191,21 @@ export class UserControllerService {
     /**
      * 
      * 
+     * @param search 
      * @param pageable 
-     * @param coordinates 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAll(pageable: Pageable, coordinates?: string, observe?: 'body', reportProgress?: boolean): Observable<PageUser>;
-    public getAll(pageable: Pageable, coordinates?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageUser>>;
-    public getAll(pageable: Pageable, coordinates?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageUser>>;
-    public getAll(pageable: Pageable, coordinates?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAll(search?: string, pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageUser>;
+    public getAll(search?: string, pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageUser>>;
+    public getAll(search?: string, pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageUser>>;
+    public getAll(search?: string, pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (pageable === null || pageable === undefined) {
-            throw new Error('Required parameter pageable was null or undefined when calling getAll.');
-        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (coordinates !== undefined && coordinates !== null) {
-            queryParameters = queryParameters.set('coordinates', <any>coordinates);
+        if (search !== undefined && search !== null) {
+            queryParameters = queryParameters.set('search', <any>search);
         }
         if (pageable !== undefined && pageable !== null) {
             queryParameters = queryParameters.set('pageable', <any>pageable);
@@ -243,24 +240,21 @@ export class UserControllerService {
     /**
      * 
      * 
+     * @param search 
      * @param pageable 
-     * @param coordinates 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAll1(pageable: Pageable, coordinates?: string, observe?: 'body', reportProgress?: boolean): Observable<PageUser>;
-    public getAll1(pageable: Pageable, coordinates?: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageUser>>;
-    public getAll1(pageable: Pageable, coordinates?: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageUser>>;
-    public getAll1(pageable: Pageable, coordinates?: string, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAll1(search?: string, pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageUser>;
+    public getAll1(search?: string, pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageUser>>;
+    public getAll1(search?: string, pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageUser>>;
+    public getAll1(search?: string, pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (pageable === null || pageable === undefined) {
-            throw new Error('Required parameter pageable was null or undefined when calling getAll1.');
-        }
 
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
-        if (coordinates !== undefined && coordinates !== null) {
-            queryParameters = queryParameters.set('coordinates', <any>coordinates);
+        if (search !== undefined && search !== null) {
+            queryParameters = queryParameters.set('search', <any>search);
         }
         if (pageable !== undefined && pageable !== null) {
             queryParameters = queryParameters.set('pageable', <any>pageable);

@@ -4,7 +4,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserState, UserStore } from '@shared';
 import { AuthControllerService, AuthRequest } from '@shared/openapi';
 import { Observable, of, switchMap } from 'rxjs';
-import { JwtTokenHelper } from './jwt-token.helper';
+import { JwtTokenHelper } from './helpers/jwt-token.helper';
 
 export interface LoginContext {
   username: string;

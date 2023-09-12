@@ -17,6 +17,23 @@
         <span class="ms-1 d-none d-sm-inline" translate>{{ routes.about.title }}</span>
       </a>
     </li>
+    <li *ifRole="'admin'">
+      <a
+        class="c-navbar__link"
+        [routerLink]="routes.admin.path + routes.admin.children.account.plural.path"
+        routerLinkActive="c-navbar__link--active"
+      > <span class="ms-1 d-none d-sm-inline" translate>{{ routes.admin.children.account.plural.title }}</span>
+      </a>
+    </li>
+    <li *ifRole="'admin'">
+      <a
+        class="c-navbar__link"
+        [routerLink]="routes.admin.path + routes.admin.children.session.plural.path"
+        routerLinkActive="c-navbar__link--active"
+      > <span class="ms-1 d-none d-sm-inline" translate>{{ routes.admin.children.session.plural.title }}</span>
+      </a>
+    </li>
+    <li *ifRole="'user'">user</li>
     <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
       <a
         [routerLink]="routes.starwars.path + routes.starwars.children.person.plural.path"
@@ -24,7 +41,7 @@
         data-bs-toggle="collapse"
         class="c-navbar__link"
       >
-        <i class="fas fa-question-circle"></i> <span class="ms-1 d-none d-sm-inline" translate>Starwars API</span>
+        <i class="fas fa-question-circle"></i> <span class="ms-1 d-none d-sm-inline" translate>Teste: Starwars API</span>
       </a>
       <ul class="c-navbar__nav" id="submenu1" data-bs-parent="#menu">
         <li class="c-navbar__item">
@@ -52,11 +69,7 @@
   </ul>
 </nav>
 <ul class='text-white'>
-  <li *ifRole="'admin'">admin</li>
-  <li *ifRole="'user'">user</li>
-</ul>
 
-<hr />
 <footer class="c-navbar__footer">
   <div class="dropdown pb-4">
     <a

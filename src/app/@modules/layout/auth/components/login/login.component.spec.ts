@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { I18nModule } from '../../i18n';
+import { I18nModule } from '../../../i18n';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {

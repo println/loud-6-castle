@@ -156,20 +156,22 @@ export class AccountControllerService {
     /**
      * 
      * 
+     * @param search 
      * @param pageable 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAll3(pageable: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAccountDto>;
-    public getAll3(pageable: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAccountDto>>;
-    public getAll3(pageable: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAccountDto>>;
-    public getAll3(pageable: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAll3(search?: string, pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAccountDto>;
+    public getAll3(search?: string, pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAccountDto>>;
+    public getAll3(search?: string, pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAccountDto>>;
+    public getAll3(search?: string, pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (pageable === null || pageable === undefined) {
-            throw new Error('Required parameter pageable was null or undefined when calling getAll3.');
-        }
+
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (search !== undefined && search !== null) {
+            queryParameters = queryParameters.set('search', <any>search);
+        }
         if (pageable !== undefined && pageable !== null) {
             queryParameters = queryParameters.set('pageable', <any>pageable);
         }
@@ -203,20 +205,22 @@ export class AccountControllerService {
     /**
      * 
      * 
+     * @param search 
      * @param pageable 
      * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
      * @param reportProgress flag to report request and response progress.
      */
-    public getAll4(pageable: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAccountDto>;
-    public getAll4(pageable: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAccountDto>>;
-    public getAll4(pageable: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAccountDto>>;
-    public getAll4(pageable: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
+    public getAll4(search?: string, pageable?: Pageable, observe?: 'body', reportProgress?: boolean): Observable<PageAccountDto>;
+    public getAll4(search?: string, pageable?: Pageable, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<PageAccountDto>>;
+    public getAll4(search?: string, pageable?: Pageable, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<PageAccountDto>>;
+    public getAll4(search?: string, pageable?: Pageable, observe: any = 'body', reportProgress: boolean = false ): Observable<any> {
 
-        if (pageable === null || pageable === undefined) {
-            throw new Error('Required parameter pageable was null or undefined when calling getAll4.');
-        }
+
 
         let queryParameters = new HttpParams({encoder: new CustomHttpUrlEncodingCodec()});
+        if (search !== undefined && search !== null) {
+            queryParameters = queryParameters.set('search', <any>search);
+        }
         if (pageable !== undefined && pageable !== null) {
             queryParameters = queryParameters.set('pageable', <any>pageable);
         }

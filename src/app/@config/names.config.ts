@@ -17,6 +17,9 @@ export const NAMES = {
     register: 'register',
     forgotPassword: 'forgot-password',
     profile: 'profile',
+    admin: 'admin',
+    account: 'account',
+    session: 'session',
   },
   DOMAIN_PAGES: {
     starwars: 'starwars',

@@ -37,6 +37,19 @@ export const ROUTES = {
   register: makePath(NAMES.BASIC_PAGES.register),
   forgotPassword: makePath(NAMES.BASIC_PAGES.forgotPassword),
   profile: makePath(NAMES.BASIC_PAGES.profile),
+  admin: {
+    ...makePath(NAMES.BASIC_PAGES.admin),
+    children: {
+      account: {
+        ...makePath(NAMES.BASIC_PAGES.account),
+        plural: makePath(toPlural(NAMES.BASIC_PAGES.account)),
+      },
+      session: {
+        ...makePath(NAMES.BASIC_PAGES.session),
+        plural: makePath(toPlural(NAMES.BASIC_PAGES.session)),
+      },
+    },
+  },
   starwars: {
     ...makePath(NAMES.DOMAIN_PAGES.starwars),
     children: {

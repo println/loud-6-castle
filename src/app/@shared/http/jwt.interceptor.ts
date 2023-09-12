@@ -2,15 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { UserQuery } from '@shared';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class JwtInterceptor implements HttpInterceptor {
   constructor(private userQuery: UserQuery) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler) {
     if (this.userQuery.isLoggedIn()) {
+      const headers = request.headers;
+      console.log(headers);
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${this.userQuery.getToken()}}`,
+          Authorization: `Bearer ${this.userQuery.getToken()}`,
         },
       });
     }

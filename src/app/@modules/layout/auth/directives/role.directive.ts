@@ -4,7 +4,7 @@ import { UserQuery } from '@shared';
 @Directive({ selector: '[ifRole]' })
 export class IfRoleDirective {
   @Input({ required: true, alias: 'ifRole' })
-  roleName: string;
+  roleName: string = '';
 
   constructor(
     private templateRef: TemplateRef<any>,
@@ -14,7 +14,6 @@ export class IfRoleDirective {
 
   ngOnInit() {
     if (this.userQuery.isLoggedIn()) {
-      console.log(this.userQuery.getRole());
       this.viewContainer.clear();
       if (this.userQuery.getRole().toLowerCase() === this.roleName.toLowerCase()) {
         this.viewContainer.createEmbeddedView(this.templateRef);

@@ -7,7 +7,7 @@ import { environment } from '@env/environment';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Logger } from '@shared';
 import { finalize } from 'rxjs/operators';
-import { AuthenticationService } from '../authentication.service';
+import { AuthenticationService } from '../../authentication.service';
 
 const log = new Logger('Login');
 
