@@ -36,6 +36,7 @@ export const ROUTES = {
   settings: makePath(NAMES.BASIC_PAGES.settings),
   register: makePath(NAMES.BASIC_PAGES.register),
   forgotPassword: makePath(NAMES.BASIC_PAGES.forgotPassword),
+  resetPassword: makePath(NAMES.BASIC_PAGES.resetPassword),
   profile: makePath(NAMES.BASIC_PAGES.profile),
   admin: {
     ...makePath(NAMES.BASIC_PAGES.admin),

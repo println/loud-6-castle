@@ -3,7 +3,8 @@ import { Injectable } from '@angular/core';
 import { Params } from '@angular/router';
 import { ENDPOINTS } from '@shared/api/swapi/endpoints.map';
 import { GridData } from '@shared/components/grid/grid-data.model';
-import { Page } from '@shared/integrations/spring-boot/page.model';
+import { Pageable } from '@shared/integrations/spring-boot/request/pageable.model';
+import { Page } from '@shared/integrations/spring-boot/response/page.model';
 import { SpringHelper } from '@shared/integrations/spring-boot/spring.helper';
 import { AccountControllerService, AccountDto, Session, SessionControllerService } from '@shared/openapi';
 import { Observable } from 'rxjs';
@@ -16,8 +17,7 @@ export class SessionService {
   constructor(protected http: HttpClient, private service: SessionControllerService) {}
 
   findAll(queryParams?: Params): Observable<GridData<Session>> {
-    const rql = queryParams?.toString();
-    return this.service.getAll21().pipe(
+    return this.service.getAll(queryParams).pipe(
       take(1),
       map((resp: Page<Session>) => SpringHelper.fromPaging(resp))
     );

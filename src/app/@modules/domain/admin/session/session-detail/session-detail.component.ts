@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { SessionService } from '../session.service';
 
 @Component({
-  selector: 'app-employee-detail',
+  selector: 'app-session-detail',
   templateUrl: './session-detail.component.html',
 })
 export class SessionDetailComponent implements OnInit {

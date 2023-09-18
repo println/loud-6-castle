@@ -12,6 +12,7 @@
 
 import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
+import { Params } from '@angular/router';
 import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
@@ -57,64 +58,19 @@ export class SessionControllerService {
     return false;
   }
 
-  /**
-   *
-   *
-   * @param search
-   * @param pageable
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public getAll21(
-    search?: string,
-    pageable?: Pageable,
-    observe?: 'body',
-    reportProgress?: boolean
-  ): Observable<PageSession>;
-  public getAll21(
-    search?: string,
-    pageable?: Pageable,
-    observe?: 'response',
-    reportProgress?: boolean
-  ): Observable<HttpResponse<PageSession>>;
-  public getAll21(
-    search?: string,
-    pageable?: Pageable,
-    observe?: 'events',
-    reportProgress?: boolean
-  ): Observable<HttpEvent<PageSession>>;
-  public getAll21(
-    search?: string,
-    pageable?: Pageable,
-    observe: any = 'body',
-    reportProgress: boolean = false
-  ): Observable<any> {
-    let queryParameters = new HttpParams({ encoder: new CustomHttpUrlEncodingCodec() });
-    if (search !== undefined && search !== null) {
-      queryParameters = queryParameters.set('search', <any>search);
-    }
-    if (pageable !== undefined && pageable !== null) {
-      queryParameters = queryParameters.set('pageable', <any>pageable);
-    }
-
+  public getAll(queryParams?: Params): Observable<PageSession> {
     let headers = this.defaultHeaders;
 
-    // to determine the Accept header
     let httpHeaderAccepts: string[] = ['*/*'];
     const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
     if (httpHeaderAcceptSelected != undefined) {
       headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    // to determine the Content-Type header
-    const consumes: string[] = [];
-
     return this.httpClient.request<PageSession>('get', `${this.basePath}/api/v1/session`, {
-      params: queryParameters,
+      params: queryParams,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
-      observe: observe,
-      reportProgress: reportProgress,
     });
   }
 

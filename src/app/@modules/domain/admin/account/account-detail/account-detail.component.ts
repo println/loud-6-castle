@@ -9,7 +9,7 @@ import { Person } from '@shared/api/swapi/models/person.model';
 import { AccountService } from '../account.service';
 
 @Component({
-  selector: 'app-employee-detail',
+  selector: 'app-account-detail',
   templateUrl: './account-detail.component.html',
 })
 export class AccountDetailComponent implements OnInit {

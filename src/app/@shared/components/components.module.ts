@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
 import { FormDebugComponent } from './form-debug/form-debug.component';
 import { FormFieldFeedbackComponent } from './form-field-feedback/form-field-feedback.component';
 import { FormAsyncModelDirective } from './form/form-async-model.directive';
@@ -18,6 +19,7 @@ import {
   ReactiveRadioComponent,
   ReactiveTextComponent,
   ReactiveUsernameComponent,
+  ReactivePasswordComponent,
 } from './reactive-form';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
@@ -31,6 +33,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ReactiveFeedbackComponent,
     FormAsyncModelDirective,
     ReactiveTextComponent,
+    ReactivePasswordComponent,
     ReactiveComboComponent,
     ReactiveComboMultiComponent,
     ReactiveUsernameComponent,
@@ -45,6 +48,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     SearchBarComponent,
     PagingComponent,
     GridComponent,
+    TranslateModule,
   ],
   exports: [
     GridComponent,
@@ -59,6 +63,7 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     ReactiveUsernameComponent,
     ReactiveRadioComponent,
     ReactivePartialFormComponent,
+    ReactivePasswordComponent,
   ],
 })
 export class ComponentsModule {}

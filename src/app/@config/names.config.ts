@@ -16,6 +16,7 @@ export const NAMES = {
     settings: 'settings',
     register: 'register',
     forgotPassword: 'forgot-password',
+    resetPassword: 'reset-password',
     profile: 'profile',
     admin: 'admin',
     account: 'account',

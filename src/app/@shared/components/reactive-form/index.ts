@@ -5,5 +5,6 @@ export * from './fields/reactive-combo-multi.component';
 export * from './fields/reactive-feedback.component';
 export * from './fields/reactive-radio.component';
 export * from './fields/reactive-text.component';
+export * from './fields/reactive-password.component';
 export * from './fields/reactive-username.component';
 export * from './forms/reactive-partial-form.component';

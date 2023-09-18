@@ -7,7 +7,7 @@ import { PeopleService } from '@modules/domain/star-wars/person/people.service';
 import { Person } from '@shared/api/swapi/models/person.model';
 
 @Component({
-  selector: 'app-employee-detail',
+  selector: 'app-person-detail',
   templateUrl: './person-detail.component.html',
 })
 export class PersonDetailComponent implements OnInit {

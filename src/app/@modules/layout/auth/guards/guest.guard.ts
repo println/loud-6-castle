@@ -5,7 +5,7 @@ import { Logger } from '@shared';
 import { UserQuery } from '@shared/states/auth/user.query';
 import { ROUTES } from '@config';
 
-const log = new Logger('AuthenticationGuard');
+const log = new Logger('GuestGuard');
 
 @Injectable({
   providedIn: 'root',
