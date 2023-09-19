@@ -1,3 +1,3 @@
 export * from './auth.module';
-export * from './authentication.service';
+export * from './services/authentication.service';
 export * from './guards/authentication.guard';

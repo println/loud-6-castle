@@ -4,10 +4,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES } from '@config';
 
 import { environment } from '@env/environment';
+import { AuthenticationService } from '@modules';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Logger } from '@shared';
 import { finalize } from 'rxjs/operators';
-import { AuthenticationService } from '../../authentication.service';
 
 const log = new Logger('Login');
 

@@ -2,9 +2,15 @@ import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { UserState, UserStore } from '@shared';
-import { AuthControllerService, AuthRequest } from '@shared/openapi';
+import {
+  AuthControllerService,
+  AuthRequest,
+  ForgotPasswordControllerService,
+  ForgotPasswordEmailDto,
+} from '@shared/openapi';
 import { Observable, of, switchMap } from 'rxjs';
-import { JwtTokenHelper } from './helpers/jwt-token.helper';
+import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
+import { JwtTokenHelper } from '../helpers/jwt-token.helper';
 
 export interface LoginContext {
   username: string;
@@ -21,7 +27,11 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private userStore: UserStore, private service: AuthControllerService) {}
+  constructor(
+    private userStore: UserStore,
+    private service: AuthControllerService,
+    private forgotPasswordService: ForgotPasswordControllerService
+  ) {}
 
   /**
    * Authenticates the user.

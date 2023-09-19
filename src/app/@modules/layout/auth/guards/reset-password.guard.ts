@@ -12,7 +12,7 @@ export class ResetPasswordGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    if (route.queryParamMap.has('code')) {
+    if (route.queryParamMap.has('token')) {
       return true;
     }
     const redirect = route.queryParams.redirect || ROUTES.home.path;

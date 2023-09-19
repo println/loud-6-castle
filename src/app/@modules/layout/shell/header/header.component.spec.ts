@@ -3,7 +3,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AuthenticationService } from '@modules/layout/auth/authentication.service';
+import { AuthenticationService } from '../../auth/services/authentication.service';
 import { I18nModule } from '@modules/layout/i18n';
 import { HeaderComponent } from './header.component';
 import { UserQuery } from '@shared/states/auth/user.query';

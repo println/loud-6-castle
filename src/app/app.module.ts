@@ -10,7 +10,6 @@ import { environment } from '@env/environment';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateModule } from '@ngx-translate/core';
 import { ApiPrefixInterceptor, ErrorHandlerInterceptor, RouteReusableStrategy, SharedModule } from '@shared';
-import { JwtInterceptor } from '@shared/http/jwt.interceptor';
 import { HomeModule } from './@modules/layout/home/home.module';
 import { ShellModule } from './@modules/layout/shell/shell.module';
 import { AppRoutingModule } from './app-routing.module';

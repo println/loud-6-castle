@@ -25,5 +25,16 @@
   "Email is required": "Email é obrigatório",
   "Welcome!":  "Bem-vindo ao Portal!",
   "I agree!":  "Eu concordo com o envio dos dados!",
-  "Create account": "Criar conta"
+  "Create account": "Criar conta",
+  "Reset your Password": "Redefinir sua Senha",
+  "Reset Password": "Redefinir Senha",
+  "Enter with security code": "Entre com o código de segurança",
+  "The security code has been sent to your email:": "O código de segurança foi enviado para seu email:",
+  "Security Code incorrect.": "Código de Segurança incorreto.",
+  "Security Code": "Código de Segurança",
+  "Security Code is required": "Código de Segurança é obrigatório",
+  "Send Security Code": "Enviar Código de Segurança",
+  "Renew your Password!": "Entre com a nova senha!",
+  "Password incorrect.": "Senha incorreta.",
+  "Renew Password": "Criar Nova Senha"
 }

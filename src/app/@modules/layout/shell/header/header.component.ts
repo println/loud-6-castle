@@ -1,7 +1,7 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '@modules/layout/auth/authentication.service';
+import { AuthenticationService } from '../../auth/services/authentication.service';
 import { UserQuery } from '@shared/states/auth/user.query';
 import { UserState } from '@shared/states/auth/user.store';
 import { ROUTES } from '@config';
