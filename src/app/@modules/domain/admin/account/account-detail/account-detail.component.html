@@ -1,4 +1,4 @@
-<app-page *ngIf='(data$ | async)?.data as item'>
+<app-page *ngIf='account as item'>
   <span page-title>{{ routes.admin.children.account.title }}</span>
   <div page-action-bar class='stn-action-bar'>
     <a role='button' class='btn btn-outline-info btn-sm' [routerLink]='[paths.edit]'>
@@ -17,7 +17,7 @@
     </div>
     <figcaption class='col-md-8'>
       <div class='card-body'>
-        <h3 class='card-title'>{{ item.name }}</h3>
+        <h3 class='card-title'>Account: {{ item.name }}</h3>
         <ul class='list-unstyled'>
           <li class='card-text'><strong>#ID:</strong> {{ item.id }}</li>
           <li class='card-text'><strong>Name:</strong> {{ item.name }}</li>
@@ -29,7 +29,99 @@
           <li class='card-text'><strong>Last Modified:</strong> {{ item.lastModified }}</li>
           <li class='card-text'><strong>Issues:</strong> {{ item.issues }}</li>
         </ul>
+        <ng-container *ngIf='user$ | async as user'>
+          <h4 class='card-title'>User: {{ user.firstName }}</h4>
+          <ul class='list-unstyled'>
+            <li class='card-text'><strong>#ID:</strong> {{ user.id }}</li>
+          </ul>
+        </ng-container>
       </div>
     </figcaption>
   </figure>
+
+  <div class='d-flex flex-row justify-content-between'>
+    <div class='d-flex flex-row gap-1'>
+      <button type='button' class='btn btn-warning' *ngIf='account.isEnabled' [disabled]='disabled' (click)='block()'>
+        Block
+      </button>
+      <button type='button' class='btn btn-warning' *ngIf='!account.isEnabled' [disabled]='disabled'
+              (click)='unblock()'>Unblock
+      </button>
+
+      <div class='d-flex flex-row gap-1'>
+        <button type='button' class='btn btn-warning' *ngIf='account.isEnabled' [disabled]='disabled'
+                (click)='setTempPassword()'>GenerateTempPassword
+        </button>
+        <p *ngIf='tempPassword'>password: {{tempPassword}}</p>
+      </div>
+
+      <ng-container class='table table-striped table-hover' *ngIf='issues$ | async as issues'>
+        <button type='button' class='btn btn-danger' *ngIf='account.isEnabled && accountProperties.isNotActivated'
+                [disabled]='disabled'
+                (click)='activateAccount()'>Force Activate Account
+        </button>
+      </ng-container>
+    </div>
+
+    <ng-container *ngIf='account.isEnabled'>
+      <div class='d-flex flex-row gap-1' *ngIf='roles$ | async as roles'>
+        <label class='form-label text-nowrap' for='role'>Change Role </label>
+        <select id='role' (change)='changeRole($event.target.value)' [disabled]='disabled' class='form-select'>
+          <option *ngFor='let role of roles' [value]='role' [selected]='account.role === role'>{{role}}</option>
+        </select>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class='d-flex flex-column mt-3'>
+    <nav ngbNav #nav='ngbNav' class='nav-tabs'>
+      <ng-container ngbNavItem>
+        <button ngbNavLink>Active Sessions</button>
+        <ng-template ngbNavContent>
+          <table class='table table-striped table-hover' *ngIf='sessions$ | async as sessions'>
+            <thead>
+            <tr>
+              <th scope='col' class='w-50'>Id</th>
+              <th scope='col' class='w-auto'>Revoked</th>
+              <th scope='col' class='w-25'>Expired</th>
+              <th scope='col' class='w-50'>Create At</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor='let item of sessions'>
+              <td>{{ item.id }}</td>
+              <td>{{ item.revoked }}</td>
+              <td>{{ item.expired }}</td>
+              <td>{{ item.createdAt }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ng-container>
+      <ng-container ngbNavItem>
+        <button ngbNavLink>Open Issues</button>
+        <ng-template ngbNavContent>
+          <table class='table table-striped table-hover' *ngIf='issues$ | async as issues'>
+            <thead>
+            <tr>
+              <th scope='col' class='w-auto'>Type</th>
+              <th scope='col' class='w-50'>Token</th>
+              <th scope='col' class='w-25'>Security Code</th>
+              <th scope='col' class='w-50'>Create At</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor='let item of issues'>
+              <td>{{ item.type }}</td>
+              <td>{{ item.id }}</td>
+              <td>{{ item.securityCode }}</td>
+              <td>{{ item.createdAt }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-template>
+      </ng-container>
+    </nav>
+    <div [ngbNavOutlet]='nav' class='mt-2'></div>
+  </div>
 </app-page>

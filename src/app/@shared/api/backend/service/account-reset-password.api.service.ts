@@ -16,17 +16,16 @@ import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
 
-import { ForgotPasswordDto } from '../model/forgotPasswordDto';
-import { ForgotPasswordEmailDto } from '../model/forgotPasswordEmailDto';
-import { ForgotPasswordSecurityCodeDto } from '../model/forgotPasswordSecurityCodeDto';
-import { ForgotPasswordTokenDto } from '../model/forgotPasswordTokenDto';
+import { ResetPasswordAccountDto } from '../model/resetPasswordAccountDto';
+import { ResetPasswordDto } from '../model/resetPasswordDto';
+import { ResetPasswordTemporaryDto } from '../model/resetPasswordTemporaryDto';
 import { Unit } from '../model/unit';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
 
 @Injectable()
-export class ForgotPasswordControllerService {
+export class AccountResetPasswordApiService {
   protected basePath = 'http://localhost:8085';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
@@ -66,128 +65,28 @@ export class ForgotPasswordControllerService {
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public changePassword(body: ForgotPasswordDto, observe?: 'body', reportProgress?: boolean): Observable<Unit>;
-  public changePassword(
-    body: ForgotPasswordDto,
-    observe?: 'response',
-    reportProgress?: boolean
-  ): Observable<HttpResponse<Unit>>;
-  public changePassword(
-    body: ForgotPasswordDto,
-    observe?: 'events',
-    reportProgress?: boolean
-  ): Observable<HttpEvent<Unit>>;
-  public changePassword(
-    body: ForgotPasswordDto,
-    observe: any = 'body',
-    reportProgress: boolean = false
-  ): Observable<any> {
-    if (body === null || body === undefined) {
-      throw new Error('Required parameter body was null or undefined when calling changePassword.');
-    }
-
-    let headers = this.defaultHeaders;
-
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = ['*/*'];
-    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = ['application/json'];
-    const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected != undefined) {
-      headers = headers.set('Content-Type', httpContentTypeSelected);
-    }
-
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/account/password/forgot/renew`, {
-      body: body,
-      withCredentials: this.configuration.withCredentials,
-      headers: headers,
-      observe: observe,
-      reportProgress: reportProgress,
-    });
-  }
-
-  /**
-   *
-   *
-   * @param body
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public forgot(body: ForgotPasswordEmailDto, observe?: 'body', reportProgress?: boolean): Observable<Unit>;
-  public forgot(
-    body: ForgotPasswordEmailDto,
-    observe?: 'response',
-    reportProgress?: boolean
-  ): Observable<HttpResponse<Unit>>;
-  public forgot(
-    body: ForgotPasswordEmailDto,
-    observe?: 'events',
-    reportProgress?: boolean
-  ): Observable<HttpEvent<Unit>>;
-  public forgot(body: ForgotPasswordEmailDto, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
-    if (body === null || body === undefined) {
-      throw new Error('Required parameter body was null or undefined when calling forgot.');
-    }
-
-    let headers = this.defaultHeaders;
-
-    // to determine the Accept header
-    let httpHeaderAccepts: string[] = ['*/*'];
-    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    // to determine the Content-Type header
-    const consumes: string[] = ['application/json'];
-    const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
-    if (httpContentTypeSelected != undefined) {
-      headers = headers.set('Content-Type', httpContentTypeSelected);
-    }
-
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/account/password/forgot`, {
-      body: body,
-      withCredentials: this.configuration.withCredentials,
-      headers: headers,
-      observe: observe,
-      reportProgress: reportProgress,
-    });
-  }
-
-  /**
-   *
-   *
-   * @param body
-   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
-   * @param reportProgress flag to report request and response progress.
-   */
-  public findTokenBySecurityCode(
-    body: ForgotPasswordSecurityCodeDto,
+  public assignTempPassword(
+    body: ResetPasswordAccountDto,
     observe?: 'body',
     reportProgress?: boolean
-  ): Observable<ForgotPasswordTokenDto>;
-  public findTokenBySecurityCode(
-    body: ForgotPasswordSecurityCodeDto,
+  ): Observable<ResetPasswordTemporaryDto>;
+  public assignTempPassword(
+    body: ResetPasswordAccountDto,
     observe?: 'response',
     reportProgress?: boolean
-  ): Observable<HttpResponse<ForgotPasswordTokenDto>>;
-  public findTokenBySecurityCode(
-    body: ForgotPasswordSecurityCodeDto,
+  ): Observable<HttpResponse<ResetPasswordTemporaryDto>>;
+  public assignTempPassword(
+    body: ResetPasswordAccountDto,
     observe?: 'events',
     reportProgress?: boolean
-  ): Observable<HttpEvent<ForgotPasswordTokenDto>>;
-  public findTokenBySecurityCode(
-    body: ForgotPasswordSecurityCodeDto,
+  ): Observable<HttpEvent<ResetPasswordTemporaryDto>>;
+  public assignTempPassword(
+    body: ResetPasswordAccountDto,
     observe: any = 'body',
     reportProgress: boolean = false
   ): Observable<any> {
     if (body === null || body === undefined) {
-      throw new Error('Required parameter body was null or undefined when calling forgot.');
+      throw new Error('Required parameter body was null or undefined when calling assignTempPassword.');
     }
 
     let headers = this.defaultHeaders;
@@ -206,15 +105,68 @@ export class ForgotPasswordControllerService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<ForgotPasswordTokenDto>(
-      'get',
-      `${this.basePath}/api/v1/account/password/forgot/code/${body.securityCode}`,
+    return this.httpClient.request<ResetPasswordTemporaryDto>(
+      'post',
+      `${this.basePath}/api/v1/account/password/reset`,
       {
+        body: body,
         withCredentials: this.configuration.withCredentials,
         headers: headers,
         observe: observe,
         reportProgress: reportProgress,
       }
     );
+  }
+
+  /**
+   *
+   *
+   * @param body
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public resolveTempPassword(body: ResetPasswordDto, observe?: 'body', reportProgress?: boolean): Observable<Unit>;
+  public resolveTempPassword(
+    body: ResetPasswordDto,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Unit>>;
+  public resolveTempPassword(
+    body: ResetPasswordDto,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Unit>>;
+  public resolveTempPassword(
+    body: ResetPasswordDto,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (body === null || body === undefined) {
+      throw new Error('Required parameter body was null or undefined when calling resolveTempPassword.');
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ['*/*'];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = ['application/json'];
+    const httpContentTypeSelected: string | undefined = this.configuration.selectHeaderContentType(consumes);
+    if (httpContentTypeSelected != undefined) {
+      headers = headers.set('Content-Type', httpContentTypeSelected);
+    }
+
+    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/account/password/reset/renew`, {
+      body: body,
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 }

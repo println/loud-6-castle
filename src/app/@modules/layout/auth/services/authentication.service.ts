@@ -3,11 +3,11 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { UserState, UserStore } from '@shared';
 import {
-  AuthControllerService,
+  AccountAuthApiService,
   AuthRequest,
-  ForgotPasswordControllerService,
+  AccountForgotPasswordApiService,
   ForgotPasswordEmailDto,
-} from '@shared/openapi';
+} from '@shared/api/backend';
 import { Observable, of, switchMap } from 'rxjs';
 import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
 import { JwtTokenHelper } from '../helpers/jwt-token.helper';
@@ -27,11 +27,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(
-    private userStore: UserStore,
-    private service: AuthControllerService,
-    private forgotPasswordService: ForgotPasswordControllerService
-  ) {}
+  constructor(private userStore: UserStore, private service: AccountAuthApiService) {}
 
   /**
    * Authenticates the user.
@@ -64,7 +60,12 @@ export class AuthenticationService {
    * @return True if the user was logged out successfully.
    */
   logout(): Observable<boolean> {
-    this.userStore.reset();
-    return of(true);
+    return this.service.logout().pipe(
+      untilDestroyed(this),
+      switchMap((_) => {
+        this.userStore.reset();
+        return of(true);
+      })
+    );
   }
 }

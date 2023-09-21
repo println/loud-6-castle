@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { AccountDto, Session } from '@shared/openapi';
+import { AccountDto, Session } from '@shared/api/backend';
 
 import { Observable } from 'rxjs';
 import { Person } from '@shared/api/swapi/models/person.model';

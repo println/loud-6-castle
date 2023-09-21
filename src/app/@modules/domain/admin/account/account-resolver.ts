@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { AccountDto } from '@shared/openapi';
+import { AccountDto } from '@shared/api/backend';
 
 import { Observable } from 'rxjs';
 import { AccountService } from './account.service';

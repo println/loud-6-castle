@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PATHS, ROUTES } from '@config';
-import { Session } from '@shared/openapi';
+import { Session } from '@shared/api/backend';
 import { of } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { SessionService } from '../session.service';

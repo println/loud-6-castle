@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 
 import { UserStore } from '@shared';
-import { ForgotPasswordControllerService, ForgotPasswordDto, ForgotPasswordEmailDto } from '@shared/openapi';
-import { ForgotPasswordSecurityCodeDto } from '@shared/openapi/model/forgotPasswordSecurityCodeDto';
-import { ForgotPasswordTokenDto } from '@shared/openapi/model/forgotPasswordTokenDto';
+import { AccountForgotPasswordApiService, ForgotPasswordDto, ForgotPasswordEmailDto } from '@shared/api/backend';
+import { ForgotPasswordSecurityCodeDto } from '@shared/api/backend/model/forgotPasswordSecurityCodeDto';
+import { ForgotPasswordTokenDto } from '@shared/api/backend/model/forgotPasswordTokenDto';
 import { Observable, of, switchMap } from 'rxjs';
 
 export interface LoginContext {
@@ -22,20 +22,20 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class ForgotPasswordService {
-  constructor(private userStore: UserStore, private forgotPasswordService: ForgotPasswordControllerService) {}
+  constructor(private userStore: UserStore, private service: AccountForgotPasswordApiService) {}
 
   forgotPassword(username: string): Observable<any> {
     const data: ForgotPasswordEmailDto = {
       email: username,
     };
-    return this.forgotPasswordService.forgot(data);
+    return this.service.forgot(data);
   }
 
   getTokenBySecurityCode(securityCode: string): Observable<ForgotPasswordTokenDto> {
     const data: ForgotPasswordSecurityCodeDto = {
       securityCode: securityCode,
     };
-    return this.forgotPasswordService.findTokenBySecurityCode(data);
+    return this.service.findTokenBySecurityCode(data);
   }
 
   renewPassword(token: string, password: string): Observable<any> {
@@ -43,6 +43,6 @@ export class ForgotPasswordService {
       password,
       token,
     };
-    return this.forgotPasswordService.changePassword(data);
+    return this.service.changePassword(data);
   }
 }

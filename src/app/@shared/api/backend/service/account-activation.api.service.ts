@@ -12,20 +12,17 @@
 
 import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
-import { Params } from '@angular/router';
 import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
 
-import { PageSession } from '../model/pageSession';
-import { Pageable } from '../model/pageable';
-import { Session } from '../model/session';
+import { Unit } from '../model/unit';
 
 import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
 
 @Injectable()
-export class SessionControllerService {
+export class AccountActivationApiService {
   protected basePath = 'http://localhost:8085';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
@@ -58,35 +55,23 @@ export class SessionControllerService {
     return false;
   }
 
-  public getAll(queryParams?: Params): Observable<PageSession> {
-    let headers = this.defaultHeaders;
-
-    let httpHeaderAccepts: string[] = ['*/*'];
-    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
-    if (httpHeaderAcceptSelected != undefined) {
-      headers = headers.set('Accept', httpHeaderAcceptSelected);
-    }
-
-    return this.httpClient.request<PageSession>('get', `${this.basePath}/api/v1/session`, {
-      params: queryParams,
-      withCredentials: this.configuration.withCredentials,
-      headers: headers,
-    });
-  }
-
   /**
    *
    *
-   * @param id
+   * @param tokenId
    * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
    * @param reportProgress flag to report request and response progress.
    */
-  public getById11(id: string, observe?: 'body', reportProgress?: boolean): Observable<Session>;
-  public getById11(id: string, observe?: 'response', reportProgress?: boolean): Observable<HttpResponse<Session>>;
-  public getById11(id: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Session>>;
-  public getById11(id: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
-    if (id === null || id === undefined) {
-      throw new Error('Required parameter id was null or undefined when calling getById11.');
+  public activateAccount(tokenId: string, observe?: 'body', reportProgress?: boolean): Observable<Unit>;
+  public activateAccount(
+    tokenId: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Unit>>;
+  public activateAccount(tokenId: string, observe?: 'events', reportProgress?: boolean): Observable<HttpEvent<Unit>>;
+  public activateAccount(tokenId: string, observe: any = 'body', reportProgress: boolean = false): Observable<any> {
+    if (tokenId === null || tokenId === undefined) {
+      throw new Error('Required parameter tokenId was null or undefined when calling activateAccount.');
     }
 
     let headers = this.defaultHeaders;
@@ -101,9 +86,60 @@ export class SessionControllerService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<Session>(
+    return this.httpClient.request<Unit>(
       'get',
-      `${this.basePath}/api/v1/session/${encodeURIComponent(String(id))}`,
+      `${this.basePath}/api/v1/account/activation/${encodeURIComponent(String(tokenId))}`,
+      {
+        withCredentials: this.configuration.withCredentials,
+        headers: headers,
+        observe: observe,
+        reportProgress: reportProgress,
+      }
+    );
+  }
+
+  /**
+   *
+   *
+   * @param accountId
+   * @param observe set whether or not to return the data Observable as the body, response or events. defaults to returning the body.
+   * @param reportProgress flag to report request and response progress.
+   */
+  public forceActivateAccount(accountId: string, observe?: 'body', reportProgress?: boolean): Observable<Unit>;
+  public forceActivateAccount(
+    accountId: string,
+    observe?: 'response',
+    reportProgress?: boolean
+  ): Observable<HttpResponse<Unit>>;
+  public forceActivateAccount(
+    accountId: string,
+    observe?: 'events',
+    reportProgress?: boolean
+  ): Observable<HttpEvent<Unit>>;
+  public forceActivateAccount(
+    accountId: string,
+    observe: any = 'body',
+    reportProgress: boolean = false
+  ): Observable<any> {
+    if (accountId === null || accountId === undefined) {
+      throw new Error('Required parameter accountId was null or undefined when calling forceActivateAccount.');
+    }
+
+    let headers = this.defaultHeaders;
+
+    // to determine the Accept header
+    let httpHeaderAccepts: string[] = ['*/*'];
+    const httpHeaderAcceptSelected: string | undefined = this.configuration.selectHeaderAccept(httpHeaderAccepts);
+    if (httpHeaderAcceptSelected != undefined) {
+      headers = headers.set('Accept', httpHeaderAcceptSelected);
+    }
+
+    // to determine the Content-Type header
+    const consumes: string[] = [];
+
+    return this.httpClient.request<Unit>(
+      'get',
+      `${this.basePath}/api/v1/account/activation/force/${encodeURIComponent(String(accountId))}`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,

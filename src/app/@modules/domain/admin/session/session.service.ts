@@ -6,7 +6,7 @@ import { GridData } from '@shared/components/grid/grid-data.model';
 import { Pageable } from '@shared/integrations/spring-boot/request/pageable.model';
 import { Page } from '@shared/integrations/spring-boot/response/page.model';
 import { SpringHelper } from '@shared/integrations/spring-boot/spring.helper';
-import { AccountControllerService, AccountDto, Session, SessionControllerService } from '@shared/openapi';
+import { AccountApiService, AccountDto, Session, AccountSessionApiService } from '@shared/api/backend';
 import { Observable } from 'rxjs';
 import { map, take } from 'rxjs/operators';
 
@@ -14,7 +14,7 @@ import { map, take } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class SessionService {
-  constructor(protected http: HttpClient, private service: SessionControllerService) {}
+  constructor(protected http: HttpClient, private service: AccountSessionApiService) {}
 
   findAll(queryParams?: Params): Observable<GridData<Session>> {
     return this.service.getAll(queryParams).pipe(

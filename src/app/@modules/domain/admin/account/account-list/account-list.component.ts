@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PATHS, ROUTES } from '@config';
 import { Film } from '@shared/api/swapi/models/film.model';
 import { GridData } from '@shared/components/grid/grid-data.model';
-import { AccountDto } from '@shared/openapi';
+import { AccountDto } from '@shared/api/backend';
 import { Observable } from 'rxjs';
 
 @Component({

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES } from '@config';
 import { CustomValidators } from '@narik/custom-validators';
 import { Logger } from '@shared';
-import { AuthControllerService, AuthRegisterRequest } from '@shared/openapi';
+import { AccountAuthApiService, AuthRegisterRequest } from '@shared/api/backend';
 
 const log = new Logger('Register');
 
@@ -24,7 +24,7 @@ export class RegisterComponent {
     private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private service: AuthControllerService
+    private service: AccountAuthApiService
   ) {
     this.createForm();
   }
