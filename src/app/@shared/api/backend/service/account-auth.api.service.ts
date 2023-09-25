@@ -26,7 +26,7 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class AccountAuthApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/auth';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -97,7 +97,7 @@ export class AccountAuthApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<AuthTokens>('post', `${this.basePath}/api/v1/auth/authenticate`, {
+    return this.httpClient.request<AuthTokens>('post', `${this.basePath}/authenticate`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -130,7 +130,7 @@ export class AccountAuthApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/auth/logout`, {
+    return this.httpClient.request<Unit>('post', `${this.basePath}/logout`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -160,7 +160,7 @@ export class AccountAuthApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/api/v1/auth/error`, {
+    return this.httpClient.request<any>('get', `${this.basePath}/error`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -190,7 +190,7 @@ export class AccountAuthApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('post', `${this.basePath}/api/v1/auth/refresh-token`, {
+    return this.httpClient.request<any>('post', `${this.basePath}/refresh-token`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -233,7 +233,7 @@ export class AccountAuthApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/auth/register`, {
+    return this.httpClient.request<Unit>('post', `${this.basePath}/register`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,

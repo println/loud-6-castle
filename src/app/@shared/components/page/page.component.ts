@@ -5,7 +5,11 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './page.component.html',
 })
 export class PageComponent implements OnInit {
-  constructor() {}
+  constructor() {
+    console.log('criado', new Date().getTime());
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log('iniciado', new Date().getTime());
+  }
 }

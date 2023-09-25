@@ -1,95 +1,50 @@
-<header class="c-navbar__header"></header>
-<nav class="c-navbar__body">
-  <ul class="c-navbar__nav">
-    <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
-      <a [routerLink]="routes.home.path" routerLinkActive="c-navbar__link--active" class="c-navbar__link">
-        <i class="fas fa-home"></i> <span class="ms-1 d-none d-sm-inline" translate>{{ routes.home.title }}</span>
+<app-side-navbar>
+  <ul class='c-navbar__nav'>
+    <li class='c-navbar__item' routerLinkActive='c-navbar__item--active'>
+      <a [routerLink]='routes.home.path' routerLinkActive='c-navbar__link--active' class='c-navbar__link'>
+        <i class='fas fa-home'></i> <span class='ms-1 d-none d-sm-inline' translate>{{ routes.home.title }}</span>
       </a>
     </li>
-    <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
+    <li class='c-navbar__item' routerLinkActive='c-navbar__item--active'>
       <a
-        [routerLink]="routes.about.path"
-        routerLinkActive="c-navbar__link--active"
-        data-bs-toggle="collapse"
-        class="c-navbar__link"
+        [routerLink]='routes.about.path'
+        routerLinkActive='c-navbar__link--active'
+        data-bs-toggle='collapse'
+        class='c-navbar__link'
       >
-        <i class="fas fa-question-circle"></i>
-        <span class="ms-1 d-none d-sm-inline" translate>{{ routes.about.title }}</span>
+        <i class='fas fa-question-circle'></i>
+        <span class='ms-1 d-none d-sm-inline' translate>{{ routes.about.title }}</span>
       </a>
     </li>
     <li *ifRole="'admin'">
       <a
-        class="c-navbar__link"
-        [routerLink]="routes.admin.path + routes.admin.children.account.plural.path"
-        routerLinkActive="c-navbar__link--active"
-      > <span class="ms-1 d-none d-sm-inline" translate>{{ routes.admin.children.account.plural.title }}</span>
+        class='c-navbar__link'
+        [routerLink]='routes.admin.path + routes.admin.children.account.plural.path'
+        routerLinkActive='c-navbar__link--active'
+      > <span class='ms-1 d-none d-sm-inline' translate>{{ routes.admin.children.account.plural.title }}</span>
       </a>
     </li>
     <li *ifRole="'admin'">
       <a
-        class="c-navbar__link"
-        [routerLink]="routes.admin.path + routes.admin.children.session.plural.path"
-        routerLinkActive="c-navbar__link--active"
-      > <span class="ms-1 d-none d-sm-inline" translate>{{ routes.admin.children.session.plural.title }}</span>
+        class='c-navbar__link'
+        [routerLink]='routes.admin.path + routes.admin.children.session.plural.path'
+        routerLinkActive='c-navbar__link--active'
+      > <span class='ms-1 d-none d-sm-inline' translate>{{ routes.admin.children.session.plural.title }}</span>
       </a>
     </li>
     <li *ifRole="'user'">user</li>
-    <li class="c-navbar__item" routerLinkActive="c-navbar__item--active">
+    <li class='c-navbar__item' routerLinkActive='c-navbar__item--active'>
       <a
-        [routerLink]="routes.starwars.path + routes.starwars.children.person.plural.path"
-        routerLinkActive="c-navbar__link--active"
-        data-bs-toggle="collapse"
-        class="c-navbar__link"
+        [routerLink]='routes.starwars.path + routes.starwars.children.person.plural.path'
+        routerLinkActive='c-navbar__link--active'
+        data-bs-toggle='collapse'
+        class='c-navbar__link'
       >
-        <i class="fas fa-question-circle"></i> <span class="ms-1 d-none d-sm-inline" translate>Teste: Starwars API</span>
+        <i class='fas fa-question-circle'></i> <span class='ms-1 d-none d-sm-inline'
+                                                     translate>Teste: Starwars API</span>
       </a>
-      <ul class="c-navbar__nav" id="submenu1" data-bs-parent="#menu">
-        <li class="c-navbar__item">
-          <a
-            class="c-navbar__link"
-            [routerLink]="routes.starwars.path + routes.starwars.children.person.plural.path"
-            routerLinkActive="c-navbar__link--active"
-          >
-            <i class="far fa-address-book"></i>
-            <span class="ms-1 d-none d-sm-inline" translate>{{ routes.starwars.children.person.plural.title }}</span>
-          </a>
-        </li>
-        <li class="c-navbar__item">
-          <a
-            class="c-navbar__link"
-            [routerLink]="routes.starwars.path + routes.starwars.children.film.plural.path"
-            routerLinkActive="c-navbar__link--active"
-          >
-            <i class="far fa-bookmark"></i>
-            <span class="ms-1 d-none d-sm-inline" translate>{{ routes.starwars.children.film.plural.title }}</span>
-          </a>
-        </li>
-      </ul>
+
     </li>
   </ul>
-</nav>
-<ul class='text-white'>
-
-<footer class="c-navbar__footer">
-  <div class="dropdown pb-4">
-    <a
-      href="#"
-      class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
-      id="dropdownUser1"
-      data-bs-toggle="dropdown"
-      aria-expanded="false"
-    >
-      <img src="https://github.com/mdo.png" alt="hugenerd" width="30" height="30" class="rounded-circle" />
-      <span class="d-none d-sm-inline mx-1">loser</span>
-    </a>
-    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-      <li><a class="dropdown-item" href="#">New project...</a></li>
-      <li><a class="dropdown-item" href="#">Settings</a></li>
-      <li><a class="dropdown-item" href="#">Profile</a></li>
-      <li>
-        <hr class="dropdown-divider" />
-      </li>
-      <li><a class="dropdown-item" href="#">Sign out</a></li>
-    </ul>
-  </div>
-</footer>
+  <p footer>Footer</p>
+</app-side-navbar>

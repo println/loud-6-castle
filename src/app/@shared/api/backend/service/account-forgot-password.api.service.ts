@@ -27,7 +27,7 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class AccountForgotPasswordApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/account/password/forgot';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -102,7 +102,7 @@ export class AccountForgotPasswordApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/account/password/forgot/renew`, {
+    return this.httpClient.request<Unit>('post', `${this.basePath}/renew`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -150,7 +150,7 @@ export class AccountForgotPasswordApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/account/password/forgot`, {
+    return this.httpClient.request<Unit>('post', `${this.basePath}`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -206,15 +206,11 @@ export class AccountForgotPasswordApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<ForgotPasswordTokenDto>(
-      'get',
-      `${this.basePath}/api/v1/account/password/forgot/code/${body.securityCode}`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<ForgotPasswordTokenDto>('get', `${this.basePath}/code/${body.securityCode}`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 }

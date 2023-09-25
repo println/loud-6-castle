@@ -12,6 +12,7 @@
 
 import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
+import { start } from '@popperjs/core';
 import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
@@ -34,7 +35,7 @@ import RoleEnum = Account.RoleEnum;
 
 @Injectable()
 export class AccountApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/account';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -93,16 +94,12 @@ export class AccountApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<AccountDto>(
-      'put',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/block`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<AccountDto>('put', `${this.basePath}/${encodeURIComponent(String(id))}/block`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -156,17 +153,13 @@ export class AccountApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<AccountDto>(
-      'put',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/role`,
-      {
-        body: body,
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<AccountDto>('put', `${this.basePath}/${encodeURIComponent(String(id))}/role`, {
+      body: body,
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -221,7 +214,7 @@ export class AccountApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<PageAccountDto>('get', `${this.basePath}/api/v1/account`, {
+    return this.httpClient.request<PageAccountDto>('get', `${this.basePath}`, {
       params: queryParameters,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -282,7 +275,7 @@ export class AccountApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<PageAccountDto>('get', `${this.basePath}/api/v1/account/`, {
+    return this.httpClient.request<PageAccountDto>('get', `${this.basePath}/`, {
       params: queryParameters,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -318,16 +311,12 @@ export class AccountApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<AccountDto>(
-      'get',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<AccountDto>('get', `${this.basePath}/${encodeURIComponent(String(id))}`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -350,7 +339,7 @@ export class AccountApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<RoleEnum[]>('get', `${this.basePath}/api/v1/account/roles`, {
+    return this.httpClient.request<RoleEnum[]>('get', `${this.basePath}/roles`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -397,7 +386,7 @@ export class AccountApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<AccountDto>('post', `${this.basePath}/api/v1/account`, {
+    return this.httpClient.request<AccountDto>('post', this.basePath, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -445,7 +434,7 @@ export class AccountApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<AccountDto>('post', `${this.basePath}/api/v1/account/`, {
+    return this.httpClient.request<AccountDto>('post', this.basePath, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -485,16 +474,12 @@ export class AccountApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<AccountDto>(
-      'delete',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/block`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<AccountDto>('delete', `${this.basePath}/${encodeURIComponent(String(id))}/block`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -553,17 +538,13 @@ export class AccountApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<AccountDto>(
-      'put',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/login`,
-      {
-        body: body,
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<AccountDto>('put', `${this.basePath}/${encodeURIComponent(String(id))}/login`, {
+      body: body,
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   getAllIssues(id: string): Observable<IssueToken[]> {
@@ -575,14 +556,10 @@ export class AccountApiService {
       headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    return this.httpClient.request<IssueToken[]>(
-      'get',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/issues`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-      }
-    );
+    return this.httpClient.request<IssueToken[]>('get', `${this.basePath}/${encodeURIComponent(String(id))}/issues`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+    });
   }
 
   getAllSessions(id: string): Observable<Session[]> {
@@ -594,14 +571,10 @@ export class AccountApiService {
       headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    return this.httpClient.request<Session[]>(
-      'get',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/sessions`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-      }
-    );
+    return this.httpClient.request<Session[]>('get', `${this.basePath}/${encodeURIComponent(String(id))}/sessions`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+    });
   }
 
   getUser(id: string): Observable<User> {
@@ -613,13 +586,9 @@ export class AccountApiService {
       headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    return this.httpClient.request<User>(
-      'get',
-      `${this.basePath}/api/v1/account/${encodeURIComponent(String(id))}/user`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-      }
-    );
+    return this.httpClient.request<User>('get', `${this.basePath}/${encodeURIComponent(String(id))}/user`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+    });
   }
 }

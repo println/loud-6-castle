@@ -23,7 +23,7 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class AccountActivationApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/account';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -86,16 +86,12 @@ export class AccountActivationApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<Unit>(
-      'get',
-      `${this.basePath}/api/v1/account/activation/${encodeURIComponent(String(tokenId))}`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<Unit>('get', `${this.basePath}/activation/${encodeURIComponent(String(tokenId))}`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -139,7 +135,7 @@ export class AccountActivationApiService {
 
     return this.httpClient.request<Unit>(
       'get',
-      `${this.basePath}/api/v1/account/activation/force/${encodeURIComponent(String(accountId))}`,
+      `${this.basePath}/activation/force/${encodeURIComponent(String(accountId))}`,
       {
         withCredentials: this.configuration.withCredentials,
         headers: headers,

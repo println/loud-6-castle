@@ -10,23 +10,21 @@
  * Do not edit the class manually.
  */ /* tslint:disable:no-unused-variable member-ordering */
 
+import { HttpClient, HttpEvent, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
 import { Params } from '@angular/router';
-import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
+import { Configuration } from '../configuration';
 
 import { PageSession } from '../model/pageSession';
-import { Pageable } from '../model/pageable';
 import { Session } from '../model/session';
 
-import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
-import { Configuration } from '../configuration';
+import { BASE_PATH } from '../variables';
 
 @Injectable()
 export class AccountSessionApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/session';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -67,7 +65,7 @@ export class AccountSessionApiService {
       headers = headers.set('Accept', httpHeaderAcceptSelected);
     }
 
-    return this.httpClient.request<PageSession>('get', `${this.basePath}/api/v1/session`, {
+    return this.httpClient.request<PageSession>('get', `${this.basePath}`, {
       params: queryParams,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -101,15 +99,11 @@ export class AccountSessionApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<Session>(
-      'get',
-      `${this.basePath}/api/v1/session/${encodeURIComponent(String(id))}`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<Session>('get', `${this.basePath}/${encodeURIComponent(String(id))}`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 }

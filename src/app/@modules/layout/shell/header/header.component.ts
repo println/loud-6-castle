@@ -9,9 +9,10 @@ import { ROUTES } from '@config';
 @Component({
   selector: 'app-header, [app-header]',
   templateUrl: './header.component.html',
+  host: { class: 'o-header' },
 })
 export class HeaderComponent implements OnInit {
-  @HostBinding('class') class = 'c-header';
+  routes = ROUTES;
 
   menuHidden = true;
   user$: Observable<UserState>;

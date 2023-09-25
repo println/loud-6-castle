@@ -25,7 +25,7 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class AccountIssueApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/account/issue';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -109,7 +109,7 @@ export class AccountIssueApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<PageIssueToken>('get', `${this.basePath}/api/v1/account/issue`, {
+    return this.httpClient.request<PageIssueToken>('get', `${this.basePath}`, {
       params: queryParameters,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -145,15 +145,11 @@ export class AccountIssueApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<IssueToken>(
-      'get',
-      `${this.basePath}/api/v1/account/issue/${encodeURIComponent(String(id))}`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<IssueToken>('get', `${this.basePath}/${encodeURIComponent(String(id))}`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 }

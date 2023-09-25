@@ -7,6 +7,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { I18nModule } from '@modules/layout/i18n';
 import { AuthModule } from '@modules/layout/auth';
+import { SideNavbarComponent } from '@shared/components/navbar/side-navbar.component';
 import { JwtInterceptor } from '@shared/http/jwt.interceptor';
 import { ShellComponent } from './shell.component';
 import { HeaderComponent } from './header/header.component';
@@ -14,7 +15,16 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { LoaderComponent } from '@app/@shared';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, NgbModule, AuthModule, I18nModule, RouterModule, LoaderComponent],
+  imports: [
+    CommonModule,
+    TranslateModule,
+    NgbModule,
+    AuthModule,
+    I18nModule,
+    RouterModule,
+    LoaderComponent,
+    SideNavbarComponent,
+  ],
   declarations: [HeaderComponent, ShellComponent, NavbarComponent],
   providers: [
     {

@@ -1,6 +1,5 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { LoaderType } from './loader.type';
 
 @Component({
   standalone: true,

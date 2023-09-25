@@ -1,38 +1,60 @@
-<header>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-      <a class="navbar-brand text-secondary" href="https://github.com/ngx-rocket" translate>APP_NAME</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        aria-controls="navbar-menu"
-        aria-label="Toggle navigation"
-        (click)="toggleMenu()"
-        [attr.aria-expanded]="!menuHidden"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbar-menu" class="collapse navbar-collapse float-xs-none" [ngbCollapse]="menuHidden">
-        <div class="navbar-nav me-auto mb-2 mb-lg-0"></div>
-        <div class="navbar-nav ml-auto">
-          <app-language-selector
-            [inNavbar]="true"
-            menuClass="dropdown-menu dropdown-menu-end"
-          ></app-language-selector>
-          <div class="nav-item" ngbDropdown>
-            <a id="user-dropdown" class="nav-link" ngbDropdownToggle>
-              <i class="fas fa-user-circle"></i>
-            </a>
-            <div ngbDropdownMenu aria-labelledby="user-dropdown" class="dropdown-menu dropdown-menu-end" style='right: 0!important;'>
-              <h6 class="dropdown-header">
-                <span translate>Logged in as</span> <b>{{ (user$ | async)?.name }}</b>
-              </h6>
-              <div class="dropdown-divider"></div>
-              <button class="dropdown-item" (click)="logout()" translate>Logout</button>
-            </div>
+<div class='o-header__logo-row'>
+  <div>
+    <a [routerLink]='routes.home.path'>
+      <img class='o-brand-logo' src='assets/ngx-rocket-logo@192.png'>
+    </a>
+  </div>
+
+  <div>
+    <p>Professional Power Tools &amp; Accessories</p>
+  </div>
+</div>
+
+<nav class='o-header__nav-row'>
+  <ul class='o-header__nav'>
+    <li class='o-header__nav__item' routerLinkActive='o-header__nav__item--active'>
+      <a [routerLink]='routes.home.path' routerLinkActive='o-header__nav__item--active' data-bs-toggle='collapse'>
+        <span translate>{{ routes.home.title }}</span>
+      </a>
+    </li>
+    <li class='o-header__nav__item' routerLinkActive='o-header__nav__item--active'>
+      <a [routerLink]='routes.about.path' routerLinkActive='o-header__nav__item--active' data-bs-toggle='collapse'>
+        <span translate>{{ routes.about.title }}</span>
+      </a>
+    </li>
+    <li *ifRole="'admin'" class='o-header__nav__item' routerLinkActive='o-header__nav__item--active'>
+      <a [routerLink]='routes.admin.path' routerLinkActive='o-header__nav__item--active' data-bs-toggle='collapse'>
+        <span translate>{{ routes.admin.title }}</span>
+      </a>
+    </li>
+    <li class='o-header__nav__item' routerLinkActive='o-header__nav__item--active'>
+      <a [routerLink]='routes.starwars.path' routerLinkActive='o-header__nav__item--active' data-bs-toggle='collapse'>
+        <span translate>{{ routes.starwars.title }}</span>
+      </a>
+    </li>
+  </ul>
+  <div class='navbar navbar-expand'>
+    <div id='navbar-menu' class='o-header__options collapse navbar-collapse float-xs-none' [ngbCollapse]='menuHidden'>
+      <div class='navbar-nav me-auto mb-2 mb-lg-0'></div>
+      <div class='navbar-nav ml-auto'>
+        <app-language-selector
+          [inNavbar]='true'
+          menuClass='dropdown-menu dropdown-menu-end'
+        ></app-language-selector>
+        <div class='nav-item' ngbDropdown>
+          <a id='user-dropdown' class='nav-link' ngbDropdownToggle>
+            <i class='fas fa-user-circle'></i>
+          </a>
+          <div ngbDropdownMenu aria-labelledby='user-dropdown' class='dropdown-menu dropdown-menu-end'
+               style='right: 0!important;'>
+            <h6 class='dropdown-header'>
+              <span translate>Logged in as</span> <b>{{ (user$ | async)?.name }}</b>
+            </h6>
+            <div class='dropdown-divider'></div>
+            <button class='dropdown-item' (click)='logout()' translate>Logout</button>
           </div>
         </div>
       </div>
     </div>
-  </nav>
-</header>
+  </div>
+</nav>

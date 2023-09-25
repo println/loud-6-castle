@@ -27,7 +27,7 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class UserApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/user';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -81,7 +81,7 @@ export class UserApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<any>('get', `${this.basePath}/api/v1/user/test`, {
+    return this.httpClient.request<any>('get', `${this.basePath}/test`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -120,7 +120,7 @@ export class UserApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<User>('post', `${this.basePath}/api/v1/user`, {
+    return this.httpClient.request<User>('post', `${this.basePath}`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -160,7 +160,7 @@ export class UserApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<User>('post', `${this.basePath}/api/v1/user/`, {
+    return this.httpClient.request<User>('post', `${this.basePath}/`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -216,7 +216,7 @@ export class UserApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<PageUser>('get', `${this.basePath}/api/v1/user`, {
+    return this.httpClient.request<PageUser>('get', `${this.basePath}`, {
       params: queryParameters,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -277,7 +277,7 @@ export class UserApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<PageUser>('get', `${this.basePath}/api/v1/user/`, {
+    return this.httpClient.request<PageUser>('get', `${this.basePath}/`, {
       params: queryParameters,
       withCredentials: this.configuration.withCredentials,
       headers: headers,
@@ -313,7 +313,7 @@ export class UserApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<User>('get', `${this.basePath}/api/v1/user/${encodeURIComponent(String(id))}`, {
+    return this.httpClient.request<User>('get', `${this.basePath}/${encodeURIComponent(String(id))}`, {
       withCredentials: this.configuration.withCredentials,
       headers: headers,
       observe: observe,
@@ -372,17 +372,13 @@ export class UserApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<User>(
-      'put',
-      `${this.basePath}/api/v1/user/${encodeURIComponent(String(id))}/approve`,
-      {
-        body: body,
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<User>('put', `${this.basePath}/${encodeURIComponent(String(id))}/approve`, {
+      body: body,
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -412,15 +408,11 @@ export class UserApiService {
     // to determine the Content-Type header
     const consumes: string[] = [];
 
-    return this.httpClient.request<User>(
-      'put',
-      `${this.basePath}/api/v1/user/${encodeURIComponent(String(id))}/refuse`,
-      {
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<User>('put', `${this.basePath}/${encodeURIComponent(String(id))}/refuse`, {
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 }

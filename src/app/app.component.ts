@@ -1,16 +1,6 @@
-import { Component, NgZone, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import {
-  ActivatedRoute,
-  NavigationCancel,
-  NavigationEnd,
-  NavigationError,
-  NavigationStart,
-  RouteConfigLoadEnd,
-  RouteConfigLoadStart,
-  Router,
-  RouterEvent,
-} from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { I18nService } from '@app/@modules/layout/i18n';
 
 import { environment } from '@env/environment';

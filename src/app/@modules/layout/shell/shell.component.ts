@@ -1,6 +1,14 @@
-import { Component, HostBinding, NgZone, OnInit } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router } from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core';
+import {
+  ActivatedRoute,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { SideNavbarComponent } from '@shared/components/navbar/side-navbar.component';
 
 @UntilDestroy()
 @Component({
@@ -11,7 +19,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 export class ShellComponent implements OnInit {
   isLoading: boolean = false;
 
-  constructor(private ngZone: NgZone, private router: Router) {
+  constructor(private ngZone: NgZone, private router: Router, private activatedRoute: ActivatedRoute) {
     router.events.pipe(untilDestroyed(this)).subscribe((event) => {
       this.navigationInterceptor(event);
     });

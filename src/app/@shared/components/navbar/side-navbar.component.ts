@@ -1,11 +1,14 @@
+import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, HostBinding, OnInit, Renderer2 } from '@angular/core';
 import { ROUTES } from '@config';
 
 @Component({
-  selector: 'app-navbar, [app-navbar]',
-  templateUrl: './navbar.component.html',
+  standalone: true,
+  selector: 'app-side-navbar, [app-side-navbar]',
+  templateUrl: './side-navbar.component.html',
+  imports: [CommonModule],
 })
-export class NavbarComponent implements OnInit, AfterViewInit {
+export class SideNavbarComponent implements OnInit, AfterViewInit {
   @HostBinding('class') class = 'c-navbar';
 
   routes = ROUTES;

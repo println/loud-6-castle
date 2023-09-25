@@ -1,14 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
-import { AuthenticationGuard } from '@modules';
+import { PATHS, ROUTES } from '@config';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { GuestGuard } from './guards/guest.guard';
-import { RegisterComponent } from './components/register/register.component';
 
 import { LoginComponent } from './components/login/login.component';
-import { PATHS, ROUTES } from '@config';
+import { RegisterComponent } from './components/register/register.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { GuestGuard } from './guards/guest.guard';
 import { ResetPasswordGuard } from './guards/reset-password.guard';
 
 const routes: Routes = [

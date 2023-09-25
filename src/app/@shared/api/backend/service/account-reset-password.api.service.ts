@@ -26,7 +26,7 @@ import { Configuration } from '../configuration';
 
 @Injectable()
 export class AccountResetPasswordApiService {
-  protected basePath = 'http://localhost:8085';
+  protected basePath = '/api/v1/account/password/reset';
   public defaultHeaders = new HttpHeaders();
   public configuration = new Configuration();
 
@@ -105,17 +105,13 @@ export class AccountResetPasswordApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<ResetPasswordTemporaryDto>(
-      'post',
-      `${this.basePath}/api/v1/account/password/reset`,
-      {
-        body: body,
-        withCredentials: this.configuration.withCredentials,
-        headers: headers,
-        observe: observe,
-        reportProgress: reportProgress,
-      }
-    );
+    return this.httpClient.request<ResetPasswordTemporaryDto>('post', `${this.basePath}`, {
+      body: body,
+      withCredentials: this.configuration.withCredentials,
+      headers: headers,
+      observe: observe,
+      reportProgress: reportProgress,
+    });
   }
 
   /**
@@ -161,7 +157,7 @@ export class AccountResetPasswordApiService {
       headers = headers.set('Content-Type', httpContentTypeSelected);
     }
 
-    return this.httpClient.request<Unit>('post', `${this.basePath}/api/v1/account/password/reset/renew`, {
+    return this.httpClient.request<Unit>('post', `${this.basePath}/renew`, {
       body: body,
       withCredentials: this.configuration.withCredentials,
       headers: headers,

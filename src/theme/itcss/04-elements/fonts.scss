@@ -1,0 +1,35 @@
+@font-face {
+  font-family: bosch;
+  src: url(/assets/fonts/BoschSans-Light.woff2) format("woff2");
+  font-weight: 300;
+  font-style: normal
+}
+
+@font-face {
+  font-family: bosch;
+  src: url(/assets/fonts/BoschSans-Regular.otf), url(/assets/fonts/BoschSans-Regular.woff2) format("woff2");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: bosch;
+  src: url(/assets/fonts/BoschSans-Medium.woff2) format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap
+}
+
+@font-face {
+  font-family: bosch;
+  src: url(/assets/fonts/BoschSans-Bold.otf), url(/assets/fonts/BoschSans-Bold.woff2) format("woff2");
+  font-weight: 700;
+  font-style: normal
+}
+
+@font-face {
+  font-family: bosch;
+  src: url(/assets/fonts/BoschSans-Black.otf), url(/assets/fonts/BoschSans-Black.woff2) format("woff2");
+  font-weight: 900;
+  font-style: normal
+}

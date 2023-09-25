@@ -24,7 +24,6 @@ import { RegisterComponent } from './components/register/register.component';
     I18nModule,
     AuthRoutingModule,
     RouterModule,
-    ApiModule,
     ComponentsModule,
   ],
   declarations: [LoginComponent, RegisterComponent, ForgotPasswordComponent, ResetPasswordComponent, IfRoleDirective],

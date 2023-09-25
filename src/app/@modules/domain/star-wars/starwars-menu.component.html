@@ -1,0 +1,25 @@
+<app-side-navbar>
+  <ul class='c-navbar__nav' id='submenu1' data-bs-parent='#menu'>
+    <li class='c-navbar__item'>
+      <a
+        class='c-navbar__link'
+        [routerLink]='routes.starwars.path + routes.starwars.children.person.plural.path'
+        routerLinkActive='c-navbar__link--active'
+      >
+        <i class='far fa-address-book'></i>
+        <span class='ms-1 d-none d-sm-inline' translate>{{ routes.starwars.children.person.plural.title }}</span>
+      </a>
+    </li>
+    <li class='c-navbar__item'>
+      <a
+        class='c-navbar__link'
+        [routerLink]='routes.starwars.path + routes.starwars.children.film.plural.path'
+        routerLinkActive='c-navbar__link--active'
+      >
+        <i class='far fa-bookmark'></i>
+        <span class='ms-1 d-none d-sm-inline' translate>{{ routes.starwars.children.film.plural.title }}</span>
+      </a>
+    </li>
+  </ul>
+  <p footer>Footer</p>
+</app-side-navbar>
