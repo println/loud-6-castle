@@ -1,10 +1,10 @@
 <ng-content></ng-content>
 <div *ngIf="feedbackMessage && invalidFeedbackMessage && isInvalid" class="invalid-feedback">
-  <span #invalidText><ng-content select="[invalid]"></ng-content></span>
-  <span *ngIf="!invalidText.innerHTML.trim()">Please provide a valid value</span>
+  <span #invalidTpl><ng-content select="[invalid]"></ng-content></span>
+  <span *ngIf="!invalidTpl.innerHTML.trim()">Please provide a valid value</span>
 </div>
 
 <div *ngIf="feedbackMessage && validFeedbackMessage && isValid" class="valid-feedback">
-  <span #validText><ng-content select="[valid]"></ng-content></span>
-  <span *ngIf="!validText.innerHTML.trim()">Valid!</span>
+  <span #validTpl><ng-content select="[valid]"></ng-content></span>
+  <span *ngIf="!validTpl.innerHTML.trim()">Valid!</span>
 </div>

@@ -5,9 +5,10 @@ import { SessionDetailComponent } from './session-detail/session-detail.componen
 import { SessionListComponent } from './session-list/session-list.component';
 
 import { SessionRoutingModule } from './session-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [SessionListComponent, SessionDetailComponent],
-  imports: [CommonModule, SessionRoutingModule, ComponentsModule],
+  imports: [CommonModule, SessionRoutingModule, ComponentsModule, TranslateModule],
 })
 export class SessionModule {}

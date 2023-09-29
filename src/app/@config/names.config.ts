@@ -4,7 +4,16 @@ export const NAMES = {
     create: 'create',
     delete: 'delete',
     list: 'list',
-    view: 'view',
+    view: 'view',    
+  },
+  ACTIONS_PREFIX:{
+    new: 'new',
+    add: 'add',
+    remove: 'remove',
+    update: 'update',
+    detail: 'detail',
+    block: 'block',
+    unblock: 'unblock',
   },
   BASIC_PAGES: {
     empty: '',

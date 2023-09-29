@@ -15,6 +15,11 @@ import { HomeModule } from './@modules/layout/home/home.module';
 import { ShellModule } from './@modules/layout/shell/shell.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LOCALE_ID } from '@angular/core';
+import localePt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localePt);
 
 @NgModule({
   imports: [
@@ -48,7 +53,11 @@ import { AppComponent } from './app.component';
       provide: RouteReuseStrategy,
       useClass: RouteReusableStrategy,
     },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt-BR'
+    }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

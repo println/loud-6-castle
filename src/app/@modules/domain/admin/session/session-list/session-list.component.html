@@ -1,5 +1,5 @@
 <app-page>
-  <span page-title>{{ routes.admin.children.session.plural.title }}</span>
+  <span page-title translate>{{ routes.admin.children.session.plural.title }}</span>
 
   <div *ngIf="(data$ | async)?.page as gridData">
     <app-grid [data]="gridData" [searchBar]="true">

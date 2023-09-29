@@ -6,9 +6,10 @@ import { AccountDetailComponent } from './account-detail/account-detail.componen
 import { AccountListComponent } from './account-list/account-list.component';
 
 import { AccountRoutingModule } from './account-routing.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [AccountListComponent, AccountDetailComponent],
-  imports: [CommonModule, AccountRoutingModule, ComponentsModule, NgbNavModule],
+  imports: [CommonModule, AccountRoutingModule, ComponentsModule, NgbNavModule, TranslateModule],
 })
 export class AccountModule {}

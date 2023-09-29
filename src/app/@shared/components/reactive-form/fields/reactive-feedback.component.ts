@@ -16,13 +16,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
   template: `
     <ng-content></ng-content>
     <div *ngIf="feedbackMessage && invalidFeedbackMessage && isInvalid" class="invalid-feedback">
-      <span #invalidText><ng-content select="[invalid]"></ng-content></span>
-      <span *ngIf="!invalidText.children.length">Please provide a valid value</span>
+      <span #invalidTpl><ng-content select="[invalid]"></ng-content></span>
+      <span *ngIf="!invalidTpl.innerText.length" translate>Please provide a valid value</span>
     </div>
 
     <div *ngIf="feedbackMessage && validFeedbackMessage && isValid" class="valid-feedback">
-      <span #validText><ng-content select="[valid]"></ng-content></span>
-      <span *ngIf="!validText.children.length">Valid!</span>
+      <span #validTpl><ng-content select="[valid]"></ng-content></span>
+      <span *ngIf="!validTpl.innerText.length" translate>Valid</span>
     </div>
   `,
 })

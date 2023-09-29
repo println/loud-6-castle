@@ -1,17 +1,17 @@
 <app-side-navbar>
-  <ul class="c-navbar__nav">
-    <li *ifRole="'admin'">
+  <ul class="c-navbar__nav" *ifRole="'admin'">
+    <li>
       <a
         class='c-navbar__link'
-        [routerLink]='routes.admin.path + routes.admin.children.account.plural.path'
+        [routerLink]="[routes.admin.path, routes.admin.children.account.plural.id]"
         routerLinkActive='c-navbar__link--active'
       > <span class='ms-1 d-none d-sm-inline' translate>{{ routes.admin.children.account.plural.title }}</span>
       </a>
     </li>
-    <li *ifRole="'admin'">
+    <li>
       <a
         class='c-navbar__link'
-        [routerLink]='routes.admin.path + routes.admin.children.session.plural.path'
+        [routerLink]='[routes.admin.path, routes.admin.children.session.plural.id]'
         routerLinkActive='c-navbar__link--active'
       > <span class='ms-1 d-none d-sm-inline' translate>{{ routes.admin.children.session.plural.title }}</span>
       </a>

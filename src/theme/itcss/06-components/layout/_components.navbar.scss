@@ -14,7 +14,8 @@
   width: auto;
   max-width: 220px;
   padding: 0;
-  background-color: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+  background-color: rgba(var(--bs-rgb), var(--bs-bg-opacity));
+  border-right: 1px solid #e6e6e6;
 
   @include media-breakpoint-up(md) {
     width: calc(140px + 4vw);
@@ -41,7 +42,7 @@
     display: flex;
     flex-direction: column;
     background-color: var(--bs-primary);
-    height: 50px;
+    max-height: 50px;
   }
 
   &__footer {
@@ -68,7 +69,7 @@
 
     &--active #{$navbar}__nav {
       display: block;
-    }
+    }    
   }
 
   &__link {
@@ -79,13 +80,15 @@
     flex: 1;
     padding: 1em;
     text-decoration: none;
+    border-bottom: 1px solid #e6e6e6;
 
     &:hover {
       background-color: #7f7f7f;
     }
 
     &--active {
-      background-color: var(--bs-secondary);
+      background-color: var(--bs-primary);
+      color: var(--bs-white);
     }
 
     #{$navbar}__item--dropping > &--active {

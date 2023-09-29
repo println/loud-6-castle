@@ -4,12 +4,9 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { UserState, UserStore } from '@shared';
 import {
   AccountAuthApiService,
-  AuthRequest,
-  AccountForgotPasswordApiService,
-  ForgotPasswordEmailDto,
+  AuthRequest
 } from '@shared/api/backend';
-import { Observable, of, switchMap } from 'rxjs';
-import { ForgotPasswordComponent } from '../components/forgot-password/forgot-password.component';
+import { Observable, catchError, of, switchMap } from 'rxjs';
 import { JwtTokenHelper } from '../helpers/jwt-token.helper';
 
 export interface LoginContext {
@@ -27,7 +24,7 @@ export interface LoginContext {
   providedIn: 'root',
 })
 export class AuthenticationService {
-  constructor(private userStore: UserStore, private service: AccountAuthApiService) {}
+  constructor(private userStore: UserStore, private service: AccountAuthApiService) { }
 
   /**
    * Authenticates the user.
@@ -65,6 +62,10 @@ export class AuthenticationService {
       switchMap((_) => {
         this.userStore.reset();
         return of(true);
+      }),
+      catchError(_ => {
+        this.userStore.reset();
+        return of(false);
       })
     );
   }

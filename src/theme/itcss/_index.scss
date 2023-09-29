@@ -64,6 +64,7 @@
 @import "bootstrap/scss/functions";
 @import "01-settings/all";
 @import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
 
 /* #TOOLS
    ========================================================================== */
@@ -130,5 +131,5 @@
 /* #UTILITIES
    ========================================================================== */
 @import "bootstrap/scss/helpers";
-@import "bootstrap/scss/utilities";
+@import "08-utilities/_all.sass";
 @import "bootstrap/scss/utilities/api";

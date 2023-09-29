@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { AccountDto, Session } from '@shared/api/backend';
+import { Session } from '@shared/api/backend';
 
-import { Observable } from 'rxjs';
-import { Person } from '@shared/api/swapi/models/person.model';
-import { PeopleService } from '../../../star-wars/person/people.service';
 import { ServerParamsFilter } from '@shared/api/swapi/server-params.filter';
 import { GridData } from '@shared/components/grid/grid-data.model';
+import { Observable } from 'rxjs';
 import { SessionService } from '../session.service';
 
 @Injectable({

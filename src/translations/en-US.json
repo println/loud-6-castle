@@ -1,5 +1,20 @@
 {
-  "APP_NAME": "loud 6 castle",
+  "APP_NAME": "bt-portal",
+  
+  "Filter": "Filter",
+  "Edit": "Edit",
+  "Create": "Create",
+  "Delete": "Delete",
+  "List": "List",
+  "View": "View",      
+  "New": "New",
+  "fNew": "New",
+  "Add": "Add",
+  "Remove": "Remove",
+  "Update": "Update",
+  "Detail": "Detail",
+  "Details": "Details",
+
   "About": "About",
   "Hello world !": "Hello world !",
   "Home": "Home",
@@ -36,5 +51,15 @@
   "Send Security Code": "Send Security Code",
   "Renew your Password!": "Renew your Password!",
   "Password incorrect.": "Password incorrect.",
-  "Renew Password": "Renew Password"
+  "Renew Password": "Renew Password",
+  "Last Modified":"Last Modified",
+  "Created At":"Created At",
+  "Actions": "Actions",
+  "Name":"Name",
+  "Invalid": "Invalid",
+  "Valid": "Valid",
+  "Please provide a valid value": "Please provide a valid value",
+  "Block": "Block",
+  "Unblock": "Unblock",  
+
 }

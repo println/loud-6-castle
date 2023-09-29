@@ -10,9 +10,8 @@
  * Do not edit the class manually.
  */ /* tslint:disable:no-unused-variable member-ordering */
 
+import { HttpClient, HttpEvent, HttpHeaders, HttpParams, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable, Optional } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpResponse, HttpEvent } from '@angular/common/http';
-import { start } from '@popperjs/core';
 import { CustomHttpUrlEncodingCodec } from '../encoder';
 
 import { Observable } from 'rxjs';
@@ -23,14 +22,13 @@ import { AccountRegisterDto } from '../model/accountRegisterDto';
 import { IssueToken } from '../model/issueToken';
 import { PageAccountDto } from '../model/pageAccountDto';
 import { Pageable } from '../model/pageable';
-import { PageSession } from '../model/pageSession';
 import { RoleDto } from '../model/roleDto';
 import { Session } from '../model/session';
 import { UpdateLoginDto } from '../model/updateLoginDto';
 import { User } from '../model/user';
 
-import { BASE_PATH, COLLECTION_FORMATS } from '../variables';
 import { Configuration } from '../configuration';
+import { BASE_PATH } from '../variables';
 import RoleEnum = Account.RoleEnum;
 
 @Injectable()

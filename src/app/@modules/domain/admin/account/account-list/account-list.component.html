@@ -1,7 +1,7 @@
 <app-page>
-  <span page-title>{{ routes.admin.children.account.plural.title }}</span>
+  <span page-title translate>{{ routes.admin.children.account.plural.title }}</span>
   <a page-action-bar class="btn btn-primary" role="button" [routerLink]="paths.create">
-    <i class="fas fa-plus fa-fw"></i> {{ paths.toTitle(paths.create) }} {{ routes.admin.children.account.title }}
+    <i class="fas fa-plus fa-fw"></i> <span translate>{{ paths.toTitle(paths.create) }}</span> <span translate>{{ routes.admin.children.account.title }}</span>
   </a>
 
   <div *ngIf="(data$ | async)?.page as gridData">

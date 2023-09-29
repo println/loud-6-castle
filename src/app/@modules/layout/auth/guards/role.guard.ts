@@ -9,15 +9,19 @@ const log = new Logger('RoleGuard');
   providedIn: 'root',
 })
 export class RoleGuard implements CanActivate {
-  constructor(private router: Router, private userQuery: UserQuery) {}
+  constructor(private router: Router, private userQuery: UserQuery) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    const role = this.userQuery.getRole();
-    if (!this.userQuery.isLoggedIn() || (route.data.role && route.data.role.indexOf(role) === -1)) {
-      log.debug('You do not have privileges to access this area...');
-      this.router.navigate([ROUTES.home.path]);
-      return false;
+    if (this.userQuery.isAdmin()) {
+      return true
     }
-    return true;
+
+    if (route.data.role.indexOf(this.userQuery.getRole()) >= -1) {
+      return true
+    }
+
+    log.debug('You do not have privileges to access this area...');
+    this.router.navigate([ROUTES.home.path]);
+    return false;
   }
 }

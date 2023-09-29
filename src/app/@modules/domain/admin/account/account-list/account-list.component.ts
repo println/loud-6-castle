@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PATHS, ROUTES } from '@config';
-import { Film } from '@shared/api/swapi/models/film.model';
-import { GridData } from '@shared/components/grid/grid-data.model';
 import { AccountDto } from '@shared/api/backend';
+import { GridData } from '@shared/components/grid/grid-data.model';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -26,7 +25,7 @@ export class AccountListComponent {
     this.navigate({ page: nextPage });
   }
 
-  delete(entity: Film, event: UIEvent) {}
+  delete(entity: any, event: UIEvent) {}
 
   private navigate(queryParams: {}) {
     this.router.navigate([], {

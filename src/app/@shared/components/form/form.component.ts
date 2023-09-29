@@ -11,11 +11,22 @@ export class FormComponent implements OnInit {
   @Output() formSubmit: EventEmitter<{}> = new EventEmitter();
   @ContentChild('buttonTemplate', { static: false }) buttonTemplateRef!: TemplateRef<any>;
 
-  constructor() {}
+  formData = ''
+
+  get enable() {
+    return this.edit ?
+      (this.formData !== JSON.stringify(this.formGroup.value) &&
+        this.formGroup.valid
+      ) :
+      this.formGroup.valid
+  }
+
+  constructor() { }
 
   ngOnInit(): void {
     Object.getPrototypeOf(this.formGroup).submitted = false;
     if (this.edit) {
+      this.formData = JSON.stringify(this.formGroup.value)
       this.validateAllFormFields(this.formGroup);
     }
   }

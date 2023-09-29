@@ -3,7 +3,14 @@
 
   <ng-container *ngIf="!buttonTemplateRef">
     <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit form</button>
+      <button class="btn btn-primary" type="submit" [disabled]="!enable">
+        <ng-container *ngIf="!edit else updateTpl">
+          <span translate>Add</span> <span translate>New</span>
+        </ng-container>        
+        <ng-template #updateTpl>
+           <span translate>Update</span>
+        </ng-template>       
+      </button>
     </div>
   </ng-container>
 
